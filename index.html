@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hora Dorada Prop House | Catálogo</title>
+  <link rel="stylesheet" href="src/styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="container topbar__inner">
+        <a class="brand" href="#" aria-label="Hora Dorada Prop House">
+          <svg class="brand__sun" viewBox="0 0 64 64" role="img" aria-label="Sol de Hora Dorada">
+            <circle cx="32" cy="32" r="14"></circle>
+            <g>
+              <path d="M32 5v9"></path><path d="M32 50v9"></path><path d="M5 32h9"></path><path d="M50 32h9"></path>
+              <path d="M13 13l6 6"></path><path d="M45 45l6 6"></path><path d="M51 13l-6 6"></path><path d="M19 45l-6 6"></path>
+            </g>
+          </svg>
+          <span class="brand__copy">
+            <strong>Hora Dorada</strong>
+            <span>Prop House</span>
+          </span>
+        </a>
+
+        <label class="search" aria-label="Buscar props">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="11" cy="11" r="7"></circle>
+            <path d="m20 20-3.5-3.5"></path>
+          </svg>
+          <input id="searchInput" type="search" placeholder="Buscar por nombre, código, categoría o estilo" autocomplete="off" />
+        </label>
+
+        <div class="topbar__meta">
+          <span id="sourceDot" class="source-dot"></span>
+          <span id="sourceLabel">Datos de prueba</span>
+          <button id="settingsButton" class="icon-action" type="button" aria-label="Configurar Airtable" title="Configurar Airtable">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 15.5A3.5 3.5 0 1 0 12 8a3.5 3.5 0 0 0 0 7.5Z"></path>
+              <path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1A2 2 0 1 1 4.2 17l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.6-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1A2 2 0 1 1 7 4.2l.1.1a1.7 1.7 0 0 0 1.9.3H9a1.7 1.7 0 0 0 1-1.6V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.6h.1a1.7 1.7 0 0 0 1.9-.3l.1-.1A2 2 0 1 1 19.8 7l-.1.1a1.7 1.7 0 0 0-.3 1.9v.1a1.7 1.7 0 0 0 1.6 1h.1a2 2 0 1 1 0 4H21a1.7 1.7 0 0 0-1.6 1Z"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="container layout">
+      <section class="catalog">
+        <div class="catalog__head">
+          <div>
+            <h1>Catálogo de props</h1>
+            <p>Selecciona piezas, elige fechas y revisa una cotización estimada.</p>
+          </div>
+          <strong id="catalogCount" class="catalog__count">0 props disponibles</strong>
+        </div>
+
+        <div class="filters" aria-label="Filtros de catálogo">
+          <select id="categoryFilter" class="control" aria-label="Categoría"></select>
+          <select id="styleFilter" class="control" aria-label="Estilo"></select>
+          <select id="stateFilter" class="control" aria-label="Estado"></select>
+          <select id="priceFilter" class="control" aria-label="Precio"></select>
+          <select id="sortFilter" class="control" aria-label="Orden"></select>
+        </div>
+
+        <div id="loadingState" class="empty-state">Cargando catálogo...</div>
+        <div id="catalogGrid" class="catalog-grid" aria-live="polite"></div>
+      </section>
+
+      <aside id="quotePanel" class="quote" aria-label="Carrito de cotización">
+        <div class="quote__inner">
+          <div class="quote__head">
+            <h2>Tu cotización</h2>
+            <span id="daysPill" class="pill">1 día</span>
+          </div>
+
+          <div class="date-grid">
+            <label>
+              Salida
+              <input id="startDate" class="field" type="date" />
+            </label>
+            <label>
+              Regreso
+              <input id="endDate" class="field" type="date" />
+            </label>
+          </div>
+
+          <div id="cartList" class="cart-list"></div>
+          <div id="availabilityAlert" class="availability-alert"></div>
+
+          <div class="totals">
+            <div><span>Subtotal</span><strong id="subtotal">$0 MXN</strong></div>
+            <div><span>IVA 16%</span><strong id="iva">$0 MXN</strong></div>
+            <div class="totals__main"><span>Total estimado</span><strong id="total">$0 MXN</strong></div>
+            <div><span>Anticipo sugerido 20%</span><strong id="deposit">$0 MXN</strong></div>
+          </div>
+
+          <button id="reviewQuote" class="button button--primary" type="button">Revisar cotización</button>
+        </div>
+      </aside>
+    </main>
+
+    <div class="mobile-quote-bar">
+      <div>
+        <span id="mobileSelected">0 props seleccionados</span>
+        <strong id="mobileTotal">$0 MXN</strong>
+      </div>
+      <button id="openCart" class="button button--primary" type="button">Ver cotización</button>
+    </div>
+  </div>
+
+  <dialog id="quoteDialog" class="dialog">
+    <section class="review">
+      <header class="review__head">
+        <div class="brand brand--compact">
+          <svg class="brand__sun" viewBox="0 0 64 64" aria-hidden="true">
+            <circle cx="32" cy="32" r="14"></circle>
+            <g>
+              <path d="M32 5v9"></path><path d="M32 50v9"></path><path d="M5 32h9"></path><path d="M50 32h9"></path>
+              <path d="M13 13l6 6"></path><path d="M45 45l6 6"></path><path d="M51 13l-6 6"></path><path d="M19 45l-6 6"></path>
+            </g>
+          </svg>
+          <span class="brand__copy">
+            <strong>Cotización estimada</strong>
+            <span>Hora Dorada Prop House</span>
+          </span>
+        </div>
+        <button class="icon-action icon-action--soft" data-close-dialog type="button" aria-label="Cerrar">×</button>
+      </header>
+
+      <div class="review__body">
+        <div class="review-stats">
+          <div><span>Salida</span><strong id="reviewStart"></strong></div>
+          <div><span>Regreso</span><strong id="reviewEnd"></strong></div>
+          <div><span>Días cobrados</span><strong id="reviewDays"></strong></div>
+        </div>
+
+        <div id="reviewItems" class="review-items"></div>
+
+        <div class="totals">
+          <div><span>Subtotal</span><strong id="reviewSubtotal">$0 MXN</strong></div>
+          <div><span>IVA 16%</span><strong id="reviewIva">$0 MXN</strong></div>
+          <div class="totals__main"><span>Total estimado</span><strong id="reviewTotal">$0 MXN</strong></div>
+          <div><span>Anticipo sugerido 20%</span><strong id="reviewDeposit">$0 MXN</strong></div>
+        </div>
+
+        <p class="disclaimer">Esta cotización es estimada. No confirma disponibilidad ni aparta inventario hasta revisión de Hora Dorada Prop House.</p>
+
+        <form id="requestForm" class="client-form">
+          <label>
+            Nombre
+            <input id="clientName" class="field" name="name" type="text" placeholder="Nombre del cliente" />
+          </label>
+          <label>
+            WhatsApp
+            <input id="clientWhatsapp" class="field" name="whatsapp" type="tel" placeholder="Número de WhatsApp" />
+          </label>
+          <label class="client-form__wide">
+            Notas
+            <textarea id="clientNotes" class="field" name="notes" placeholder="Comentarios, medidas, locación o dudas"></textarea>
+          </label>
+          <div class="review-actions client-form__wide">
+            <button class="button button--primary" type="submit">Enviar solicitud</button>
+            <button id="shareWhatsApp" class="button button--secondary" type="button">Compartir por WhatsApp</button>
+          </div>
+          <p id="requestStatus" class="form-status client-form__wide"></p>
+        </form>
+      </div>
+    </section>
+  </dialog>
+
+  <dialog id="settingsDialog" class="dialog dialog--settings">
+    <form id="settingsForm" class="settings">
+      <header class="settings__head">
+        <h2>Conexión Airtable</h2>
+        <button class="icon-action icon-action--soft" data-close-dialog type="button" aria-label="Cerrar">×</button>
+      </header>
+
+      <p class="settings__note">Para pruebas en GitHub Pages, el token se guarda solo en este navegador. No lo subas al repositorio. En la versión pública lo moveremos a una función serverless.</p>
+
+      <label>
+        Modo de datos
+        <select id="dataMode" class="field">
+          <option value="mock">Datos de prueba</option>
+          <option value="airtable">Airtable directo para pruebas</option>
+        </select>
+      </label>
+      <label>
+        Airtable Base ID
+        <input id="airtableBaseId" class="field" type="text" placeholder="app..." />
+      </label>
+      <label>
+        Personal Access Token
+        <input id="airtableToken" class="field" type="password" placeholder="pat..." autocomplete="off" />
+      </label>
+      <label>
+        Estados visibles en catálogo
+        <input id="allowedStates" class="field" type="text" placeholder="Disponible, Disponible con detalle, En showroom" />
+      </label>
+
+      <div class="settings-grid">
+        <label>
+          Tabla inventario
+          <input id="inventoryTable" class="field" type="text" />
+        </label>
+        <label>
+          Tabla rentas
+          <input id="rentalsTable" class="field" type="text" />
+        </label>
+        <label>
+          Tabla solicitudes
+          <input id="requestsTable" class="field" type="text" />
+        </label>
+      </div>
+
+      <div class="settings-actions">
+        <button class="button button--secondary" id="useMockData" type="button">Usar prueba</button>
+        <button class="button button--primary" type="submit">Guardar y cargar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script type="module" src="src/app.js"></script>
+</body>
+</html>

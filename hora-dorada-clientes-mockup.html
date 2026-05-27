@@ -1,0 +1,1423 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hora Dorada Prop House | Catálogo</title>
+  <style>
+    :root {
+      --ivory: #f7f1e7;
+      --paper: #fffaf1;
+      --paper-strong: #fff6e7;
+      --charcoal: #251f1a;
+      --muted: #75685d;
+      --line: #dfd1bf;
+      --gold: #bd8d35;
+      --gold-soft: #ead2a0;
+      --terracotta: #ad593b;
+      --terracotta-dark: #8e402c;
+      --olive: #394d35;
+      --olive-soft: #e3e9dc;
+      --danger-soft: #efe8e0;
+      --disabled: #9d958d;
+      --shadow: 0 14px 34px rgba(52, 39, 26, 0.10);
+      --radius: 8px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      color: var(--charcoal);
+      background:
+        linear-gradient(180deg, rgba(255, 250, 241, 0.92), rgba(247, 241, 231, 0.98)),
+        radial-gradient(circle at 12% 8%, rgba(189, 141, 53, 0.14), transparent 26%);
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .app {
+      min-height: 100vh;
+      padding-bottom: 92px;
+    }
+
+    .shell {
+      width: min(1440px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid rgba(223, 209, 191, 0.86);
+      background: rgba(247, 241, 231, 0.92);
+      backdrop-filter: blur(18px);
+    }
+
+    .header-inner {
+      display: grid;
+      grid-template-columns: 270px minmax(220px, 1fr) auto;
+      gap: 18px;
+      align-items: center;
+      min-height: 82px;
+    }
+
+    .brand {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      min-width: 0;
+    }
+
+    .sun {
+      width: 42px;
+      height: 42px;
+      flex: 0 0 auto;
+    }
+
+    .brand-text {
+      display: grid;
+      gap: 1px;
+      line-height: 1;
+    }
+
+    .brand-main {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 23px;
+      font-weight: 800;
+      letter-spacing: 0;
+      color: #1d1814;
+      white-space: nowrap;
+    }
+
+    .brand-sub {
+      color: var(--gold);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .search-wrap {
+      position: relative;
+    }
+
+    .search-wrap svg {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      width: 18px;
+      height: 18px;
+      color: var(--muted);
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+
+    .search {
+      width: 100%;
+      height: 46px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 0 14px 0 42px;
+      color: var(--charcoal);
+      background: rgba(255, 250, 241, 0.88);
+      outline: none;
+    }
+
+    .search:focus,
+    .control:focus,
+    .field:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(189, 141, 53, 0.16);
+    }
+
+    .header-actions {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--olive);
+      box-shadow: 0 0 0 4px var(--olive-soft);
+    }
+
+    .main {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 360px;
+      gap: 24px;
+      padding-top: 24px;
+    }
+
+    .catalog-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: flex-end;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      margin: 0 0 6px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(32px, 3vw, 48px);
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .lede {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .count {
+      color: var(--olive);
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .toolbar {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(130px, 1fr));
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .control {
+      height: 42px;
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 0 12px;
+      color: var(--charcoal);
+      background: var(--paper);
+      outline: none;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+      align-items: start;
+    }
+
+    .card {
+      overflow: hidden;
+      border: 1px solid rgba(223, 209, 191, 0.9);
+      border-radius: var(--radius);
+      background: var(--paper);
+      box-shadow: 0 8px 22px rgba(52, 39, 26, 0.06);
+    }
+
+    .photo {
+      display: grid;
+      place-items: center;
+      aspect-ratio: 4 / 3;
+      background: linear-gradient(140deg, var(--photo-a), var(--photo-b));
+      border-bottom: 1px solid rgba(223, 209, 191, 0.82);
+    }
+
+    .photo svg {
+      width: 74%;
+      height: 74%;
+      filter: drop-shadow(0 16px 16px rgba(37, 31, 26, 0.16));
+    }
+
+    .card-body {
+      padding: 12px;
+    }
+
+    .meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 7px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .name {
+      min-height: 40px;
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.2;
+      font-weight: 850;
+    }
+
+    .card-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .price {
+      font-weight: 900;
+      color: var(--terracotta-dark);
+    }
+
+    .price span {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .icon-button,
+    .mobile-filter {
+      display: inline-grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      border: 0;
+      border-radius: 50%;
+      color: #fffaf1;
+      background: var(--terracotta);
+    }
+
+    .icon-button.added {
+      background: var(--olive);
+    }
+
+    .quote-panel {
+      position: sticky;
+      top: 106px;
+      align-self: start;
+      border: 1px solid rgba(223, 209, 191, 0.95);
+      border-radius: var(--radius);
+      background: rgba(255, 250, 241, 0.96);
+      box-shadow: var(--shadow);
+    }
+
+    .quote-inner {
+      padding: 18px;
+    }
+
+    .panel-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .panel-title {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 25px;
+      line-height: 1.05;
+    }
+
+    .pill {
+      border: 1px solid rgba(189, 141, 53, 0.35);
+      border-radius: 999px;
+      padding: 6px 9px;
+      color: var(--gold);
+      background: rgba(234, 210, 160, 0.22);
+      font-size: 12px;
+      font-weight: 850;
+      white-space: nowrap;
+    }
+
+    .dates {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    label {
+      display: grid;
+      gap: 6px;
+      min-width: 0;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 850;
+    }
+
+    .field {
+      width: 100%;
+      min-width: 0;
+      height: 40px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 0 9px;
+      color: var(--charcoal);
+      background: var(--paper-strong);
+      outline: none;
+    }
+
+    .cart-list {
+      display: grid;
+      gap: 10px;
+      max-height: 290px;
+      overflow: auto;
+      padding-right: 2px;
+    }
+
+    .cart-empty {
+      border: 1px dashed var(--line);
+      border-radius: var(--radius);
+      padding: 16px;
+      color: var(--muted);
+      background: rgba(247, 241, 231, 0.6);
+      text-align: center;
+      font-size: 14px;
+    }
+
+    .cart-item {
+      display: grid;
+      grid-template-columns: 56px minmax(0, 1fr) auto;
+      gap: 10px;
+      align-items: center;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 8px;
+      background: var(--paper-strong);
+    }
+
+    .cart-item.unavailable {
+      color: #716b65;
+      background: #ece7df;
+      opacity: 0.9;
+    }
+
+    .thumb {
+      display: grid;
+      place-items: center;
+      width: 56px;
+      height: 52px;
+      border-radius: 6px;
+      background: linear-gradient(140deg, var(--photo-a), var(--photo-b));
+      overflow: hidden;
+    }
+
+    .cart-item.unavailable .thumb {
+      filter: grayscale(1);
+      opacity: 0.72;
+    }
+
+    .thumb svg {
+      width: 70%;
+      height: 70%;
+    }
+
+    .cart-name {
+      margin: 0 0 3px;
+      overflow: hidden;
+      font-size: 14px;
+      font-weight: 850;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .cart-code {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      margin-top: 5px;
+      border-radius: 999px;
+      padding: 4px 7px;
+      color: #5f554d;
+      background: #ddd4ca;
+      font-size: 11px;
+      font-weight: 850;
+    }
+
+    .cart-price {
+      display: grid;
+      justify-items: end;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .remove {
+      width: 26px;
+      height: 26px;
+      border: 0;
+      border-radius: 50%;
+      color: var(--muted);
+      background: transparent;
+    }
+
+    .remove:hover {
+      color: var(--terracotta-dark);
+      background: rgba(173, 89, 59, 0.12);
+    }
+
+    .alert {
+      display: none;
+      margin-top: 12px;
+      border: 1px solid #d8c7b6;
+      border-radius: var(--radius);
+      padding: 10px;
+      color: #5f554d;
+      background: var(--danger-soft);
+      font-size: 13px;
+      line-height: 1.35;
+      font-weight: 750;
+    }
+
+    .alert.show {
+      display: block;
+    }
+
+    .totals {
+      display: grid;
+      gap: 8px;
+      margin-top: 14px;
+      border-top: 1px solid var(--line);
+      padding-top: 14px;
+    }
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 750;
+    }
+
+    .row strong {
+      color: var(--charcoal);
+    }
+
+    .row.total {
+      color: var(--charcoal);
+      font-size: 20px;
+      font-weight: 900;
+    }
+
+    .primary,
+    .secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: 46px;
+      border: 0;
+      border-radius: var(--radius);
+      padding: 0 16px;
+      font-weight: 900;
+    }
+
+    .primary {
+      margin-top: 14px;
+      color: #fffaf1;
+      background: var(--olive);
+    }
+
+    .primary:disabled {
+      cursor: not-allowed;
+      color: #f5efe3;
+      background: #9b9b8c;
+    }
+
+    .secondary {
+      color: var(--olive);
+      background: var(--olive-soft);
+    }
+
+    .mobile-bar {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 30;
+      display: none;
+      border-top: 1px solid var(--line);
+      padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+      background: rgba(255, 250, 241, 0.96);
+      box-shadow: 0 -14px 30px rgba(52, 39, 26, 0.10);
+    }
+
+    .mobile-bar-inner {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .mobile-total {
+      display: grid;
+      gap: 2px;
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 800;
+    }
+
+    .mobile-total strong {
+      color: var(--charcoal);
+      font-size: 18px;
+    }
+
+    .mobile-cta {
+      min-height: 44px;
+      border: 0;
+      border-radius: var(--radius);
+      padding: 0 16px;
+      color: #fffaf1;
+      background: var(--olive);
+      font-weight: 900;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      display: none;
+      place-items: center;
+      padding: 20px;
+      background: rgba(37, 31, 26, 0.34);
+    }
+
+    .modal.show {
+      display: grid;
+    }
+
+    .quote-review {
+      width: min(720px, 100%);
+      max-height: min(840px, calc(100vh - 34px));
+      overflow: auto;
+      border-radius: var(--radius);
+      background: var(--paper);
+      box-shadow: 0 22px 70px rgba(37, 31, 26, 0.24);
+    }
+
+    .review-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      border-bottom: 1px solid var(--line);
+      padding: 18px 20px;
+    }
+
+    .review-head h2 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 30px;
+    }
+
+    .close {
+      width: 38px;
+      height: 38px;
+      border: 0;
+      border-radius: 50%;
+      color: var(--charcoal);
+      background: var(--danger-soft);
+    }
+
+    .review-body {
+      display: grid;
+      gap: 18px;
+      padding: 20px;
+    }
+
+    .review-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+    }
+
+    .mini-stat {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 12px;
+      background: var(--paper-strong);
+    }
+
+    .mini-stat span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 850;
+    }
+
+    .mini-stat strong {
+      display: block;
+      margin-top: 4px;
+      font-size: 15px;
+    }
+
+    .review-items {
+      display: grid;
+      gap: 10px;
+    }
+
+    .review-item {
+      display: grid;
+      grid-template-columns: 58px minmax(0, 1fr) auto;
+      gap: 12px;
+      align-items: center;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 10px;
+    }
+
+    .review-item:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .disclaimer {
+      border-left: 4px solid var(--gold);
+      border-radius: var(--radius);
+      padding: 12px;
+      color: #5e534a;
+      background: rgba(234, 210, 160, 0.24);
+      font-size: 14px;
+      line-height: 1.45;
+      font-weight: 750;
+    }
+
+    .client-fields {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .client-fields label:last-child {
+      grid-column: 1 / -1;
+    }
+
+    textarea.field {
+      height: 74px;
+      padding-top: 10px;
+      resize: vertical;
+    }
+
+    .review-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .mobile-only {
+      display: none;
+    }
+
+    @media (max-width: 1180px) {
+      .main {
+        grid-template-columns: minmax(0, 1fr) 340px;
+      }
+
+      .grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .toolbar {
+        grid-template-columns: repeat(3, minmax(140px, 1fr));
+      }
+    }
+
+    @media (max-width: 900px) {
+      .shell {
+        width: min(100% - 28px, 720px);
+      }
+
+      .header-inner {
+        grid-template-columns: 1fr auto;
+        gap: 12px;
+        min-height: 76px;
+      }
+
+      .search-wrap {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        margin-bottom: 12px;
+      }
+
+      .header-actions {
+        font-size: 0;
+      }
+
+      .main {
+        display: block;
+        padding-top: 18px;
+      }
+
+      .catalog-head {
+        align-items: flex-start;
+      }
+
+      h1 {
+        font-size: 34px;
+      }
+
+      .toolbar {
+        display: flex;
+        gap: 8px;
+        overflow-x: auto;
+        padding-bottom: 6px;
+      }
+
+      .control {
+        flex: 0 0 auto;
+        width: 150px;
+      }
+
+      .mobile-only {
+        display: inline-grid;
+      }
+
+      .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .card-body {
+        padding: 10px;
+      }
+
+      .name {
+        min-height: 38px;
+        font-size: 14px;
+      }
+
+      .quote-panel {
+        position: fixed;
+        inset: auto 10px calc(74px + env(safe-area-inset-bottom)) 10px;
+        z-index: 42;
+        display: none;
+        max-height: min(78vh, 680px);
+        overflow: auto;
+      }
+
+      .quote-panel.show-mobile {
+        display: block;
+      }
+
+      .mobile-bar {
+        display: block;
+      }
+
+      .review-grid,
+      .client-fields,
+      .review-actions {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 460px) {
+      .shell {
+        width: calc(100% - 22px);
+      }
+
+      .brand-main {
+        font-size: 20px;
+      }
+
+      .brand-sub {
+        font-size: 10px;
+      }
+
+      .sun {
+        width: 38px;
+        height: 38px;
+      }
+
+      .header-inner {
+        min-height: 70px;
+      }
+
+      .catalog-head {
+        display: grid;
+        gap: 8px;
+      }
+
+      .lede {
+        font-size: 14px;
+      }
+
+      .meta {
+        display: grid;
+        gap: 3px;
+      }
+
+      .price {
+        font-size: 13px;
+      }
+
+      .icon-button {
+        width: 34px;
+        height: 34px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <div class="shell header-inner">
+        <div class="brand" aria-label="Hora Dorada Prop House">
+          <svg class="sun" viewBox="0 0 64 64" role="img" aria-label="Sol de Hora Dorada">
+            <circle cx="32" cy="32" r="14" fill="#bd8d35"></circle>
+            <g stroke="#bd8d35" stroke-width="4" stroke-linecap="round">
+              <path d="M32 5v9"></path>
+              <path d="M32 50v9"></path>
+              <path d="M5 32h9"></path>
+              <path d="M50 32h9"></path>
+              <path d="M13 13l6 6"></path>
+              <path d="M45 45l6 6"></path>
+              <path d="M51 13l-6 6"></path>
+              <path d="M19 45l-6 6"></path>
+            </g>
+          </svg>
+          <div class="brand-text">
+            <span class="brand-main">Hora Dorada</span>
+            <span class="brand-sub">Prop House</span>
+          </div>
+        </div>
+
+        <div class="search-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="11" cy="11" r="7"></circle>
+            <path d="m20 20-3.5-3.5"></path>
+          </svg>
+          <input id="search" class="search" type="search" placeholder="Buscar por nombre, código, categoría o estilo" />
+        </div>
+
+        <div class="header-actions">
+          <span class="status-dot"></span>
+          <span>Catálogo estimado</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="shell main">
+      <section>
+        <div class="catalog-head">
+          <div>
+            <h1>Catálogo de props</h1>
+            <p class="lede">Selecciona piezas, elige fechas y revisa una cotización estimada.</p>
+          </div>
+          <div id="catalogCount" class="count">0 props disponibles</div>
+        </div>
+
+        <div class="toolbar" aria-label="Filtros de catálogo">
+          <button class="mobile-filter mobile-only" type="button" title="Filtros">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M4 6h16"></path><path d="M7 12h10"></path><path d="M10 18h4"></path>
+            </svg>
+          </button>
+          <select id="categoryFilter" class="control" aria-label="Categoría"></select>
+          <select id="styleFilter" class="control" aria-label="Estilo"></select>
+          <select id="stateFilter" class="control" aria-label="Estado"></select>
+          <select id="priceFilter" class="control" aria-label="Precio"></select>
+          <select id="sortFilter" class="control" aria-label="Orden"></select>
+        </div>
+
+        <div id="catalogGrid" class="grid" aria-live="polite"></div>
+      </section>
+
+      <aside id="quotePanel" class="quote-panel" aria-label="Carrito de cotización">
+        <div class="quote-inner">
+          <div class="panel-top">
+            <h2 class="panel-title">Tu cotización</h2>
+            <span id="daysPill" class="pill">1 día</span>
+          </div>
+
+          <div class="dates">
+            <label>
+              Salida
+              <input id="startDate" class="field" type="date" />
+            </label>
+            <label>
+              Regreso
+              <input id="endDate" class="field" type="date" />
+            </label>
+          </div>
+
+          <div id="cartList" class="cart-list"></div>
+          <div id="availabilityAlert" class="alert"></div>
+
+          <div class="totals">
+            <div class="row"><span>Subtotal</span><strong id="subtotal">$0 MXN</strong></div>
+            <div class="row"><span>IVA 16%</span><strong id="iva">$0 MXN</strong></div>
+            <div class="row total"><span>Total estimado</span><strong id="total">$0 MXN</strong></div>
+            <div class="row"><span>Anticipo sugerido 20%</span><strong id="deposit">$0 MXN</strong></div>
+          </div>
+
+          <button id="reviewQuote" class="primary" type="button">Revisar cotización</button>
+        </div>
+      </aside>
+    </main>
+
+    <div class="mobile-bar">
+      <div class="mobile-bar-inner">
+        <div class="mobile-total">
+          <span id="mobileSelected">0 props seleccionados</span>
+          <strong id="mobileTotal">$0 MXN</strong>
+        </div>
+        <button id="openCart" class="mobile-cta" type="button">Ver cotización</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="quoteModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="quoteTitle">
+    <section class="quote-review">
+      <div class="review-head">
+        <div class="brand">
+          <svg class="sun" viewBox="0 0 64 64" aria-hidden="true">
+            <circle cx="32" cy="32" r="14" fill="#bd8d35"></circle>
+            <g stroke="#bd8d35" stroke-width="4" stroke-linecap="round">
+              <path d="M32 5v9"></path><path d="M32 50v9"></path><path d="M5 32h9"></path><path d="M50 32h9"></path>
+              <path d="M13 13l6 6"></path><path d="M45 45l6 6"></path><path d="M51 13l-6 6"></path><path d="M19 45l-6 6"></path>
+            </g>
+          </svg>
+          <div>
+            <h2 id="quoteTitle">Cotización estimada</h2>
+            <div class="brand-sub">Hora Dorada Prop House</div>
+          </div>
+        </div>
+        <button id="closeQuote" class="close" type="button" aria-label="Cerrar">×</button>
+      </div>
+
+      <div class="review-body">
+        <div class="review-grid">
+          <div class="mini-stat"><span>Salida</span><strong id="reviewStart"></strong></div>
+          <div class="mini-stat"><span>Regreso</span><strong id="reviewEnd"></strong></div>
+          <div class="mini-stat"><span>Días cobrados</span><strong id="reviewDays"></strong></div>
+        </div>
+
+        <div id="reviewItems" class="review-items"></div>
+
+        <div class="totals">
+          <div class="row"><span>Subtotal</span><strong id="reviewSubtotal">$0 MXN</strong></div>
+          <div class="row"><span>IVA 16%</span><strong id="reviewIva">$0 MXN</strong></div>
+          <div class="row total"><span>Total estimado</span><strong id="reviewTotal">$0 MXN</strong></div>
+          <div class="row"><span>Anticipo sugerido 20%</span><strong id="reviewDeposit">$0 MXN</strong></div>
+        </div>
+
+        <p class="disclaimer">Esta cotización es estimada. No confirma disponibilidad ni aparta inventario hasta revisión de Hora Dorada Prop House.</p>
+
+        <div class="client-fields">
+          <label>
+            Nombre
+            <input class="field" type="text" placeholder="Nombre del cliente" />
+          </label>
+          <label>
+            WhatsApp
+            <input class="field" type="tel" placeholder="Número de WhatsApp" />
+          </label>
+          <label>
+            Notas
+            <textarea class="field" placeholder="Comentarios, medidas, locación o dudas"></textarea>
+          </label>
+        </div>
+
+        <div class="review-actions">
+          <button class="primary" type="button">Enviar solicitud</button>
+          <button id="shareWhatsApp" class="secondary" type="button">Compartir por WhatsApp</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const allowedPublicStates = ["Disponible", "Disponible con detalle", "En showroom"];
+
+    const props = [
+      { id: "p1", name: "Silla de terciopelo oliva", code: "HD-CH-014", category: "Sillas", style: "Vintage", state: "Disponible", price: 850, type: "chair", colors: ["#d8c4a0", "#5c6b4b"] },
+      { id: "p2", name: "Lámpara latón curvo", code: "HD-LA-028", category: "Iluminación", style: "Art déco", state: "Disponible", price: 620, type: "lamp", colors: ["#ead8a8", "#bd8d35"] },
+      { id: "p3", name: "Jarrón cerámico miel", code: "HD-VA-007", category: "Decoración", style: "Orgánico", state: "En showroom", price: 380, type: "vase", colors: ["#ecd9c8", "#ad593b"] },
+      { id: "p4", name: "Espejo oval antiguo", code: "HD-MI-018", category: "Espejos", style: "Clásico", state: "Disponible", price: 900, type: "mirror", colors: ["#e7d5bd", "#a47a31"] },
+      { id: "p5", name: "Pedestal mármol crema", code: "HD-PE-011", category: "Pedestales", style: "Editorial", state: "Disponible con detalle", price: 760, type: "pedestal", colors: ["#efe4d2", "#b7aa99"] },
+      { id: "p6", name: "Baúl madera envejecida", code: "HD-TR-003", category: "Mobiliario", style: "Rústico", state: "Disponible", price: 540, type: "trunk", colors: ["#e6cfb0", "#774b35"] },
+      { id: "p7", name: "Biombo lino natural", code: "HD-BI-006", category: "Fondos", style: "Minimal", state: "En showroom", price: 1200, type: "screen", colors: ["#f0dfc4", "#93836f"] },
+      { id: "p8", name: "Mesa lateral nogal", code: "HD-TA-021", category: "Mesas", style: "Mid-century", state: "Disponible", price: 680, type: "table", colors: ["#e9cfac", "#68452e"] },
+      { id: "p9", name: "Marco dorado barroco", code: "HD-FR-012", category: "Decoración", style: "Clásico", state: "Disponible", price: 450, type: "frame", colors: ["#edd89c", "#bd8d35"] },
+      { id: "p10", name: "Sillón bouclé marfil", code: "HD-CH-032", category: "Sillas", style: "Editorial", state: "Disponible", price: 1350, type: "chair", colors: ["#f1e5d0", "#c7b9a4"] },
+      { id: "p11", name: "Candelabro de bronce", code: "HD-CA-009", category: "Decoración", style: "Art déco", state: "Disponible con detalle", price: 320, type: "lamp", colors: ["#ead6a6", "#8b6d2f"] },
+      { id: "p12", name: "Banco tapizado terracota", code: "HD-BE-005", category: "Mobiliario", style: "Vintage", state: "Disponible", price: 780, type: "bench", colors: ["#efd1bc", "#ad593b"] }
+    ];
+
+    const confirmedRentals = [
+      { propIds: ["p2", "p5"], start: "2026-06-06", end: "2026-06-08", status: "Confirmada" },
+      { propIds: ["p8"], start: "2026-06-10", end: "2026-06-13", status: "Confirmada" },
+      { propIds: ["p10"], start: "2026-06-14", end: "2026-06-15", status: "Confirmada" }
+    ];
+
+    const state = {
+      search: "",
+      category: "Todas",
+      style: "Todos",
+      itemState: "Todos",
+      price: "Todos",
+      sort: "Destacados",
+      selectedIds: ["p1", "p2", "p5"],
+      startDate: "2026-06-06",
+      endDate: "2026-06-08"
+    };
+
+    const money = new Intl.NumberFormat("es-MX", {
+      style: "currency",
+      currency: "MXN",
+      maximumFractionDigits: 0
+    });
+
+    const els = {
+      search: document.querySelector("#search"),
+      categoryFilter: document.querySelector("#categoryFilter"),
+      styleFilter: document.querySelector("#styleFilter"),
+      stateFilter: document.querySelector("#stateFilter"),
+      priceFilter: document.querySelector("#priceFilter"),
+      sortFilter: document.querySelector("#sortFilter"),
+      catalogGrid: document.querySelector("#catalogGrid"),
+      catalogCount: document.querySelector("#catalogCount"),
+      startDate: document.querySelector("#startDate"),
+      endDate: document.querySelector("#endDate"),
+      daysPill: document.querySelector("#daysPill"),
+      cartList: document.querySelector("#cartList"),
+      availabilityAlert: document.querySelector("#availabilityAlert"),
+      subtotal: document.querySelector("#subtotal"),
+      iva: document.querySelector("#iva"),
+      total: document.querySelector("#total"),
+      deposit: document.querySelector("#deposit"),
+      reviewQuote: document.querySelector("#reviewQuote"),
+      mobileSelected: document.querySelector("#mobileSelected"),
+      mobileTotal: document.querySelector("#mobileTotal"),
+      openCart: document.querySelector("#openCart"),
+      quotePanel: document.querySelector("#quotePanel"),
+      quoteModal: document.querySelector("#quoteModal"),
+      closeQuote: document.querySelector("#closeQuote"),
+      reviewStart: document.querySelector("#reviewStart"),
+      reviewEnd: document.querySelector("#reviewEnd"),
+      reviewDays: document.querySelector("#reviewDays"),
+      reviewItems: document.querySelector("#reviewItems"),
+      reviewSubtotal: document.querySelector("#reviewSubtotal"),
+      reviewIva: document.querySelector("#reviewIva"),
+      reviewTotal: document.querySelector("#reviewTotal"),
+      reviewDeposit: document.querySelector("#reviewDeposit"),
+      shareWhatsApp: document.querySelector("#shareWhatsApp")
+    };
+
+    function formatMoney(value) {
+      return money.format(value);
+    }
+
+    function formatDate(value) {
+      const date = new Date(`${value}T12:00:00`);
+      return date.toLocaleDateString("es-MX", { day: "numeric", month: "short", year: "numeric" });
+    }
+
+    function calculateRentalDays(start, end) {
+      const startDate = new Date(`${start}T12:00:00`);
+      const endDate = new Date(`${end}T12:00:00`);
+      if (Number.isNaN(startDate.getTime()) || Number.isNaN(endDate.getTime()) || endDate < startDate) return 1;
+      const diff = endDate.getTime() - startDate.getTime();
+      return Math.max(1, Math.ceil(diff / 86400000) + 1);
+    }
+
+    function datesOverlap(startA, endA, startB, endB) {
+      return new Date(`${startA}T00:00:00`) <= new Date(`${endB}T23:59:59`) &&
+        new Date(`${startB}T00:00:00`) <= new Date(`${endA}T23:59:59`);
+    }
+
+    function isPropUnavailable(propId) {
+      return confirmedRentals.some((rental) =>
+        rental.status === "Confirmada" &&
+        rental.propIds.includes(propId) &&
+        datesOverlap(state.startDate, state.endDate, rental.start, rental.end)
+      );
+    }
+
+    function getUnavailableMessage(count) {
+      if (count === 1) {
+        return "Este prop no se incluirá en la cotización porque está rentado en las fechas seleccionadas.";
+      }
+      return "Estos props no se incluirán en la cotización porque están rentados en las fechas seleccionadas.";
+    }
+
+    function calculateQuoteTotals() {
+      const days = calculateRentalDays(state.startDate, state.endDate);
+      const selected = state.selectedIds.map((id) => props.find((prop) => prop.id === id)).filter(Boolean);
+      const available = selected.filter((prop) => !isPropUnavailable(prop.id));
+      const unavailable = selected.filter((prop) => isPropUnavailable(prop.id));
+      const subtotal = available.reduce((sum, prop) => sum + prop.price * days, 0);
+      const iva = Math.round(subtotal * 0.16);
+      const total = subtotal + iva;
+      const deposit = Math.round(total * 0.2);
+      return { days, selected, available, unavailable, subtotal, iva, total, deposit };
+    }
+
+    function uniqueOptions(key, allLabel) {
+      const values = [...new Set(props.filter((prop) => allowedPublicStates.includes(prop.state)).map((prop) => prop[key]))].sort();
+      return [allLabel, ...values];
+    }
+
+    function setSelectOptions(select, options) {
+      select.innerHTML = options.map((option) => `<option value="${option}">${option}</option>`).join("");
+    }
+
+    function propArt(prop) {
+      const [a, b] = prop.colors;
+      const common = `fill="${b}" stroke="#3b3028" stroke-width="2" stroke-linejoin="round"`;
+      const soft = `fill="${a}" stroke="#3b3028" stroke-width="2" stroke-linejoin="round"`;
+      const art = {
+        chair: `<path ${soft} d="M18 18h28v22H18z"></path><path ${common} d="M16 38h32v10H16z"></path><path stroke="#3b3028" stroke-width="4" stroke-linecap="round" d="M21 48v10M43 48v10"></path>`,
+        lamp: `<path ${soft} d="M24 18h16l8 18H16z"></path><path stroke="#3b3028" stroke-width="4" stroke-linecap="round" d="M32 36v18"></path><path ${common} d="M22 54h20v5H22z"></path>`,
+        vase: `<path ${soft} d="M26 18h12l-3 10c8 5 10 24-3 29-13-5-11-24-3-29z"></path><path ${common} d="M25 17h14v6H25z"></path>`,
+        mirror: `<ellipse ${soft} cx="32" cy="32" rx="16" ry="23"></ellipse><ellipse fill="rgba(255,250,241,.55)" stroke="#3b3028" stroke-width="2" cx="32" cy="32" rx="10" ry="16"></ellipse>`,
+        pedestal: `<path ${soft} d="M22 17h20v8H22z"></path><path ${common} d="M26 25h12v25H26z"></path><path ${soft} d="M18 50h28v8H18z"></path>`,
+        trunk: `<path ${soft} d="M16 28h32v24H16z"></path><path ${common} d="M20 21h24v9H20z"></path><path stroke="#3b3028" stroke-width="2" d="M16 38h32M27 28v24M37 28v24"></path>`,
+        screen: `<path ${soft} d="M13 16h13v42H13zM26 16h13v42H26zM39 16h13v42H39z"></path><path stroke="#3b3028" stroke-width="2" d="M26 18v38M39 18v38"></path>`,
+        table: `<ellipse ${soft} cx="32" cy="24" rx="20" ry="7"></ellipse><path stroke="#3b3028" stroke-width="4" stroke-linecap="round" d="M22 30v24M42 30v24"></path><path ${common} d="M18 52h28v5H18z"></path>`,
+        frame: `<path ${common} d="M16 15h32v38H16z"></path><path fill="${a}" stroke="#3b3028" stroke-width="2" d="M22 21h20v26H22z"></path>`,
+        bench: `<path ${soft} d="M14 29h36v15H14z"></path><path stroke="#3b3028" stroke-width="4" stroke-linecap="round" d="M20 44v12M44 44v12"></path>`
+      };
+      return `<svg viewBox="0 0 64 64" aria-hidden="true">${art[prop.type] || art.vase}</svg>`;
+    }
+
+    function getFilteredProps() {
+      const search = state.search.trim().toLowerCase();
+      let items = props.filter((prop) => allowedPublicStates.includes(prop.state));
+
+      if (search) {
+        items = items.filter((prop) => [prop.name, prop.code, prop.category, prop.style].some((value) => value.toLowerCase().includes(search)));
+      }
+      if (state.category !== "Todas") items = items.filter((prop) => prop.category === state.category);
+      if (state.style !== "Todos") items = items.filter((prop) => prop.style === state.style);
+      if (state.itemState !== "Todos") items = items.filter((prop) => prop.state === state.itemState);
+      if (state.price === "Hasta $500") items = items.filter((prop) => prop.price <= 500);
+      if (state.price === "$501 - $900") items = items.filter((prop) => prop.price > 500 && prop.price <= 900);
+      if (state.price === "Más de $900") items = items.filter((prop) => prop.price > 900);
+
+      return items.sort((a, b) => {
+        if (state.sort === "Precio menor") return a.price - b.price;
+        if (state.sort === "Precio mayor") return b.price - a.price;
+        if (state.sort === "Nombre A-Z") return a.name.localeCompare(b.name);
+        return a.code.localeCompare(b.code);
+      });
+    }
+
+    function renderCatalog() {
+      const items = getFilteredProps();
+      els.catalogCount.textContent = `${items.length} props disponibles`;
+      els.catalogGrid.innerHTML = items.map((prop) => {
+        const selected = state.selectedIds.includes(prop.id);
+        return `
+          <article class="card">
+            <div class="photo" style="--photo-a: ${prop.colors[0]}; --photo-b: ${prop.colors[1]}">${propArt(prop)}</div>
+            <div class="card-body">
+              <div class="meta"><span>${prop.code}</span><span>${prop.category}</span></div>
+              <h3 class="name">${prop.name}</h3>
+              <div class="card-foot">
+                <div class="price">${formatMoney(prop.price)}<span>por día</span></div>
+                <button class="icon-button ${selected ? "added" : ""}" type="button" aria-label="${selected ? "Quitar" : "Agregar"} ${prop.name}" data-add="${prop.id}">
+                  ${selected ? "✓" : "+"}
+                </button>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join("");
+    }
+
+    function renderCart() {
+      const totals = calculateQuoteTotals();
+      els.daysPill.textContent = `${totals.days} ${totals.days === 1 ? "día" : "días"}`;
+      els.reviewQuote.disabled = totals.available.length === 0;
+
+      if (!totals.selected.length) {
+        els.cartList.innerHTML = `<div class="cart-empty">Agrega props para armar tu cotización.</div>`;
+      } else {
+        els.cartList.innerHTML = totals.selected.map((prop) => {
+          const unavailable = isPropUnavailable(prop.id);
+          const lineTotal = prop.price * totals.days;
+          return `
+            <div class="cart-item ${unavailable ? "unavailable" : ""}">
+              <div class="thumb" style="--photo-a: ${prop.colors[0]}; --photo-b: ${prop.colors[1]}">${propArt(prop)}</div>
+              <div>
+                <p class="cart-name">${prop.name}</p>
+                <div class="cart-code">${prop.code}</div>
+                ${unavailable ? `<span class="badge">Rentado en estas fechas</span>` : ""}
+              </div>
+              <div class="cart-price">
+                <span>${unavailable ? "No incluido" : formatMoney(lineTotal)}</span>
+                <button class="remove" type="button" aria-label="Quitar ${prop.name}" data-remove="${prop.id}">×</button>
+              </div>
+            </div>
+          `;
+        }).join("");
+      }
+
+      if (totals.unavailable.length) {
+        els.availabilityAlert.textContent = getUnavailableMessage(totals.unavailable.length);
+        els.availabilityAlert.classList.add("show");
+      } else {
+        els.availabilityAlert.classList.remove("show");
+      }
+
+      els.subtotal.textContent = formatMoney(totals.subtotal);
+      els.iva.textContent = formatMoney(totals.iva);
+      els.total.textContent = formatMoney(totals.total);
+      els.deposit.textContent = formatMoney(totals.deposit);
+      els.mobileSelected.textContent = `${totals.selected.length} ${totals.selected.length === 1 ? "prop seleccionado" : "props seleccionados"}`;
+      els.mobileTotal.textContent = formatMoney(totals.total);
+    }
+
+    function renderReview() {
+      const totals = calculateQuoteTotals();
+      els.reviewStart.textContent = formatDate(state.startDate);
+      els.reviewEnd.textContent = formatDate(state.endDate);
+      els.reviewDays.textContent = `${totals.days} ${totals.days === 1 ? "día" : "días"}`;
+      els.reviewItems.innerHTML = totals.available.map((prop) => `
+        <div class="review-item">
+          <div class="thumb" style="--photo-a: ${prop.colors[0]}; --photo-b: ${prop.colors[1]}">${propArt(prop)}</div>
+          <div>
+            <p class="cart-name">${prop.name}</p>
+            <div class="cart-code">${prop.code} · ${formatMoney(prop.price)} por día</div>
+          </div>
+          <strong>${formatMoney(prop.price * totals.days)}</strong>
+        </div>
+      `).join("") || `<div class="cart-empty">No hay props disponibles para cotizar en estas fechas.</div>`;
+      els.reviewSubtotal.textContent = formatMoney(totals.subtotal);
+      els.reviewIva.textContent = formatMoney(totals.iva);
+      els.reviewTotal.textContent = formatMoney(totals.total);
+      els.reviewDeposit.textContent = formatMoney(totals.deposit);
+    }
+
+    function renderAll() {
+      renderCatalog();
+      renderCart();
+    }
+
+    function initFilters() {
+      setSelectOptions(els.categoryFilter, uniqueOptions("category", "Todas"));
+      setSelectOptions(els.styleFilter, uniqueOptions("style", "Todos"));
+      setSelectOptions(els.stateFilter, ["Todos", ...allowedPublicStates]);
+      setSelectOptions(els.priceFilter, ["Todos", "Hasta $500", "$501 - $900", "Más de $900"]);
+      setSelectOptions(els.sortFilter, ["Destacados", "Precio menor", "Precio mayor", "Nombre A-Z"]);
+      els.startDate.value = state.startDate;
+      els.endDate.value = state.endDate;
+    }
+
+    document.addEventListener("click", (event) => {
+      const addButton = event.target.closest("[data-add]");
+      const removeButton = event.target.closest("[data-remove]");
+      if (addButton) {
+        const id = addButton.dataset.add;
+        state.selectedIds = state.selectedIds.includes(id)
+          ? state.selectedIds.filter((selectedId) => selectedId !== id)
+          : [...state.selectedIds, id];
+        renderAll();
+      }
+      if (removeButton) {
+        state.selectedIds = state.selectedIds.filter((id) => id !== removeButton.dataset.remove);
+        renderAll();
+      }
+    });
+
+    els.search.addEventListener("input", (event) => {
+      state.search = event.target.value;
+      renderCatalog();
+    });
+
+    els.categoryFilter.addEventListener("change", (event) => {
+      state.category = event.target.value;
+      renderCatalog();
+    });
+
+    els.styleFilter.addEventListener("change", (event) => {
+      state.style = event.target.value;
+      renderCatalog();
+    });
+
+    els.stateFilter.addEventListener("change", (event) => {
+      state.itemState = event.target.value;
+      renderCatalog();
+    });
+
+    els.priceFilter.addEventListener("change", (event) => {
+      state.price = event.target.value;
+      renderCatalog();
+    });
+
+    els.sortFilter.addEventListener("change", (event) => {
+      state.sort = event.target.value;
+      renderCatalog();
+    });
+
+    els.startDate.addEventListener("change", (event) => {
+      state.startDate = event.target.value;
+      if (state.endDate < state.startDate) {
+        state.endDate = state.startDate;
+        els.endDate.value = state.endDate;
+      }
+      renderCart();
+    });
+
+    els.endDate.addEventListener("change", (event) => {
+      state.endDate = event.target.value < state.startDate ? state.startDate : event.target.value;
+      els.endDate.value = state.endDate;
+      renderCart();
+    });
+
+    els.reviewQuote.addEventListener("click", () => {
+      renderReview();
+      els.quoteModal.classList.add("show");
+      els.quotePanel.classList.remove("show-mobile");
+    });
+
+    els.closeQuote.addEventListener("click", () => {
+      els.quoteModal.classList.remove("show");
+    });
+
+    els.quoteModal.addEventListener("click", (event) => {
+      if (event.target === els.quoteModal) els.quoteModal.classList.remove("show");
+    });
+
+    els.openCart.addEventListener("click", () => {
+      els.quotePanel.classList.toggle("show-mobile");
+    });
+
+    els.shareWhatsApp.addEventListener("click", () => {
+      const totals = calculateQuoteTotals();
+      const lines = [
+        "Hola, quiero revisar esta cotización estimada de Hora Dorada Prop House:",
+        `Fechas: ${formatDate(state.startDate)} a ${formatDate(state.endDate)}`,
+        `Props: ${totals.available.map((prop) => prop.code).join(", ")}`,
+        `Total estimado: ${formatMoney(totals.total)}`
+      ];
+      window.open(`https://wa.me/?text=${encodeURIComponent(lines.join("\n"))}`, "_blank");
+    });
+
+    initFilters();
+    renderAll();
+  </script>
+</body>
+</html>
