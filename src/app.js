@@ -112,6 +112,20 @@ function bindEvents() {
     renderCatalog();
   });
 
+  document.querySelector("#clearFilters")?.addEventListener("click", () => {
+    state.filters = {
+      search: "",
+      category: "Todas",
+      style: "Todos",
+      state: "Todos",
+      price: "Todos",
+      sort: "Destacados"
+    };
+    els.searchInput.value = "";
+    populateFilters();
+    renderCatalog();
+  });
+
   [
     [els.categoryFilter, "category"],
     [els.styleFilter, "style"],
@@ -193,7 +207,7 @@ async function loadData() {
     setSource("Error Airtable, usando prueba", false);
     populateFilters();
     renderAll();
-    showStatus(error.message, "error");
+    showStatus(getFriendlyRequestError(error), "error");
   } finally {
     setLoading(false);
   }
@@ -374,7 +388,7 @@ async function submitRequest(event) {
     await createQuoteRequest(state.config, quote, client);
     showStatus("Solicitud enviada a Airtable para revisión.", "success");
   } catch (error) {
-    showStatus(error.message, "error");
+    showStatus(getFriendlyRequestError(error), "error");
   }
 }
 
@@ -388,6 +402,20 @@ function shareWhatsApp() {
   ];
 
   window.open(`https://wa.me/?text=${encodeURIComponent(lines.join("\n"))}`, "_blank");
+}
+
+function getFriendlyRequestError(error) {
+  const message = String(error?.message || error || "");
+
+  if (message.includes("403") || message.includes("INVALID_PERMISSIONS_OR_MODEL_NOT_FOUND")) {
+    return "No pude guardar la solicitud en Airtable. Revisa que exista la tabla SOLICITUDES y que tu token tenga permiso para crear registros en esa base.";
+  }
+
+  if (message.includes("422")) {
+    return "Airtable no aceptó algún campo de la solicitud. Revisa que los campos de SOLICITUDES se llamen exactamente como están configurados.";
+  }
+
+  return "No pude enviar la solicitud. Revisa la configuración de Airtable e intenta de nuevo.";
 }
 
 function showStatus(message, type) {

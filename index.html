@@ -24,13 +24,12 @@
           </span>
         </a>
 
-        <label class="search" aria-label="Buscar props">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <circle cx="11" cy="11" r="7"></circle>
-            <path d="m20 20-3.5-3.5"></path>
-          </svg>
-          <input id="searchInput" type="search" placeholder="Buscar por nombre, código, categoría o estilo" autocomplete="off" />
-        </label>
+        <nav class="main-nav" aria-label="Navegación principal">
+          <a class="main-nav__link main-nav__link--active" href="#">Catálogo</a>
+          <a class="main-nav__link" href="#">Cómo funciona</a>
+          <a class="main-nav__link" href="#">Sobre nosotros</a>
+          <a class="main-nav__link" href="#">Contacto</a>
+        </nav>
 
         <div class="topbar__meta">
           <span id="sourceDot" class="source-dot"></span>
@@ -55,12 +54,21 @@
           <strong id="catalogCount" class="catalog__count">0 props disponibles</strong>
         </div>
 
+        <label class="search search--catalog" aria-label="Buscar props">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="11" cy="11" r="7"></circle>
+            <path d="m20 20-3.5-3.5"></path>
+          </svg>
+          <input id="searchInput" type="search" placeholder="Buscar props por nombre, código o palabra clave..." autocomplete="off" />
+        </label>
+
         <div class="filters" aria-label="Filtros de catálogo">
           <select id="categoryFilter" class="control" aria-label="Categoría"></select>
           <select id="styleFilter" class="control" aria-label="Estilo"></select>
           <select id="stateFilter" class="control" aria-label="Estado"></select>
           <select id="priceFilter" class="control" aria-label="Precio"></select>
           <select id="sortFilter" class="control" aria-label="Orden"></select>
+        <button id="clearFilters" class="button button--filter" type="button">Limpiar filtros</button>
         </div>
 
         <div id="loadingState" class="empty-state">Cargando catálogo...</div>
