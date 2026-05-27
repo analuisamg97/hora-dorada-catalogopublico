@@ -177,6 +177,23 @@
     </section>
   </dialog>
 
+  <dialog id="successDialog" class="dialog dialog--success">
+    <section class="success-view">
+      <header class="success-view__head">
+        <div class="success-icon" aria-hidden="true">✓</div>
+        <button class="icon-action icon-action--soft" data-close-dialog type="button" aria-label="Cerrar">×</button>
+      </header>
+      <div class="success-view__body">
+        <h2>Solicitud enviada a Hora Dorada</h2>
+        <p>Alguien se comunicará contigo por WhatsApp para dar seguimiento a tu solicitud lo más pronto posible.</p>
+        <div class="success-actions">
+          <button id="successWhatsApp" class="button button--primary" type="button">Enviar solicitud por WhatsApp</button>
+          <button id="downloadPdf" class="button button--secondary" type="button">Descargar PDF</button>
+        </div>
+      </div>
+    </section>
+  </dialog>
+
   <dialog id="settingsDialog" class="dialog dialog--settings">
     <form id="settingsForm" class="settings">
       <header class="settings__head">

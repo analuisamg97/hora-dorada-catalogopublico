@@ -73,7 +73,10 @@ const els = {
   clientWhatsapp: document.querySelector("#clientWhatsapp"),
   clientNotes: document.querySelector("#clientNotes"),
   requestStatus: document.querySelector("#requestStatus"),
-  shareWhatsApp: document.querySelector("#shareWhatsApp")
+  shareWhatsApp: document.querySelector("#shareWhatsApp"),
+  successDialog: document.querySelector("#successDialog"),
+  successWhatsApp: document.querySelector("#successWhatsApp"),
+  downloadPdf: document.querySelector("#downloadPdf")
 };
 
 init();
@@ -180,6 +183,9 @@ function bindEvents() {
 
   els.requestForm.addEventListener("submit", submitRequest);
   els.shareWhatsApp.addEventListener("click", shareWhatsApp);
+  els.successWhatsApp.addEventListener("click", shareWhatsApp);
+  els.downloadPdf.addEventListener("click", () => window.print());
+  lockCartScroll();
 }
 
 async function loadData() {
@@ -380,16 +386,39 @@ async function submitRequest(event) {
   }
 
   if (state.config.dataMode !== "airtable") {
-    showStatus("Solicitud simulada. Cuando conectes Airtable se guardará en SOLICITUDES.", "success");
+    showSuccessScreen();
     return;
   }
 
   try {
     await createQuoteRequest(state.config, quote, client);
-    showStatus("Solicitud enviada a Airtable para revisión.", "success");
+    showSuccessScreen();
   } catch (error) {
     showStatus(getFriendlyRequestError(error), "error");
   }
+}
+
+function showSuccessScreen() {
+  els.quoteDialog.close();
+  els.requestForm.reset();
+  els.requestStatus.textContent = "";
+  els.successDialog.showModal();
+}
+
+function lockCartScroll() {
+  els.cartList.addEventListener("wheel", (event) => {
+    const canScroll = els.cartList.scrollHeight > els.cartList.clientHeight;
+    if (!canScroll) return;
+
+    const atTop = els.cartList.scrollTop === 0;
+    const atBottom = Math.ceil(els.cartList.scrollTop + els.cartList.clientHeight) >= els.cartList.scrollHeight;
+    const scrollingUp = event.deltaY < 0;
+    const scrollingDown = event.deltaY > 0;
+
+    if ((scrollingUp && !atTop) || (scrollingDown && !atBottom)) {
+      event.stopPropagation();
+    }
+  }, { passive: true });
 }
 
 function shareWhatsApp() {
