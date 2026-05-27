@@ -1710,3 +1710,77 @@ h1 {
     gap: 8px;
   }
 }
+
+/* Header grouping and interaction polish. */
+.topbar__inner {
+  grid-template-columns: auto 1fr;
+}
+
+.topbar__actions {
+  justify-self: end;
+}
+
+.topbar__actions .main-nav {
+  margin-right: 14px;
+}
+
+.main-nav__link,
+.header-action,
+.icon-action--header {
+  transition: color 160ms ease, opacity 160ms ease, transform 160ms ease, background-color 160ms ease;
+}
+
+.main-nav__link:hover,
+.main-nav__link:focus-visible,
+.header-action:hover,
+.header-action:focus-visible {
+  color: var(--gold);
+}
+
+.header-action:hover svg,
+.header-action:focus-visible svg {
+  transform: translateY(-1px);
+}
+
+.header-action svg {
+  transition: transform 160ms ease, stroke 160ms ease;
+}
+
+.header-action:hover strong,
+.header-action:focus-visible strong {
+  background: #9f6812;
+}
+
+.icon-action--header:hover,
+.icon-action--header:focus-visible {
+  color: var(--olive);
+  background: #dfe9d8;
+  transform: rotate(18deg);
+}
+
+.main-nav__link:focus-visible,
+.header-action:focus-visible,
+.icon-action--header:focus-visible {
+  outline: 2px solid rgba(181, 121, 22, 0.36);
+  outline-offset: 5px;
+}
+
+@media (max-width: 1180px) {
+  .topbar__actions .main-nav {
+    display: flex;
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 760px) {
+  .topbar__inner {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding-block: 14px;
+  }
+
+  .topbar__actions {
+    justify-self: stretch;
+    justify-content: space-between;
+  }
+}
