@@ -52,7 +52,7 @@ async function fetchInventory(config) {
       code: cleanText(record.fields[fields.code]),
       state: cleanText(record.fields[fields.state]),
       category: cleanText(record.fields[fields.category]),
-      style: cleanText(record.fields[fields.style]),
+      style: fields.style ? cleanText(record.fields[fields.style]) : cleanText(record.fields[fields.category]),
       price: Number(record.fields[fields.price]) || 0,
       photo,
       art: "prop",

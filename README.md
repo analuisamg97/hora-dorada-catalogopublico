@@ -35,18 +35,17 @@ El token se guarda en `localStorage` del navegador y no se escribe en el reposit
 - `Código único`
 - `Estado`
 - `Categoría`
-- `Estilo`
 - `Renta x 1 día`
 - `Foto principal`
 
 ### RENTAS
 
-- `Estado`
+- `Estado de la renta`
 - `Fecha de salida`
 - `Fecha de regreso`
-- `Props`
+- `Props rentados`
 
-`Props` debe ser un campo linked-record hacia `INVENTARIO`, para poder comparar IDs contra props seleccionados.
+`Props rentados` debe ser un campo linked-record hacia `INVENTARIO`, para poder comparar IDs contra props seleccionados.
 
 ### SOLICITUDES
 

@@ -1,8 +1,8 @@
 export const defaultConfig = {
   dataMode: "mock",
-  baseId: "",
+  baseId: "mSGpYKnIlQvHW7",
   token: "",
-  allowedStates: ["Disponible", "Disponible con detalle", "En showroom"],
+  allowedStates: ["Disponible", "Rentado", "En mantenimiento"],
   tables: {
     inventory: "INVENTARIO",
     rentals: "RENTAS",
@@ -14,15 +14,15 @@ export const defaultConfig = {
       code: "Código único",
       state: "Estado",
       category: "Categoría",
-      style: "Estilo",
+      style: "",
       price: "Renta x 1 día",
       photo: "Foto principal"
     },
     rentals: {
-      status: "Estado",
+      status: "Estado de la renta",
       start: "Fecha de salida",
       end: "Fecha de regreso",
-      props: "Props"
+      props: "Props rentados"
     },
     requests: {
       clientName: "Nombre del cliente",

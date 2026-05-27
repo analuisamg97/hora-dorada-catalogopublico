@@ -25,7 +25,7 @@ export function getUnavailableMessage(count) {
 export function isPropUnavailable(propId, rentals, startDate, endDate) {
   return rentals.some((rental) => {
     const status = String(rental.status || "").toLowerCase();
-    const isConfirmed = ["confirmada", "confirmado", "confirmada / pagada", "apartada"].some((value) => status.includes(value));
+    const isConfirmed = ["activa", "en renta"].some((value) => status.includes(value));
 
     return isConfirmed &&
       rental.propIds.includes(propId) &&
