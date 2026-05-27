@@ -2044,3 +2044,17 @@ h1 {
     grid-template-columns: 120px minmax(0, 1fr);
   }
 }
+
+/* Tighten space between header and catalog controls. */
+.layout {
+  padding-top: 30px;
+}
+
+.catalog__head {
+  min-height: 0;
+  margin: 0;
+}
+
+.search--catalog {
+  margin-top: 0;
+}
