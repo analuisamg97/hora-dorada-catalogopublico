@@ -67,7 +67,6 @@
             <h1>Catálogo de props</h1>
             <p>Selecciona piezas, elige fechas y revisa una cotización estimada.</p>
           </div>
-          <strong id="catalogCount" class="catalog__count">0 props disponibles</strong>
         </div>
 
         <label class="search search--catalog" aria-label="Buscar props">
@@ -79,12 +78,42 @@
         </label>
 
         <div class="filters" aria-label="Filtros de catálogo">
-          <select id="categoryFilter" class="control" aria-label="Categoría"></select>
-          <select id="styleFilter" class="control" aria-label="Estilo"></select>
-          <select id="stateFilter" class="control" aria-label="Estado"></select>
-          <select id="priceFilter" class="control" aria-label="Precio"></select>
-          <select id="sortFilter" class="control" aria-label="Orden"></select>
-        <button id="clearFilters" class="button button--filter" type="button">Limpiar filtros</button>
+          <label class="filter-field">
+            <span>Categoría</span>
+            <select id="categoryFilter" class="control" aria-label="Categoría"></select>
+          </label>
+          <label class="filter-field">
+            <span>Estilo</span>
+            <select id="styleFilter" class="control" aria-label="Estilo"></select>
+          </label>
+          <label class="filter-field">
+            <span>Estado</span>
+            <select id="stateFilter" class="control" aria-label="Estado"></select>
+          </label>
+          <label class="filter-field filter-field--wide">
+            <span>Precio por día</span>
+            <select id="priceFilter" class="control" aria-label="Precio"></select>
+          </label>
+          <label class="filter-field">
+            <span>Ordenar por</span>
+            <select id="sortFilter" class="control" aria-label="Orden"></select>
+          </label>
+          <button id="clearFilters" class="button button--filter" type="button">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h10"></path><path d="M4 17h10"></path><path d="M17 5v4"></path><path d="M17 15v4"></path><path d="M14 7h6"></path><path d="M14 17h6"></path></svg>
+            <span>Limpiar filtros</span>
+          </button>
+        </div>
+
+        <div class="catalog-tools">
+          <div id="catalogCount" class="catalog__count">0 props disponibles</div>
+          <div class="view-toggle" aria-label="Cambiar vista de catálogo">
+            <button id="gridViewButton" class="view-toggle__button view-toggle__button--active" type="button" aria-label="Vista en grid" aria-pressed="true">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h6v6H4z"></path><path d="M14 4h6v6h-6z"></path><path d="M4 14h6v6H4z"></path><path d="M14 14h6v6h-6z"></path></svg>
+            </button>
+            <button id="listViewButton" class="view-toggle__button" type="button" aria-label="Vista en lista" aria-pressed="false">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6h12"></path><path d="M8 12h12"></path><path d="M8 18h12"></path><path d="M4 6h.01"></path><path d="M4 12h.01"></path><path d="M4 18h.01"></path></svg>
+            </button>
+          </div>
         </div>
 
         <div id="loadingState" class="empty-state">Cargando catálogo...</div>

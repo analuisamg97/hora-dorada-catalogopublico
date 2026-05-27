@@ -19,7 +19,8 @@ const state = {
     sort: "Destacados"
   },
   startDate: "2026-06-06",
-  endDate: "2026-06-08"
+  endDate: "2026-06-08",
+  viewMode: "grid"
 };
 
 const els = {
@@ -42,6 +43,8 @@ const els = {
   stateFilter: document.querySelector("#stateFilter"),
   priceFilter: document.querySelector("#priceFilter"),
   sortFilter: document.querySelector("#sortFilter"),
+  gridViewButton: document.querySelector("#gridViewButton"),
+  listViewButton: document.querySelector("#listViewButton"),
   quoteHeaderCount: document.querySelector("#quoteHeaderCount"),
   headerQuoteButton: document.querySelector("#headerQuoteButton"),
   loadingState: document.querySelector("#loadingState"),
@@ -116,6 +119,9 @@ function bindEvents() {
     state.filters.search = event.target.value;
     renderCatalog();
   });
+
+  els.gridViewButton.addEventListener("click", () => setViewMode("grid"));
+  els.listViewButton.addEventListener("click", () => setViewMode("list"));
 
   document.querySelector("#clearFilters")?.addEventListener("click", () => {
     state.filters = {
@@ -265,6 +271,7 @@ function renderAll() {
 
 function renderCatalog() {
   const items = filterCatalogItems(state.props, state.filters, state.config.allowedStates);
+  applyViewMode();
   els.catalogCount.textContent = `${items.length} ${items.length === 1 ? "prop disponible" : "props disponibles"}`;
 
   if (!items.length) {
@@ -295,6 +302,20 @@ function renderCatalog() {
       </article>
     `;
   }).join("");
+}
+
+function setViewMode(mode) {
+  state.viewMode = mode;
+  applyViewMode();
+}
+
+function applyViewMode() {
+  const isList = state.viewMode === "list";
+  els.catalogGrid.classList.toggle("catalog-grid--list", isList);
+  els.gridViewButton.classList.toggle("view-toggle__button--active", !isList);
+  els.listViewButton.classList.toggle("view-toggle__button--active", isList);
+  els.gridViewButton.setAttribute("aria-pressed", String(!isList));
+  els.listViewButton.setAttribute("aria-pressed", String(isList));
 }
 
 function renderCart() {
