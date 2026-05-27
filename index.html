@@ -4,6 +4,9 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Hora Dorada Prop House | Catálogo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="src/styles.css" />
 </head>
 <body>
@@ -11,11 +14,17 @@
     <header class="topbar">
       <div class="container topbar__inner">
         <a class="brand" href="#" aria-label="Hora Dorada Prop House">
-          <svg class="brand__sun" viewBox="0 0 64 64" role="img" aria-label="Sol de Hora Dorada">
-            <circle cx="32" cy="32" r="14"></circle>
-            <g>
-              <path d="M32 5v9"></path><path d="M32 50v9"></path><path d="M5 32h9"></path><path d="M50 32h9"></path>
-              <path d="M13 13l6 6"></path><path d="M45 45l6 6"></path><path d="M51 13l-6 6"></path><path d="M19 45l-6 6"></path>
+          <svg class="brand__sun" viewBox="0 0 80 80" role="img" aria-label="Sol de Hora Dorada">
+            <circle class="brand__sun-core" cx="40" cy="40" r="13"></circle>
+            <g class="brand__sun-rays">
+              <path d="M40 3v18"></path><path d="M40 59v18"></path>
+              <path d="M3 40h18"></path><path d="M59 40h18"></path>
+              <path d="M13.8 13.8 26.5 26.5"></path><path d="M53.5 53.5l12.7 12.7"></path>
+              <path d="M66.2 13.8 53.5 26.5"></path><path d="M26.5 53.5 13.8 66.2"></path>
+              <path d="M26 6.2 32.4 23"></path><path d="M47.6 57 54 73.8"></path>
+              <path d="M6.2 54 23 47.6"></path><path d="M57 32.4 73.8 26"></path>
+              <path d="M54 6.2 47.6 23"></path><path d="M32.4 57 26 73.8"></path>
+              <path d="M6.2 26 23 32.4"></path><path d="M57 47.6 73.8 54"></path>
             </g>
           </svg>
           <span class="brand__copy">
@@ -30,19 +39,28 @@
           <a class="main-nav__link" href="#">Sobre nosotros</a>
           <a class="main-nav__link" href="#">Contacto</a>
         </nav>
-
-        <div class="topbar__meta">
-          <span id="sourceDot" class="source-dot"></span>
-          <span id="sourceLabel">Datos de prueba</span>
-          <button id="settingsButton" class="icon-action" type="button" aria-label="Configurar Airtable" title="Configurar Airtable">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M12 15.5A3.5 3.5 0 1 0 12 8a3.5 3.5 0 0 0 0 7.5Z"></path>
-              <path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1A2 2 0 1 1 4.2 17l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.6-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1A2 2 0 1 1 7 4.2l.1.1a1.7 1.7 0 0 0 1.9.3H9a1.7 1.7 0 0 0 1-1.6V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.6h.1a1.7 1.7 0 0 0 1.9-.3l.1-.1A2 2 0 1 1 19.8 7l-.1.1a1.7 1.7 0 0 0-.3 1.9v.1a1.7 1.7 0 0 0 1.6 1h.1a2 2 0 1 1 0 4H21a1.7 1.7 0 0 0-1.6 1Z"></path>
-            </svg>
+        <div class="topbar__actions">
+          <div class="topbar__status" title="Estado de conexión">
+            <span id="sourceDot" class="source-dot"></span>
+            <span id="sourceLabel">Datos de prueba</span>
+          </div>
+          <button class="header-action" type="button" aria-label="Favoritos">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.5 12.6 12 20l-7.5-7.4a5 5 0 0 1 7.1-7.1l.4.4.4-.4a5 5 0 0 1 7.1 7.1Z"></path></svg>
+            <span>Favoritos</span>
+            <strong>0</strong>
+          </button>
+          <button class="header-action" id="headerQuoteButton" type="button" aria-label="Ver cotización">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7V5a4 4 0 0 1 8 0v2"></path><path d="M5 7h14l-1 14H6L5 7Z"></path><path d="M9 12h6"></path></svg>
+            <span>Cotización</span>
+            <strong id="quoteHeaderCount">0</strong>
+          </button>
+          <button id="settingsButton" class="icon-action icon-action--header" type="button" aria-label="Configurar Airtable" title="Configurar Airtable">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15.5A3.5 3.5 0 1 0 12 8a3.5 3.5 0 0 0 0 7.5Z"></path><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1A2 2 0 1 1 4.2 17l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.6-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1A2 2 0 1 1 7 4.2l.1.1a1.7 1.7 0 0 0 1.9.3H9a1.7 1.7 0 0 0 1-1.6V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.6h.1a1.7 1.7 0 0 0 1.9-.3l.1-.1A2 2 0 1 1 19.8 7l-.1.1a1.7 1.7 0 0 0-.3 1.9v.1a1.7 1.7 0 0 0 1.6 1h.1a2 2 0 1 1 0 4H21a1.7 1.7 0 0 0-1.6 1Z"></path></svg>
           </button>
         </div>
       </div>
     </header>
+
 
     <main class="container layout">
       <section class="catalog">

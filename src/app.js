@@ -42,6 +42,8 @@ const els = {
   stateFilter: document.querySelector("#stateFilter"),
   priceFilter: document.querySelector("#priceFilter"),
   sortFilter: document.querySelector("#sortFilter"),
+  quoteHeaderCount: document.querySelector("#quoteHeaderCount"),
+  headerQuoteButton: document.querySelector("#headerQuoteButton"),
   loadingState: document.querySelector("#loadingState"),
   catalogGrid: document.querySelector("#catalogGrid"),
   catalogCount: document.querySelector("#catalogCount"),
@@ -173,6 +175,14 @@ function bindEvents() {
 
   els.openCart.addEventListener("click", () => {
     els.quotePanel.classList.toggle("quote--mobile-open");
+  });
+
+  els.headerQuoteButton.addEventListener("click", () => {
+    if (window.matchMedia("(max-width: 900px)").matches) {
+      els.quotePanel.classList.toggle("quote--mobile-open");
+      return;
+    }
+    els.quotePanel.scrollIntoView({ behavior: "smooth", block: "start" });
   });
 
   els.reviewQuote.addEventListener("click", () => {
@@ -324,6 +334,7 @@ function renderCart() {
   updateTotals(quote, "");
   els.mobileSelected.textContent = `${quote.selected.length} ${quote.selected.length === 1 ? "prop seleccionado" : "props seleccionados"}`;
   els.mobileTotal.textContent = formatMoney(quote.total);
+  els.quoteHeaderCount.textContent = quote.selected.length;
 }
 
 function renderReview() {
