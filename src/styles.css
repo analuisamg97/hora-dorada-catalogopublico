@@ -2058,3 +2058,60 @@ h1 {
 .search--catalog {
   margin-top: 0;
 }
+
+/* Make filter row slimmer and keep clear button on one line. */
+.search--catalog input {
+  height: 58px;
+  font-size: 16px;
+}
+
+.search--catalog svg {
+  width: 20px;
+  height: 20px;
+}
+
+.filters {
+  grid-template-columns: 1fr 1fr 1fr 1.25fr 1.3fr 190px;
+}
+
+.filter-field {
+  min-height: 60px;
+  gap: 5px;
+  padding: 12px 40px 9px 16px;
+}
+
+.filter-field span {
+  font-size: 12px;
+}
+
+.control {
+  min-height: 22px;
+  font-size: 16px;
+}
+
+.filter-field::after {
+  right: 16px;
+  width: 8px;
+  height: 8px;
+}
+
+.button--filter {
+  min-height: 42px;
+  gap: 10px;
+  white-space: nowrap;
+  font-size: 14px;
+}
+
+.button--filter span {
+  white-space: nowrap;
+}
+
+.button--filter svg {
+  width: 19px;
+  height: 19px;
+  flex: 0 0 auto;
+}
+
+.catalog-tools {
+  margin-top: 24px;
+}
