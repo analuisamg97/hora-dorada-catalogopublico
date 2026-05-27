@@ -1,6 +1,6 @@
 export const defaultConfig = {
   dataMode: "mock",
-  baseId: "mSGpYKnIlQvHW7",
+  baseId: "appmSGpYKnIlQvHW7",
   token: "",
   allowedStates: ["Disponible", "Rentado", "En mantenimiento"],
   tables: {
