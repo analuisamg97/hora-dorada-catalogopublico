@@ -5,11 +5,17 @@ import { formatCompactMoney, formatDate, formatMoney } from "./formatters.js";
 import { mockProps, mockRentals } from "./mock-data.js";
 import { calculateQuote, getUnavailableMessage, isPropUnavailable } from "./quote.js";
 
+const cartStorageKey = "horaDoradaClientCart";
+const datesStorageKey = "horaDoradaClientDates";
+const defaultSelectedIds = ["p1", "p2", "p5"];
+const defaultDates = { startDate: "2026-06-06", endDate: "2026-06-08" };
+const savedDates = loadSavedDates();
+
 const state = {
   config: loadConfig(),
   props: [],
   rentals: [],
-  selectedIds: ["p1", "p2", "p5"],
+  selectedIds: loadSavedSelectedIds(defaultSelectedIds),
   filters: {
     search: "",
     category: "Todas",
@@ -18,8 +24,8 @@ const state = {
     price: "Todos",
     sort: "Destacados"
   },
-  startDate: "2026-06-06",
-  endDate: "2026-06-08",
+  startDate: savedDates.startDate,
+  endDate: savedDates.endDate,
   viewMode: "grid",
   activeProductId: ""
 };
@@ -163,12 +169,14 @@ function bindEvents() {
       state.endDate = state.startDate;
       els.endDate.value = state.endDate;
     }
+    saveDates();
     renderCart();
   });
 
   els.endDate.addEventListener("change", (event) => {
     state.endDate = event.target.value < state.startDate ? state.startDate : event.target.value;
     els.endDate.value = state.endDate;
+    saveDates();
     renderCart();
   });
 
@@ -187,9 +195,7 @@ function bindEvents() {
     }
 
     if (remove) {
-      state.selectedIds = state.selectedIds.filter((id) => id !== remove.dataset.remove);
-      renderCart();
-      updateCatalogSelectionStates();
+      removeSelected(remove.dataset.remove);
       return;
     }
 
@@ -232,12 +238,12 @@ async function loadData() {
       const data = await loadAirtableData(state.config);
       state.props = data.props;
       state.rentals = data.rentals;
-      state.selectedIds = state.selectedIds.filter((id) => state.props.some((prop) => prop.id === id));
+      setSelectedIds(state.selectedIds.filter((id) => state.props.some((prop) => prop.id === id)), { render: false });
       setSource("Airtable conectado", true);
     } else {
       state.props = mockProps;
       state.rentals = mockRentals;
-      state.selectedIds = ["p1", "p2", "p5"];
+      setSelectedIds(loadSavedSelectedIds(defaultSelectedIds), { render: false });
       setSource("Datos de prueba", false);
     }
 
@@ -637,12 +643,54 @@ function getCartDisplayName(name) {
   return String(name || "").split(" — ")[0].trim();
 }
 
-function toggleSelected(id) {
-  state.selectedIds = state.selectedIds.includes(id)
-    ? state.selectedIds.filter((selectedId) => selectedId !== id)
-    : [...state.selectedIds, id];
+function setSelectedIds(ids, options = {}) {
+  state.selectedIds = [...new Set(ids)].filter(Boolean);
+  saveSelectedIds();
+
+  if (options.render === false) return;
   renderCart();
   updateCatalogSelectionStates();
+}
+
+function toggleSelected(id) {
+  setSelectedIds(state.selectedIds.includes(id)
+    ? state.selectedIds.filter((selectedId) => selectedId !== id)
+    : [...state.selectedIds, id]);
+}
+
+function removeSelected(id) {
+  setSelectedIds(state.selectedIds.filter((selectedId) => selectedId !== id));
+}
+
+function loadSavedSelectedIds(fallback = []) {
+  const raw = localStorage.getItem(cartStorageKey);
+  if (raw === null) return [...fallback];
+
+  try {
+    const saved = JSON.parse(raw);
+    return Array.isArray(saved) ? saved.map(String) : [...fallback];
+  } catch {
+    return [...fallback];
+  }
+}
+
+function saveSelectedIds() {
+  localStorage.setItem(cartStorageKey, JSON.stringify(state.selectedIds));
+}
+
+function loadSavedDates() {
+  try {
+    return { ...defaultDates, ...(JSON.parse(localStorage.getItem(datesStorageKey) || "{}") || {}) };
+  } catch {
+    return { ...defaultDates };
+  }
+}
+
+function saveDates() {
+  localStorage.setItem(datesStorageKey, JSON.stringify({
+    startDate: state.startDate,
+    endDate: state.endDate
+  }));
 }
 
 function updateCatalogSelectionStates() {
