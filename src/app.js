@@ -187,7 +187,8 @@ function bindEvents() {
 
     if (remove) {
       state.selectedIds = state.selectedIds.filter((id) => id !== remove.dataset.remove);
-      renderAll();
+      renderCart();
+      updateCatalogSelectionStates();
       return;
     }
 
