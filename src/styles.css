@@ -2703,3 +2703,92 @@ h1 {
   font-size: 17px;
   font-weight: 400;
 }
+
+/* Catalog card layout aligned to the approved mockup. */
+.prop-card__body {
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  padding: 18px 16px 16px;
+}
+
+.prop-card h3 {
+  order: 1;
+  min-height: 0;
+  margin: 0 0 8px;
+  color: #171612;
+  font-family: "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.24;
+}
+
+.prop-card__meta {
+  order: 2;
+  display: grid;
+  gap: 6px;
+  margin: 0;
+}
+
+.prop-card__meta span:first-child,
+.prop-card__meta span:last-child {
+  font-family: "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+.prop-card__meta span:first-child {
+  color: #68706b;
+  font-size: 13px;
+}
+
+.prop-card__meta span:last-child {
+  color: #7f766d;
+  font-size: 13px;
+}
+
+.prop-card__foot {
+  order: 3;
+  align-items: end;
+  margin-top: 22px;
+}
+
+.price {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  color: #171612;
+  font-family: "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+}
+
+.price strong {
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.price span {
+  display: inline;
+  margin: 0;
+  color: #171612;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+.catalog-grid--list .prop-card__body {
+  align-content: center;
+}
+
+.catalog-grid--list .prop-card h3 {
+  margin-bottom: 8px;
+  font-size: 17px;
+  font-weight: 400;
+}
+
+.price {
+  white-space: nowrap;
+}
+
+.prop-card__foot {
+  gap: 10px;
+}

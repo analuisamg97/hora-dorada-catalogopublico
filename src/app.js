@@ -288,13 +288,13 @@ function renderCatalog() {
           ${renderPhoto(prop)}
         </div>
         <div class="prop-card__body">
+          <h3>${escapeHtml(prop.name)}</h3>
           <div class="prop-card__meta">
             <span>${escapeHtml(prop.code)}</span>
             <span>${escapeHtml(prop.category || "Sin categoría")}</span>
           </div>
-          <h3>${escapeHtml(prop.name)}</h3>
           <div class="prop-card__foot">
-            <div class="price">${formatCompactMoney(prop.price)}<span>por día</span></div>
+            <div class="price"><strong>${formatCompactMoney(prop.price)}</strong><span>MXN / día</span></div>
             <button class="add-button ${selected ? "add-button--selected" : ""}" type="button" data-add="${escapeHtml(prop.id)}" aria-label="${selected ? "Quitar" : "Agregar"} ${escapeHtml(prop.name)}">
               ${selected ? "✓" : "+"}
             </button>
