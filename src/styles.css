@@ -2795,5 +2795,9 @@ h1 {
 
 /* Tighten the space between filters, catalog count, and prop cards. */
 .catalog-tools {
-  margin: 16px 0 12px;
+  margin: 0 0 12px;
+}
+
+.filters {
+  margin-bottom: 12px;
 }
