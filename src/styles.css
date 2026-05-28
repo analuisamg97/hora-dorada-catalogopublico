@@ -2677,3 +2677,29 @@ h1 {
   color: #2c2924;
   font-weight: 400;
 }
+
+/* Catalog card typography aligned with the quote cart. */
+.prop-card__meta span:first-child,
+.prop-card h3 {
+  font-family: "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+  letter-spacing: 0;
+}
+
+.prop-card__meta span:first-child {
+  color: #68706b;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+.prop-card h3 {
+  color: #171612;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.22;
+}
+
+.catalog-grid--list .prop-card h3 {
+  font-size: 17px;
+  font-weight: 400;
+}
