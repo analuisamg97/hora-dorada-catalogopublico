@@ -2563,3 +2563,80 @@ h1 {
     font-size: 13px;
   }
 }
+
+/* Cart typography second pass: lighter, quieter, closer to the reference. */
+.cart-item {
+  grid-template-columns: 58px minmax(0, 1fr) 104px;
+  gap: 14px;
+  padding: 15px 0;
+}
+
+.cart-item__copy {
+  gap: 3px;
+}
+
+.cart-item__copy strong {
+  font-family: "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.18;
+  letter-spacing: 0;
+}
+
+.cart-item__copy span {
+  color: #68706b;
+  font-family: "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+.cart-item__copy small {
+  gap: 28px;
+  margin-top: 8px;
+  font-family: "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.cart-item__price {
+  grid-template-columns: minmax(0, 1fr) 16px;
+  gap: 8px;
+}
+
+.cart-item__price strong {
+  font-family: "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.cart-item__price button {
+  width: 16px;
+  height: 18px;
+  color: #6b655e;
+  font-family: "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+  font-size: 21px;
+  font-weight: 300;
+}
+
+.cart-item__copy em {
+  font-family: "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+@media (max-width: 460px) {
+  .cart-item {
+    grid-template-columns: 52px minmax(0, 1fr) 86px;
+  }
+
+  .cart-item__copy strong {
+    font-size: 15px;
+  }
+
+  .cart-item__copy span,
+  .cart-item__copy small,
+  .cart-item__price strong {
+    font-size: 13px;
+  }
+}
