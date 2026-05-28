@@ -2792,3 +2792,8 @@ h1 {
 .prop-card__foot {
   gap: 10px;
 }
+
+/* Tighten the space between filters, catalog count, and prop cards. */
+.catalog-tools {
+  margin: 16px 0 12px;
+}
