@@ -628,7 +628,23 @@ function toggleSelected(id) {
   state.selectedIds = state.selectedIds.includes(id)
     ? state.selectedIds.filter((selectedId) => selectedId !== id)
     : [...state.selectedIds, id];
-  renderAll();
+  renderCart();
+  updateCatalogSelectionStates();
+}
+
+function updateCatalogSelectionStates() {
+  document.querySelectorAll("[data-add]").forEach((button) => {
+    const prop = state.props.find((item) => item.id === button.dataset.add);
+    if (!prop) return;
+
+    const selected = state.selectedIds.includes(prop.id);
+    button.classList.toggle("add-button--selected", selected);
+    button.classList.toggle("product-add--selected", selected);
+    button.textContent = button.classList.contains("product-add")
+      ? selected ? "Quitar de la cotización" : "Agregar a cotización"
+      : selected ? "✓" : "+";
+    button.setAttribute("aria-label", `${selected ? "Quitar" : "Agregar"} ${prop.name}`);
+  });
 }
 
 function fillSettingsForm() {
