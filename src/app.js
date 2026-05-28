@@ -330,16 +330,19 @@ function renderCart() {
   } else {
     els.cartList.innerHTML = quote.selected.map((prop) => {
       const unavailable = isPropUnavailable(prop.id, state.rentals, state.startDate, state.endDate);
+      const dailyPrice = formatCompactMoney(prop.price);
+      const itemSubtotal = unavailable ? "$0 incluido" : `${formatCompactMoney(prop.price * quote.days)} MXN`;
       return `
         <div class="cart-item ${unavailable ? "cart-item--unavailable" : ""}">
           <div class="cart-item__thumb" style="--photo-a: ${prop.colors?.[0] || "#ead8bd"}; --photo-b: ${prop.colors?.[1] || "#bd8d35"}">${renderPhoto(prop)}</div>
           <div class="cart-item__copy">
-            <strong>${escapeHtml(prop.name)}</strong>
+            <strong>${escapeHtml(getCartDisplayName(prop.name))}</strong>
             <span>${escapeHtml(prop.code)}</span>
             ${unavailable ? `<em>Rentado en estas fechas</em>` : ""}
+            <small><span>x 1</span><span>${dailyPrice} / día</span></small>
           </div>
           <div class="cart-item__price">
-            <strong>${unavailable ? "No incluido" : formatCompactMoney(prop.price * quote.days)}</strong>
+            <strong>${itemSubtotal}</strong>
             <button type="button" data-remove="${escapeHtml(prop.id)}" aria-label="Quitar ${escapeHtml(prop.name)}">×</button>
           </div>
         </div>
@@ -494,6 +497,10 @@ function getQuote() {
     startDate: state.startDate,
     endDate: state.endDate
   });
+}
+
+function getCartDisplayName(name) {
+  return String(name || "").split(" — ")[0].trim();
 }
 
 function toggleSelected(id) {
