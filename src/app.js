@@ -178,9 +178,10 @@ function bindEvents() {
     const productCard = event.target.closest("[data-product-id]");
 
     if (add) {
+      const wasSelected = state.selectedIds.includes(add.dataset.add);
       toggleSelected(add.dataset.add);
       if (!els.productPage.hidden && state.activeProductId) {
-        renderProductPage(state.activeProductId);
+        showProductSelectionStatus(!wasSelected);
       }
       return;
     }
@@ -448,6 +449,7 @@ function renderProductPage(id) {
       <button class="product-add ${selected ? "product-add--selected" : ""}" type="button" data-add="${escapeHtml(prop.id)}">
         ${selected ? "Quitar de la cotización" : "Agregar a cotización"}
       </button>
+      <p id="productSelectionStatus" class="product-selection-status" aria-live="polite"></p>
       <div class="product-note">
         <button class="product-note__head" type="button" aria-expanded="true">
           IVA
@@ -468,6 +470,16 @@ function renderProductPage(id) {
   els.productPage.hidden = false;
   document.body.classList.add("product-route-active");
   window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function showProductSelectionStatus(isSelected) {
+  const status = document.querySelector("#productSelectionStatus");
+  if (!status) return;
+
+  status.innerHTML = isSelected
+    ? `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"></path></svg><span>Producto agregado a tu cotización.</span>`
+    : `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"></path></svg><span>Producto quitado de tu cotización.</span>`;
+  status.classList.add("product-selection-status--show");
 }
 
 function bindProductKeyboard() {
