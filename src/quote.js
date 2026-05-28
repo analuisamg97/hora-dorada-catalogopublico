@@ -15,12 +15,8 @@ export function datesOverlap(startA, endA, startB, endB) {
     new Date(`${startB}T00:00:00`) <= new Date(`${endA}T23:59:59`);
 }
 
-export function getUnavailableMessage(count) {
-  if (count === 1) {
-    return "Este prop no se incluirá en la cotización porque está rentado en las fechas seleccionadas.";
-  }
-
-  return "Estos props no se incluirán en la cotización porque están rentados en las fechas seleccionadas.";
+export function getUnavailableMessage() {
+  return "Los props que no estén disponibles en las fechas seleccionadas no se incluirán en la cotización final.";
 }
 
 export function isPropUnavailable(propId, rentals, startDate, endDate) {

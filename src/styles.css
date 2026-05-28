@@ -2801,3 +2801,33 @@ h1 {
 .filters {
   margin-bottom: 12px;
 }
+
+/* Availability warning aligned with the quote mockup. */
+.availability-alert {
+  grid-template-columns: 32px minmax(0, 1fr);
+  align-items: center;
+  gap: 16px;
+  color: #2f2a24;
+  font-family: "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.45;
+}
+
+.availability-alert--show {
+  display: grid;
+}
+
+.availability-alert svg {
+  width: 32px;
+  height: 32px;
+  fill: #bf5a22;
+  stroke: #ffffff;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.availability-alert span {
+  display: block;
+}

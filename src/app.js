@@ -351,7 +351,14 @@ function renderCart() {
   }
 
   if (quote.unavailable.length) {
-    els.availabilityAlert.textContent = getUnavailableMessage(quote.unavailable.length);
+    els.availabilityAlert.innerHTML = `
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 3 22 20H2L12 3Z"></path>
+        <path d="M12 9v5"></path>
+        <path d="M12 17h.01"></path>
+      </svg>
+      <span>${escapeHtml(getUnavailableMessage())}</span>
+    `;
     els.availabilityAlert.classList.add("availability-alert--show");
   } else {
     els.availabilityAlert.classList.remove("availability-alert--show");
