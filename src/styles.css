@@ -2640,3 +2640,40 @@ h1 {
     font-size: 13px;
   }
 }
+
+/* Totals refinement: lighter subtotal/IVA and soft deposit box. */
+.totals div:not(.totals__main):not(.totals__deposit) strong {
+  font-weight: 400;
+}
+
+.totals__deposit {
+  align-items: center;
+  margin-top: 8px;
+  border: 1px solid rgba(181, 121, 22, 0.24);
+  border-radius: 6px;
+  padding: 12px 14px;
+  background: rgba(234, 210, 160, 0.12);
+}
+
+.totals__deposit span {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #2c2924;
+}
+
+.totals__deposit svg {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+  fill: none;
+  stroke: var(--gold);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.totals__deposit strong {
+  color: #2c2924;
+  font-weight: 400;
+}
