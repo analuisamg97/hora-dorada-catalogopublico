@@ -10,6 +10,7 @@ const datesStorageKey = "horaDoradaClientDates";
 const defaultSelectedIds = ["p1", "p2", "p5"];
 const defaultDates = { startDate: "2026-06-06", endDate: "2026-06-08" };
 const savedDates = loadSavedDates();
+let quoteToastTimer = 0;
 
 const state = {
   config: loadConfig(),
@@ -54,6 +55,7 @@ const els = {
   listViewButton: document.querySelector("#listViewButton"),
   quoteHeaderCount: document.querySelector("#quoteHeaderCount"),
   headerQuoteButton: document.querySelector("#headerQuoteButton"),
+  quoteToast: document.querySelector("#quoteToast"),
   loadingState: document.querySelector("#loadingState"),
   catalogGrid: document.querySelector("#catalogGrid"),
   catalogCount: document.querySelector("#catalogCount"),
@@ -455,7 +457,6 @@ function renderProductPage(id) {
       <button class="product-add ${selected ? "product-add--selected" : ""}" type="button" data-add="${escapeHtml(prop.id)}">
         ${selected ? "Quitar de la cotización" : "Agregar a cotización"}
       </button>
-      <p id="productSelectionStatus" class="product-selection-status" aria-live="polite"></p>
       <div class="product-note">
         <button class="product-note__head" type="button" aria-expanded="true">
           IVA
@@ -479,13 +480,18 @@ function renderProductPage(id) {
 }
 
 function showProductSelectionStatus(isSelected) {
-  const status = document.querySelector("#productSelectionStatus");
-  if (!status) return;
+  if (!els.quoteToast) return;
 
-  status.innerHTML = isSelected
+  window.clearTimeout(quoteToastTimer);
+  els.quoteToast.innerHTML = isSelected
     ? `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"></path></svg><span>Producto agregado a tu cotización.</span>`
     : `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"></path></svg><span>Producto quitado de tu cotización.</span>`;
-  status.classList.add("product-selection-status--show");
+  els.quoteToast.hidden = false;
+  els.quoteToast.classList.add("quote-toast--show");
+  quoteToastTimer = window.setTimeout(() => {
+    els.quoteToast.classList.remove("quote-toast--show");
+    els.quoteToast.hidden = true;
+  }, 6000);
 }
 
 function bindProductKeyboard() {
