@@ -20,7 +20,8 @@ const state = {
   },
   startDate: "2026-06-06",
   endDate: "2026-06-08",
-  viewMode: "grid"
+  viewMode: "grid",
+  activeProductId: ""
 };
 
 const els = {
@@ -50,6 +51,9 @@ const els = {
   loadingState: document.querySelector("#loadingState"),
   catalogGrid: document.querySelector("#catalogGrid"),
   catalogCount: document.querySelector("#catalogCount"),
+  productPage: document.querySelector("#productPage"),
+  productDetail: document.querySelector("#productDetail"),
+  productBack: document.querySelector("#productBack"),
   quotePanel: document.querySelector("#quotePanel"),
   startDate: document.querySelector("#startDate"),
   endDate: document.querySelector("#endDate"),
@@ -123,6 +127,8 @@ function bindEvents() {
 
   els.gridViewButton.addEventListener("click", () => setViewMode("grid"));
   els.listViewButton.addEventListener("click", () => setViewMode("list"));
+  els.productBack.addEventListener("click", closeProductPage);
+  window.addEventListener("hashchange", renderRoute);
 
   document.querySelector("#clearFilters")?.addEventListener("click", () => {
     state.filters = {
@@ -169,14 +175,24 @@ function bindEvents() {
   document.addEventListener("click", (event) => {
     const add = event.target.closest("[data-add]");
     const remove = event.target.closest("[data-remove]");
+    const productCard = event.target.closest("[data-product-id]");
 
     if (add) {
       toggleSelected(add.dataset.add);
+      if (!els.productPage.hidden && state.activeProductId) {
+        renderProductPage(state.activeProductId);
+      }
+      return;
     }
 
     if (remove) {
       state.selectedIds = state.selectedIds.filter((id) => id !== remove.dataset.remove);
       renderAll();
+      return;
+    }
+
+    if (productCard) {
+      openProductPage(productCard.dataset.productId);
     }
   });
 
@@ -203,6 +219,7 @@ function bindEvents() {
   els.successWhatsApp.addEventListener("click", shareWhatsApp);
   els.downloadPdf.addEventListener("click", () => window.print());
   lockCartScroll();
+  bindProductKeyboard();
 }
 
 async function loadData() {
@@ -224,12 +241,14 @@ async function loadData() {
 
     populateFilters();
     renderAll();
+    renderRoute();
   } catch (error) {
     state.props = mockProps;
     state.rentals = mockRentals;
     setSource("Error Airtable, usando prueba", false);
     populateFilters();
     renderAll();
+    renderRoute();
     showStatus(getFriendlyRequestError(error), "error");
   } finally {
     setLoading(false);
@@ -283,7 +302,7 @@ function renderCatalog() {
   els.catalogGrid.innerHTML = items.map((prop) => {
     const selected = state.selectedIds.includes(prop.id);
     return `
-      <article class="prop-card">
+      <article class="prop-card" data-product-id="${escapeHtml(prop.id)}" tabindex="0" role="button" aria-label="Ver detalle de ${escapeHtml(prop.name)}">
         <div class="prop-card__photo" style="--photo-a: ${prop.colors?.[0] || "#ead8bd"}; --photo-b: ${prop.colors?.[1] || "#bd8d35"}">
           ${renderPhoto(prop)}
         </div>
@@ -368,6 +387,101 @@ function renderCart() {
   els.mobileSelected.textContent = `${quote.selected.length} ${quote.selected.length === 1 ? "prop seleccionado" : "props seleccionados"}`;
   els.mobileTotal.textContent = formatMoney(quote.total);
   els.quoteHeaderCount.textContent = quote.selected.length;
+}
+
+function renderRoute() {
+  const productId = decodeURIComponent(window.location.hash.replace("#producto/", ""));
+
+  if (window.location.hash.startsWith("#producto/") && productId) {
+    renderProductPage(productId);
+    return;
+  }
+
+  closeProductPage({ updateHash: false });
+}
+
+function openProductPage(id) {
+  if (!id) return;
+  window.location.hash = `producto/${encodeURIComponent(id)}`;
+  renderProductPage(id);
+}
+
+function closeProductPage(options = {}) {
+  state.activeProductId = "";
+  els.productPage.hidden = true;
+  document.body.classList.remove("product-route-active");
+
+  if (options.updateHash !== false && window.location.hash.startsWith("#producto/")) {
+    history.pushState("", document.title, window.location.pathname + window.location.search);
+  }
+}
+
+function renderProductPage(id) {
+  const prop = state.props.find((item) => item.id === id);
+  if (!prop) {
+    closeProductPage({ updateHash: false });
+    return;
+  }
+
+  state.activeProductId = id;
+  const selected = state.selectedIds.includes(prop.id);
+  const unavailable = isPropUnavailable(prop.id, state.rentals, state.startDate, state.endDate);
+  const statusText = unavailable ? "Rentado en estas fechas" : prop.state;
+
+  els.productDetail.innerHTML = `
+    <div class="product-media">
+      <div class="product-media__main" style="--photo-a: ${prop.colors?.[0] || "#ead8bd"}; --photo-b: ${prop.colors?.[1] || "#bd8d35"}">${renderPhoto(prop)}</div>
+      <div class="product-media__thumbs" aria-label="Fotos del producto">
+        <button class="product-media__thumb product-media__thumb--active" type="button" aria-label="Foto principal" style="--photo-a: ${prop.colors?.[0] || "#ead8bd"}; --photo-b: ${prop.colors?.[1] || "#bd8d35"}">${renderPhoto(prop)}</button>
+      </div>
+    </div>
+    <article class="product-info">
+      <p class="product-info__eyebrow">${escapeHtml(prop.category || "Prop")}</p>
+      <h1>${escapeHtml(prop.name)}</h1>
+      <p class="product-info__sku">Código: ${escapeHtml(prop.code)}</p>
+      <p class="product-info__price">${formatCompactMoney(prop.price)} <span>MXN / día</span></p>
+      <div class="product-info__meta">
+        <div><span>Estado</span><strong>${escapeHtml(statusText || "Por confirmar")}</strong></div>
+        <div><span>Estilo</span><strong>${escapeHtml(prop.style || "Por definir")}</strong></div>
+      </div>
+      <button class="product-add ${selected ? "product-add--selected" : ""}" type="button" data-add="${escapeHtml(prop.id)}">
+        ${selected ? "Quitar de la cotización" : "Agregar a cotización"}
+      </button>
+      <div class="product-note">
+        <button class="product-note__head" type="button" aria-expanded="true">
+          IVA
+          <span>−</span>
+        </button>
+        <p>Precio antes de IVA. El IVA se calcula automáticamente en la cotización final.</p>
+      </div>
+      <div class="product-note">
+        <button class="product-note__head" type="button" aria-expanded="true">
+          Disponibilidad
+          <span>−</span>
+        </button>
+        <p>La renta queda sujeta a revisión de Hora Dorada. Los props no disponibles en tus fechas no se incluyen en la cotización final.</p>
+      </div>
+    </article>
+  `;
+
+  els.productPage.hidden = false;
+  document.body.classList.add("product-route-active");
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function bindProductKeyboard() {
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !els.productPage.hidden) {
+      closeProductPage();
+      return;
+    }
+
+    if (event.key !== "Enter" && event.key !== " ") return;
+    const productCard = event.target.closest?.("[data-product-id]");
+    if (!productCard) return;
+    event.preventDefault();
+    openProductPage(productCard.dataset.productId);
+  });
 }
 
 function renderReview() {
