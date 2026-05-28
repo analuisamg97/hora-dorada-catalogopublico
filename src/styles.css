@@ -2494,3 +2494,72 @@ h1 {
     font-size: 16px;
   }
 }
+
+/* Cart typography correction: cleaner editorial sans, less antique. */
+.cart-item {
+  grid-template-columns: 58px minmax(0, 1fr) 124px;
+  gap: 14px;
+  padding: 15px 0;
+}
+
+.cart-item__copy strong {
+  font-family: "Libre Franklin", "Montserrat", Inter, ui-sans-serif, system-ui, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.18;
+  letter-spacing: 0;
+}
+
+.cart-item__copy span {
+  font-family: "Libre Franklin", "Montserrat", Inter, ui-sans-serif, system-ui, sans-serif;
+  font-size: 12.5px;
+  font-weight: 400;
+  line-height: 1.25;
+}
+
+.cart-item__copy small {
+  gap: 26px;
+  margin-top: 9px;
+  font-family: "Libre Franklin", "Montserrat", Inter, ui-sans-serif, system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.cart-item__price {
+  gap: 10px;
+  align-self: center;
+  padding-bottom: 0;
+}
+
+.cart-item__price strong {
+  font-family: "Libre Franklin", "Montserrat", Inter, ui-sans-serif, system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.cart-item__price button {
+  font-size: 20px;
+}
+
+.cart-item__copy em {
+  font-family: "Libre Franklin", "Montserrat", Inter, ui-sans-serif, system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+@media (max-width: 460px) {
+  .cart-item {
+    grid-template-columns: 52px minmax(0, 1fr) 98px;
+  }
+
+  .cart-item__copy strong {
+    font-size: 15px;
+  }
+
+  .cart-item__copy small,
+  .cart-item__price strong {
+    font-size: 13px;
+  }
+}
