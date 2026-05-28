@@ -3130,3 +3130,212 @@ h1 {
     font-size: 18px;
   }
 }
+
+/* Global typography pass: keep the full app on the same refined sans system. */
+:root {
+  --ui-font: "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+}
+
+body,
+button,
+input,
+select,
+textarea,
+.main-nav__link,
+.header-action,
+.search input,
+.filter-field span,
+.control,
+.catalog__count,
+.prop-card h3,
+.prop-card__meta span,
+.price,
+.quote,
+.quote__head h2,
+.quote-date,
+.charged-days-row,
+.cart-item__copy strong,
+.cart-item__copy span,
+.cart-item__copy small,
+.cart-item__price strong,
+.totals div,
+.dialog,
+.product-page {
+  font-family: var(--ui-font);
+}
+
+.brand__copy strong,
+.brand__copy span {
+  font-family: "Montserrat", var(--ui-font);
+}
+
+/* Product page sizing pass: fit the essential detail view in one desktop viewport. */
+.product-route-active .app-shell {
+  min-height: 100vh;
+  padding-bottom: 0;
+}
+
+.product-route-active .topbar__inner {
+  min-height: 86px;
+}
+
+.product-page {
+  height: calc(100vh - 87px);
+  overflow: hidden;
+  padding: 18px 0 22px;
+}
+
+.product-page__inner {
+  gap: 16px;
+  height: 100%;
+}
+
+.product-detail {
+  grid-template-columns: minmax(0, 1fr) minmax(360px, 0.86fr);
+  gap: clamp(24px, 3vw, 42px);
+  min-height: 0;
+}
+
+.product-media {
+  grid-template-columns: minmax(0, 1fr) 64px;
+  gap: 12px;
+  min-height: 0;
+}
+
+.product-media__main {
+  height: min(66vh, 560px);
+  min-height: 0;
+  aspect-ratio: auto;
+}
+
+.product-media__thumb {
+  width: 64px;
+  height: 64px;
+}
+
+.product-info {
+  align-content: start;
+  gap: 14px;
+  padding-top: 0;
+}
+
+.product-info__eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.07em;
+}
+
+.product-info h1 {
+  max-width: 12ch;
+  font-size: clamp(34px, 4vw, 52px);
+  line-height: 1.04;
+}
+
+.product-info__sku {
+  margin: 0;
+  font-size: 18px;
+}
+
+.product-info__price {
+  font-size: clamp(30px, 3.1vw, 42px);
+}
+
+.product-info__price span {
+  font-size: 0.5em;
+}
+
+.product-info__meta div {
+  padding: 10px 12px;
+}
+
+.product-add {
+  min-height: 50px;
+  font-size: 18px;
+}
+
+.product-note {
+  padding-top: 12px;
+}
+
+.product-note__head {
+  font-size: 18px;
+}
+
+.product-note p {
+  margin-top: 8px;
+  font-size: 15px;
+  line-height: 1.35;
+}
+
+@media (max-width: 980px) {
+  .product-page {
+    height: auto;
+    overflow: visible;
+  }
+
+  .product-media__main {
+    height: auto;
+    aspect-ratio: 1 / 1;
+  }
+
+  .product-info h1 {
+    max-width: none;
+  }
+}
+
+/* Product detail final compact pass for desktop fit. */
+.product-page__inner {
+  gap: 12px;
+}
+
+.product-detail {
+  gap: clamp(20px, 2.5vw, 34px);
+}
+
+.product-media__main {
+  height: min(60vh, 520px);
+}
+
+.product-info {
+  gap: 10px;
+}
+
+.product-info h1 {
+  max-width: 13ch;
+  font-size: clamp(32px, 3.55vw, 46px);
+  line-height: 1.03;
+}
+
+.product-info__sku {
+  font-size: 16px;
+}
+
+.product-info__price {
+  font-size: clamp(28px, 2.8vw, 38px);
+}
+
+.product-info__meta {
+  gap: 8px;
+}
+
+.product-info__meta div {
+  padding: 8px 10px;
+}
+
+.product-add {
+  min-height: 44px;
+  font-size: 16px;
+}
+
+.product-note {
+  padding-top: 9px;
+}
+
+.product-note__head {
+  font-size: 16px;
+}
+
+.product-note p {
+  margin-top: 5px;
+  font-size: 13px;
+  line-height: 1.3;
+}

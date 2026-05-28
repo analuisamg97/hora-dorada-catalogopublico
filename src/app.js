@@ -437,7 +437,7 @@ function renderProductPage(id) {
     </div>
     <article class="product-info">
       <p class="product-info__eyebrow">${escapeHtml(prop.category || "Prop")}</p>
-      <h1>${escapeHtml(prop.name)}</h1>
+      <h1>${escapeHtml(getCartDisplayName(prop.name))}</h1>
       <p class="product-info__sku">Código: ${escapeHtml(prop.code)}</p>
       <p class="product-info__price">${formatCompactMoney(prop.price)} <span>MXN / día</span></p>
       <div class="product-info__meta">
