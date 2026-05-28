@@ -123,19 +123,34 @@
       <aside id="quotePanel" class="quote" aria-label="Carrito de cotización">
         <div class="quote__inner">
           <div class="quote__head">
-            <h2>Tu cotización</h2>
+            <div class="quote__title">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7V5a4 4 0 0 1 8 0v2"></path><path d="M5 7h14l-1 14H6L5 7Z"></path></svg>
+              <h2>Tu cotización</h2>
+            </div>
             <span id="daysPill" class="pill">1 día</span>
           </div>
 
-          <div class="date-grid">
-            <label>
-              Salida
-              <input id="startDate" class="field" type="date" />
+          <div class="quote-dates">
+            <label class="quote-date">
+              <span>Salida</span>
+              <div class="quote-date__input">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3v4"></path><path d="M17 3v4"></path><path d="M4 9h16"></path><path d="M5 5h14v16H5z"></path></svg>
+                <input id="startDate" class="field" type="date" />
+              </div>
             </label>
-            <label>
-              Regreso
-              <input id="endDate" class="field" type="date" />
+            <div class="quote-date-arrow" aria-hidden="true">→</div>
+            <label class="quote-date">
+              <span>Regreso</span>
+              <div class="quote-date__input">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3v4"></path><path d="M17 3v4"></path><path d="M4 9h16"></path><path d="M5 5h14v16H5z"></path></svg>
+                <input id="endDate" class="field" type="date" />
+              </div>
             </label>
+          </div>
+
+          <div class="charged-days-row">
+            <span>Días cobrados</span>
+            <strong id="chargedDaysLabel">1 día</strong>
           </div>
 
           <div id="cartList" class="cart-list"></div>

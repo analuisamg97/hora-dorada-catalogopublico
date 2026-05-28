@@ -73,6 +73,7 @@ const els = {
   reviewIva: document.querySelector("#reviewIva"),
   reviewTotal: document.querySelector("#reviewTotal"),
   reviewDeposit: document.querySelector("#reviewDeposit"),
+  chargedDaysLabel: document.querySelector("#chargedDaysLabel"),
   requestForm: document.querySelector("#requestForm"),
   clientName: document.querySelector("#clientName"),
   clientWhatsapp: document.querySelector("#clientWhatsapp"),
@@ -321,6 +322,7 @@ function applyViewMode() {
 function renderCart() {
   const quote = getQuote();
   els.daysPill.textContent = `${quote.days} ${quote.days === 1 ? "día" : "días"}`;
+  els.chargedDaysLabel.textContent = `${quote.days} ${quote.days === 1 ? "día" : "días"}`;
   els.reviewQuote.disabled = quote.available.length === 0;
 
   if (!quote.selected.length) {

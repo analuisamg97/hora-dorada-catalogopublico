@@ -6,7 +6,8 @@ export function calculateRentalDays(start, end) {
     return 1;
   }
 
-  return Math.max(1, Math.ceil((endDate.getTime() - startDate.getTime()) / 86400000) + 1);
+  const calendarDays = Math.ceil((endDate.getTime() - startDate.getTime()) / 86400000) + 1;
+  return Math.max(1, calendarDays - 2);
 }
 
 export function datesOverlap(startA, endA, startB, endB) {
