@@ -3750,3 +3750,38 @@ textarea,
     align-items: start;
   }
 }
+
+/* Global quote panel: topbar toggle + close affordance. */
+.quote-close {
+  display: inline-grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border: 0;
+  border-radius: 999px;
+  color: #6d665f;
+  background: transparent;
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 160ms ease, color 160ms ease, transform 160ms ease;
+}
+
+.quote-close:hover,
+.quote-close:focus-visible {
+  color: #171612;
+  background: rgba(181, 121, 22, 0.1);
+  transform: translateY(-1px);
+  outline: none;
+}
+
+@media (min-width: 901px) {
+  .quote-panel-closed .layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .quote-panel-closed .quote {
+    display: none;
+  }
+}

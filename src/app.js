@@ -55,6 +55,7 @@ const els = {
   listViewButton: document.querySelector("#listViewButton"),
   quoteHeaderCount: document.querySelector("#quoteHeaderCount"),
   headerQuoteButton: document.querySelector("#headerQuoteButton"),
+  quoteCloseButton: document.querySelector("#quoteCloseButton"),
   quoteToast: document.querySelector("#quoteToast"),
   loadingState: document.querySelector("#loadingState"),
   catalogGrid: document.querySelector("#catalogGrid"),
@@ -100,6 +101,7 @@ init();
 
 async function init() {
   bindEvents();
+  setQuotePanelOpen(!isMobileViewport());
   fillSettingsForm();
   setDefaultDates();
   await loadData();
@@ -203,18 +205,9 @@ function bindEvents() {
       openProductPage(productCard.dataset.productId);
     }
   });
-
-  els.openCart.addEventListener("click", () => {
-    els.quotePanel.classList.toggle("quote--mobile-open");
-  });
-
-  els.headerQuoteButton.addEventListener("click", () => {
-    if (window.matchMedia("(max-width: 900px)").matches) {
-      els.quotePanel.classList.toggle("quote--mobile-open");
-      return;
-    }
-    els.quotePanel.scrollIntoView({ behavior: "smooth", block: "start" });
-  });
+  els.openCart.addEventListener("click", () => toggleQuotePanel());
+  els.headerQuoteButton.addEventListener("click", () => toggleQuotePanel());
+  els.quoteCloseButton.addEventListener("click", () => setQuotePanelOpen(false));
 
   els.reviewQuote.addEventListener("click", () => {
     renderReview();
@@ -394,6 +387,28 @@ function renderCart() {
   els.mobileSelected.textContent = `${quote.selected.length} ${quote.selected.length === 1 ? "prop seleccionado" : "props seleccionados"}`;
   els.mobileTotal.textContent = formatMoney(quote.total);
   els.quoteHeaderCount.textContent = quote.selected.length;
+}
+
+function isMobileViewport() {
+  return window.matchMedia("(max-width: 900px)").matches;
+}
+
+function setQuotePanelOpen(isOpen) {
+  if (isMobileViewport()) {
+    els.quotePanel.classList.toggle("quote--mobile-open", isOpen);
+  } else {
+    document.body.classList.toggle("quote-panel-closed", !isOpen);
+  }
+
+  els.headerQuoteButton.setAttribute("aria-expanded", String(isOpen));
+}
+
+function toggleQuotePanel() {
+  const isOpen = isMobileViewport()
+    ? els.quotePanel.classList.contains("quote--mobile-open")
+    : !document.body.classList.contains("quote-panel-closed");
+
+  setQuotePanelOpen(!isOpen);
 }
 
 function renderRoute() {

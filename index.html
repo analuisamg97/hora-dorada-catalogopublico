@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="src/styles.css?v=charged-days-note-1" />
+  <link rel="stylesheet" href="src/styles.css?v=global-quote-panel-1" />
 </head>
 <body>
   <div class="app-shell">
@@ -47,7 +47,7 @@
             <span>Favoritos</span>
             <strong>0</strong>
           </button>
-          <button class="header-action" id="headerQuoteButton" type="button" aria-label="Ver cotización">
+          <button class="header-action" id="headerQuoteButton" type="button" aria-label="Ver cotización" aria-controls="quotePanel" aria-expanded="true">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7V5a4 4 0 0 1 8 0v2"></path><path d="M5 7h14l-1 14H6L5 7Z"></path><path d="M9 12h6"></path></svg>
             <span>Cotización</span>
             <strong id="quoteHeaderCount">0</strong>
@@ -128,6 +128,7 @@
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7V5a4 4 0 0 1 8 0v2"></path><path d="M5 7h14l-1 14H6L5 7Z"></path></svg>
               <h2>Tu cotización</h2>
             </div>
+            <button id="quoteCloseButton" class="quote-close" type="button" aria-label="Cerrar cotización">×</button>
           </div>
 
           <div class="quote-dates">
@@ -318,6 +319,6 @@
     </form>
   </dialog>
 
-  <script type="module" src="src/app.js?v=charged-days-note-1"></script>
+  <script type="module" src="src/app.js?v=global-quote-panel-1"></script>
 </body>
 </html>
