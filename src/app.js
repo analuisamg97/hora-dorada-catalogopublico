@@ -190,14 +190,13 @@ function bindEvents() {
     if (add) {
       const wasSelected = state.selectedIds.includes(add.dataset.add);
       toggleSelected(add.dataset.add);
-      if (!els.productPage.hidden && state.activeProductId) {
-        showProductSelectionStatus(!wasSelected);
-      }
+      showProductSelectionStatus(!wasSelected);
       return;
     }
 
     if (remove) {
       removeSelected(remove.dataset.remove);
+      showProductSelectionStatus(false);
       return;
     }
 

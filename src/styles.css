@@ -3393,3 +3393,10 @@ textarea,
     border-radius: 14px;
   }
 }
+
+/* Keep navigation available while browsing catalog and product pages. */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 80;
+}
