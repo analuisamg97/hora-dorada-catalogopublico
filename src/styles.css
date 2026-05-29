@@ -3723,3 +3723,8 @@ textarea,
     min-height: 0;
   }
 }
+
+/* Keep the quote sidebar focused on subtotal, IVA, total, and review CTA. */
+.quote .totals__deposit {
+  display: none;
+}
