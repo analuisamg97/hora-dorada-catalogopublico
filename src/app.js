@@ -28,12 +28,15 @@ const state = {
   startDate: savedDates.startDate,
   endDate: savedDates.endDate,
   viewMode: "grid",
-  activeProductId: ""
+  activeProductId: "",
+  activePage: "home"
 };
 
 const els = {
   sourceDot: document.querySelector("#sourceDot"),
   sourceLabel: document.querySelector("#sourceLabel"),
+  pageViews: document.querySelectorAll("[data-page]"),
+  navLinks: document.querySelectorAll("[data-nav-page]"),
   settingsButton: document.querySelector("#settingsButton"),
   settingsDialog: document.querySelector("#settingsDialog"),
   settingsForm: document.querySelector("#settingsForm"),
@@ -90,6 +93,11 @@ const els = {
   clientName: document.querySelector("#clientName"),
   clientWhatsapp: document.querySelector("#clientWhatsapp"),
   clientNotes: document.querySelector("#clientNotes"),
+  contactLeadForm: document.querySelector("#contactLeadForm"),
+  contactName: document.querySelector("#contactName"),
+  contactWhatsapp: document.querySelector("#contactWhatsapp"),
+  contactMessage: document.querySelector("#contactMessage"),
+  contactStatus: document.querySelector("#contactStatus"),
   requestStatus: document.querySelector("#requestStatus"),
   shareWhatsApp: document.querySelector("#shareWhatsApp"),
   successDialog: document.querySelector("#successDialog"),
@@ -101,7 +109,7 @@ init();
 
 async function init() {
   bindEvents();
-  setQuotePanelOpen(!isMobileViewport());
+  setQuotePanelOpen(false);
   fillSettingsForm();
   setDefaultDates();
   await loadData();
@@ -216,6 +224,7 @@ function bindEvents() {
   });
 
   els.requestForm.addEventListener("submit", submitRequest);
+  els.contactLeadForm.addEventListener("submit", submitContactLead);
   els.shareWhatsApp.addEventListener("click", shareWhatsApp);
   els.successWhatsApp.addEventListener("click", shareWhatsApp);
   els.downloadPdf.addEventListener("click", () => window.print());
@@ -412,14 +421,42 @@ function toggleQuotePanel() {
 }
 
 function renderRoute() {
-  const productId = decodeURIComponent(window.location.hash.replace("#producto/", ""));
+  const hash = window.location.hash || "#home";
+  const productId = decodeURIComponent(hash.replace("#producto/", ""));
 
-  if (window.location.hash.startsWith("#producto/") && productId) {
+  if (hash.startsWith("#producto/") && productId) {
+    setActivePage("catalogo", { syncQuote: false });
     renderProductPage(productId);
     return;
   }
 
   closeProductPage({ updateHash: false });
+  if (hash === "#contacto") {
+    setActivePage("contacto");
+    return;
+  }
+
+  if (hash === "#catalogo") {
+    setActivePage("catalogo");
+    return;
+  }
+
+  setActivePage("home");
+}
+
+function setActivePage(page, options = {}) {
+  state.activePage = page;
+  els.pageViews.forEach((view) => {
+    view.hidden = view.dataset.page !== page;
+  });
+  els.navLinks.forEach((link) => {
+    link.classList.toggle("main-nav__link--active", link.dataset.navPage === page);
+  });
+
+  if (options.syncQuote === false) return;
+  if (!isMobileViewport()) {
+    setQuotePanelOpen(page === "catalogo");
+  }
 }
 
 function openProductPage(id) {
@@ -434,7 +471,7 @@ function closeProductPage(options = {}) {
   document.body.classList.remove("product-route-active");
 
   if (options.updateHash !== false && window.location.hash.startsWith("#producto/")) {
-    history.pushState("", document.title, window.location.pathname + window.location.search);
+    window.location.hash = "catalogo";
   }
 }
 
@@ -614,6 +651,29 @@ function lockCartScroll() {
       event.stopPropagation();
     }
   }, { passive: true });
+}
+
+function submitContactLead(event) {
+  event.preventDefault();
+  const name = els.contactName.value.trim();
+  const whatsapp = els.contactWhatsapp.value.trim();
+  const message = els.contactMessage.value.trim();
+
+  if (!name || !whatsapp) {
+    els.contactStatus.textContent = "Agrega nombre y WhatsApp para continuar.";
+    els.contactStatus.className = "form-status form-status--error";
+    return;
+  }
+
+  els.contactStatus.textContent = "Abriendo WhatsApp con tu mensaje.";
+  els.contactStatus.className = "form-status form-status--success";
+  const lines = [
+    "Hola Hora Dorada, quiero información para una renta de props.",
+    `Nombre: ${name}`,
+    `WhatsApp: ${whatsapp}`,
+    message ? `Necesito: ${message}` : ""
+  ].filter(Boolean);
+  window.open(`https://wa.me/?text=${encodeURIComponent(lines.join("\n"))}`, "_blank");
 }
 
 function shareWhatsApp() {

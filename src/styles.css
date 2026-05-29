@@ -3785,3 +3785,210 @@ textarea,
     display: none;
   }
 }
+
+/* Home and contact pages, adapted from the approved mockups into the live design system. */
+.page-view[hidden] {
+  display: none !important;
+}
+
+.page-view {
+  min-width: 0;
+  min-height: 0;
+}
+
+.section-eyebrow {
+  margin: 0 0 14px;
+  color: var(--gold);
+  font-family: var(--ui-font);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.home-page,
+.contact-page {
+  overflow: hidden;
+}
+
+.home-hero {
+  position: relative;
+  min-height: 100%;
+  display: grid;
+  align-content: center;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: clamp(34px, 6vw, 88px);
+  color: #fffdf8;
+  background:
+    linear-gradient(90deg, rgba(16, 13, 9, 0.86), rgba(16, 13, 9, 0.24) 62%, rgba(16, 13, 9, 0.7)),
+    url("https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&w=2200&q=85") center / cover;
+}
+
+.home-hero__content {
+  max-width: 820px;
+}
+
+.home-hero h1,
+.contact-landing h1 {
+  margin: 0;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(54px, 8vw, 118px);
+  font-weight: 600;
+  line-height: 0.9;
+  letter-spacing: 0;
+}
+
+.home-hero p:not(.section-eyebrow),
+.contact-landing__copy > p:not(.section-eyebrow) {
+  max-width: 600px;
+  color: rgba(255, 253, 248, 0.86);
+  font-size: clamp(16px, 1.5vw, 21px);
+  line-height: 1.45;
+}
+
+.home-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 26px;
+}
+
+.home-cta {
+  width: auto;
+  min-width: 170px;
+  margin: 0;
+}
+
+.home-hero__note {
+  position: absolute;
+  right: 24px;
+  bottom: 22px;
+  max-width: 300px;
+  border: 1px solid rgba(255, 253, 248, 0.32);
+  border-radius: 8px;
+  padding: 14px;
+  background: rgba(0, 0, 0, 0.24);
+  color: rgba(255, 253, 248, 0.84);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.home-hero__note span {
+  display: block;
+  margin-bottom: 6px;
+  color: #e8c06d;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.contact-landing {
+  min-height: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 420px;
+  gap: 38px;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: clamp(28px, 5vw, 68px);
+  background:
+    linear-gradient(90deg, rgba(255, 253, 248, 0.96) 0 50%, rgba(255, 253, 248, 0.28)),
+    url("https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1800&q=85") center / cover;
+}
+
+.contact-landing__copy > p:not(.section-eyebrow) {
+  color: var(--muted);
+}
+
+.contact-info-list {
+  display: grid;
+  max-width: 640px;
+  margin-top: 28px;
+}
+
+.contact-info-list div {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  border-bottom: 1px solid var(--line);
+  padding: 15px 0;
+}
+
+.contact-info-list span {
+  color: var(--muted);
+}
+
+.contact-card {
+  border: 1px solid rgba(227, 215, 199, 0.9);
+  border-radius: 8px;
+  padding: 26px;
+  background: rgba(255, 253, 248, 0.92);
+  box-shadow: 0 22px 60px rgba(48, 35, 22, 0.12);
+  backdrop-filter: blur(16px);
+}
+
+.contact-card__badge {
+  width: fit-content;
+  margin: 0 0 18px;
+  border-radius: 999px;
+  padding: 8px 11px;
+  color: var(--gold);
+  background: rgba(181, 121, 22, 0.1);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.contact-lead-form {
+  display: grid;
+  gap: 12px;
+}
+
+.contact-lead-form label {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.contact-lead-form textarea {
+  min-height: 96px;
+  resize: vertical;
+}
+
+.contact-lead-form .button {
+  margin-top: 4px;
+}
+
+@media (min-width: 901px) {
+  .page-view {
+    height: 100%;
+  }
+}
+
+@media (max-width: 900px) {
+  .home-page,
+  .contact-page {
+    overflow: visible;
+  }
+
+  .home-hero,
+  .contact-landing {
+    min-height: auto;
+  }
+
+  .contact-landing {
+    grid-template-columns: 1fr;
+  }
+
+  .home-hero__note {
+    position: static;
+    margin-top: 28px;
+  }
+}
+
+.home-hero h1,
+.contact-landing h1 {
+  display: block;
+}

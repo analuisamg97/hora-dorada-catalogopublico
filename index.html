@@ -3,17 +3,17 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Hora Dorada Prop House | Catálogo</title>
+  <title>Hora Dorada Prop House</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="src/styles.css?v=global-quote-panel-1" />
+  <link rel="stylesheet" href="src/styles.css?v=home-contact-1" />
 </head>
 <body>
   <div class="app-shell">
     <header class="topbar">
       <div class="container topbar__inner">
-        <a class="brand" href="#" aria-label="Hora Dorada Prop House">
+        <a class="brand" href="#home" aria-label="Hora Dorada Prop House">
           <svg class="brand__sun" viewBox="0 0 80 80" role="img" aria-label="Sol de Hora Dorada">
             <circle class="brand__sun-core" cx="40" cy="40" r="13"></circle>
             <g class="brand__sun-rays">
@@ -34,8 +34,9 @@
         </a>
         <div class="topbar__actions">
           <nav class="main-nav" aria-label="Navegación principal">
-            <a class="main-nav__link main-nav__link--active" href="#">Catálogo</a>
-            <a class="main-nav__link" href="#contacto">Contacto</a>
+            <a class="main-nav__link main-nav__link--active" href="#home" data-nav-page="home">Inicio</a>
+            <a class="main-nav__link" href="#catalogo" data-nav-page="catalogo">Catálogo</a>
+            <a class="main-nav__link" href="#contacto" data-nav-page="contacto">Contacto</a>
           </nav>
 
           <div class="topbar__status" title="Estado de conexión">
@@ -62,7 +63,50 @@
 
 
     <main class="container layout">
-      <section class="catalog">
+<section id="homePage" class="page-view home-page" data-page="home">
+  <div class="home-hero">
+    <div class="home-hero__content">
+      <p class="section-eyebrow">Prop house editorial</p>
+      <h1>Props que hacen que la escena respire.</h1>
+      <p>Hora Dorada reúne piezas visuales para producciones, eventos y shootings que necesitan atmósfera, intención y belleza sin esfuerzo.</p>
+      <div class="home-hero__actions">
+        <a class="button button--primary home-cta" href="#catalogo">Explorar catálogo</a>
+        <a class="button button--secondary home-cta" href="#contacto">Cotizar con ayuda</a>
+      </div>
+    </div>
+    <div class="home-hero__note">
+      <span>Curaduría visual</span>
+      <strong>Inventario conectado a Airtable, cotización estimada y seguimiento por WhatsApp.</strong>
+    </div>
+  </div>
+</section>
+
+<section id="contactPage" class="page-view contact-page" data-page="contacto" hidden>
+  <div class="contact-landing">
+    <section class="contact-landing__copy">
+      <p class="section-eyebrow">Contacto</p>
+      <h1>Cuéntanos qué escena estás armando.</h1>
+      <p>Te ayudamos a revisar disponibilidad, fechas de recolección y piezas que podrían funcionar para tu producción, evento o shooting.</p>
+      <div class="contact-info-list">
+        <div><span>WhatsApp</span><strong>Respuesta rápida para cotizaciones</strong></div>
+        <div><span>Instagram</span><strong>@horadoradaprophouse</strong></div>
+        <div><span>Bodega</span><strong>Recolección de props con cita previa</strong></div>
+      </div>
+    </section>
+    <aside class="contact-card">
+      <p class="contact-card__badge">Solicitud rápida</p>
+      <form id="contactLeadForm" class="contact-lead-form">
+        <label>Nombre<input id="contactName" class="field" type="text" placeholder="Tu nombre" /></label>
+        <label>WhatsApp<input id="contactWhatsapp" class="field" type="tel" placeholder="Número de WhatsApp" /></label>
+        <label>¿Qué necesitas?<textarea id="contactMessage" class="field" placeholder="Fechas, tipo de props o idea general"></textarea></label>
+        <button class="button button--primary" type="submit">Enviar y continuar por WhatsApp</button>
+        <p id="contactStatus" class="form-status"></p>
+      </form>
+    </aside>
+  </div>
+</section>
+
+<section class="catalog page-view" data-page="catalogo" hidden>
         <div class="catalog__head">
           <div>
             <h1>Catálogo de props</h1>
@@ -319,6 +363,6 @@
     </form>
   </dialog>
 
-  <script type="module" src="src/app.js?v=global-quote-panel-1"></script>
+  <script type="module" src="src/app.js?v=home-contact-1"></script>
 </body>
 </html>
