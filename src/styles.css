@@ -3728,3 +3728,25 @@ textarea,
 .quote .totals__deposit {
   display: none;
 }
+
+/* Explain charged days without duplicating the day count in the quote header. */
+.charged-days-row > div {
+  display: grid;
+  gap: 4px;
+}
+
+.charged-days-row small {
+  max-width: 300px;
+  color: #81766c;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.35;
+  text-transform: none;
+}
+
+@media (min-width: 901px) {
+  .charged-days-row {
+    align-items: start;
+  }
+}

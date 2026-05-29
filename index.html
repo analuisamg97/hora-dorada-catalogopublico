@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="src/styles.css?v=hide-deposit-1" />
+  <link rel="stylesheet" href="src/styles.css?v=charged-days-note-1" />
 </head>
 <body>
   <div class="app-shell">
@@ -128,7 +128,6 @@
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7V5a4 4 0 0 1 8 0v2"></path><path d="M5 7h14l-1 14H6L5 7Z"></path></svg>
               <h2>Tu cotización</h2>
             </div>
-            <span id="daysPill" class="pill">1 día</span>
           </div>
 
           <div class="quote-dates">
@@ -150,7 +149,10 @@
           </div>
 
           <div class="charged-days-row">
-            <span>Días cobrados</span>
+            <div>
+              <span>Días cobrados</span>
+              <small>El día de salida y el día de regreso no se cobran por práctica de la industria.</small>
+            </div>
             <strong id="chargedDaysLabel">1 día</strong>
           </div>
 
@@ -316,6 +318,6 @@
     </form>
   </dialog>
 
-  <script type="module" src="src/app.js?v=hide-deposit-1"></script>
+  <script type="module" src="src/app.js?v=charged-days-note-1"></script>
 </body>
 </html>

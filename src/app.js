@@ -65,7 +65,6 @@ const els = {
   quotePanel: document.querySelector("#quotePanel"),
   startDate: document.querySelector("#startDate"),
   endDate: document.querySelector("#endDate"),
-  daysPill: document.querySelector("#daysPill"),
   cartList: document.querySelector("#cartList"),
   availabilityAlert: document.querySelector("#availabilityAlert"),
   subtotal: document.querySelector("#subtotal"),
@@ -349,7 +348,6 @@ function applyViewMode() {
 
 function renderCart() {
   const quote = getQuote();
-  els.daysPill.textContent = `${quote.days} ${quote.days === 1 ? "día" : "días"}`;
   els.chargedDaysLabel.textContent = `${quote.days} ${quote.days === 1 ? "día" : "días"}`;
   els.reviewQuote.disabled = quote.available.length === 0;
 
