@@ -4044,15 +4044,4 @@ textarea,
     right: clamp(34px, 5vw, 86px);
     bottom: clamp(24px, 4vh, 52px);
   }
-
-  body[data-active-page="home"] .home-hero::after {
-    position: absolute;
-    right: clamp(34px, 5vw, 86px);
-    bottom: 16px;
-    color: rgba(255, 253, 248, 0.72);
-    font-size: 12px;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    content: "Scroll para ir al catalogo";
-  }
 }

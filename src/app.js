@@ -146,7 +146,6 @@ function bindEvents() {
   els.listViewButton.addEventListener("click", () => setViewMode("list"));
   els.productBack.addEventListener("click", closeProductPage);
   window.addEventListener("hashchange", renderRoute);
-  window.addEventListener("wheel", handleHomeWheel, { passive: true });
 
   document.querySelector("#clearFilters")?.addEventListener("click", () => {
     state.filters = {
@@ -419,11 +418,6 @@ function toggleQuotePanel() {
     : !document.body.classList.contains("quote-panel-closed");
 
   setQuotePanelOpen(!isOpen);
-}
-
-function handleHomeWheel(event) {
-  if (state.activePage !== "home" || event.deltaY < 42) return;
-  window.location.hash = "catalogo";
 }
 
 function renderRoute() {
