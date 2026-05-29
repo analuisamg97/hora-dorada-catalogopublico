@@ -3703,3 +3703,23 @@ textarea,
     top: calc(100% + 8px);
   }
 }
+
+/* Safari/grid guard: keep catalog cards from collapsing inside the viewport scroller. */
+@media (min-width: 901px) {
+  .catalog-grid {
+    grid-auto-rows: max-content;
+  }
+
+  .prop-card {
+    min-height: max-content;
+    height: auto;
+  }
+
+  .prop-card__photo {
+    min-height: clamp(210px, 16.5vw, 285px);
+  }
+
+  .catalog-grid--list .prop-card__photo {
+    min-height: 0;
+  }
+}
