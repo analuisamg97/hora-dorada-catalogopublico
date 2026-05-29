@@ -484,7 +484,7 @@ function showProductSelectionStatus(isSelected) {
   window.clearTimeout(quoteToastTimer);
   els.quoteToast.innerHTML = isSelected
     ? `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"></path></svg><span>Producto agregado a tu cotización.</span>`
-    : `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"></path></svg><span>Producto quitado de tu cotización.</span>`;
+    : `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7l10 10M17 7 7 17"></path></svg><span>Producto quitado de tu cotización.</span>`;
   els.quoteToast.hidden = false;
   els.quoteToast.classList.add("quote-toast--show");
   quoteToastTimer = window.setTimeout(() => {
