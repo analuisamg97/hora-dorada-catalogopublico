@@ -4045,3 +4045,45 @@ textarea,
     bottom: clamp(24px, 4vh, 52px);
   }
 }
+
+/* Home header overlays the editorial hero, matching the approved mockup. */
+@media (min-width: 901px) {
+  body[data-active-page="home"] .topbar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    border-bottom: 0;
+    background: linear-gradient(180deg, rgba(18, 14, 10, 0.42), rgba(18, 14, 10, 0));
+    backdrop-filter: none;
+  }
+
+  body[data-active-page="home"] .topbar__inner {
+    min-height: var(--desktop-header-height);
+  }
+
+  body[data-active-page="home"] .brand__copy strong,
+  body[data-active-page="home"] .brand__copy span,
+  body[data-active-page="home"] .main-nav__link,
+  body[data-active-page="home"] .header-action {
+    color: #fffdf8;
+  }
+
+  body[data-active-page="home"] .header-action svg,
+  body[data-active-page="home"] .icon-action--header svg {
+    stroke: #fffdf8;
+  }
+
+  body[data-active-page="home"] .icon-action--header {
+    background: rgba(255, 253, 248, 0.16);
+    color: #fffdf8;
+  }
+
+  body[data-active-page="home"] .layout {
+    height: 100vh;
+  }
+
+  body[data-active-page="home"] .home-hero {
+    padding-top: calc(var(--desktop-header-height) + clamp(34px, 6vw, 88px));
+  }
+}
