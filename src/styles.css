@@ -1562,6 +1562,8 @@ body[data-active-page="contacto"] .main-nav__link[data-nav-page="contacto"]::aft
   height: 2px;
   background: #bd7b16;
   content: "";
+  transform-origin: center;
+  transition: transform 140ms ease, opacity 140ms ease;
 }
 
 body[data-active-page="home"] .main-nav__link[data-nav-page="home"],
@@ -1748,6 +1750,20 @@ body[data-active-page="contacto"] .main-nav__link[data-nav-page="contacto"] {
 .header-action:hover,
 .header-action:focus-visible {
   color: var(--gold);
+}
+
+.main-nav__link:active {
+  color: var(--gold);
+  opacity: 0.86;
+  transform: translateY(1px);
+}
+
+.main-nav__link--active:active::after,
+body[data-active-page="home"] .main-nav__link[data-nav-page="home"]:active::after,
+body[data-active-page="catalogo"] .main-nav__link[data-nav-page="catalogo"]:active::after,
+body[data-active-page="contacto"] .main-nav__link[data-nav-page="contacto"]:active::after {
+  opacity: 0.78;
+  transform: scaleX(0.82);
 }
 
 .header-action:hover svg,
