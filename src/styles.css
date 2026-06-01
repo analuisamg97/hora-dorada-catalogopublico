@@ -4272,3 +4272,31 @@ textarea,
     justify-self: start;
   }
 }
+
+/* Contact should scroll naturally so the contact details never get clipped. */
+@media (min-width: 901px) {
+  body[data-active-page="contacto"] {
+    overflow: auto;
+  }
+
+  body[data-active-page="contacto"] .app-shell {
+    min-height: 100vh;
+    padding-bottom: 0;
+  }
+
+  body[data-active-page="contacto"] .layout {
+    height: auto;
+    min-height: calc(100vh - var(--desktop-header-height));
+    overflow: visible;
+  }
+
+  body[data-active-page="contacto"] .contact-page {
+    height: auto;
+    overflow: visible;
+  }
+
+  body[data-active-page="contacto"] .contact-landing {
+    min-height: calc(100vh - var(--desktop-header-height) - (var(--desktop-page-gap) * 2));
+    align-items: center;
+  }
+}
