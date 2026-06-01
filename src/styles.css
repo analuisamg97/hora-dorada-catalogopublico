@@ -3996,12 +3996,16 @@ textarea,
 /* Home page: full editorial hero with a catalog transition feel, without merging catalog into home. */
 @media (min-width: 901px) {
   body[data-active-page="home"] {
-    overflow: auto;
+    overflow: hidden;
+    background: #17130f;
   }
 
   body[data-active-page="home"] .app-shell {
+    height: 100vh;
     min-height: 100vh;
+    overflow: hidden;
     padding-bottom: 0;
+    background: #17130f;
   }
 
   body[data-active-page="home"] .layout {
@@ -4012,7 +4016,7 @@ textarea,
 
   body[data-active-page="home"] .home-page {
     height: 100%;
-    overflow: visible;
+    overflow: hidden;
   }
 
   body[data-active-page="home"] .home-hero {
@@ -4081,12 +4085,13 @@ textarea,
 
   body[data-active-page="home"] .layout {
     height: 100vh;
-    overflow: visible;
+    overflow: hidden;
   }
 
   body[data-active-page="home"] .home-hero {
     align-content: start;
-    overflow: visible;
+    height: 100%;
+    overflow: hidden;
     padding-top: calc(var(--desktop-header-height) + clamp(18px, 3.6vw, 54px));
   }
 }
