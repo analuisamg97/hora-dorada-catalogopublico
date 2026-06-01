@@ -4167,7 +4167,7 @@ textarea,
 }
 
 .filters {
-  grid-template-columns: minmax(116px, 1fr) minmax(108px, 0.95fr) minmax(108px, 0.95fr) minmax(132px, 1.08fr) minmax(136px, 1.08fr) auto 150px;
+  grid-template-columns: minmax(116px, 1fr) minmax(108px, 0.95fr) minmax(108px, 0.95fr) minmax(132px, 1.08fr) minmax(136px, 1.08fr) 150px auto;
   margin-bottom: 8px;
 }
 
@@ -4196,8 +4196,9 @@ textarea,
 
 .filters .catalog__count {
   align-self: center;
-  justify-self: center;
+  justify-self: end;
   min-width: 72px;
+  margin-right: 8px;
   border: 1px solid rgba(118, 104, 93, 0.24);
   border-radius: 999px;
   padding: 7px 10px;
