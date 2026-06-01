@@ -4198,11 +4198,11 @@ textarea,
   align-self: center;
   justify-self: center;
   min-width: 72px;
-  border: 1px solid rgba(181, 121, 22, 0.28);
+  border: 1px solid rgba(118, 104, 93, 0.24);
   border-radius: 999px;
   padding: 7px 10px;
-  color: var(--gold);
-  background: rgba(181, 121, 22, 0.08);
+  color: #6f675f;
+  background: rgba(117, 104, 93, 0.08);
   font-family: "Montserrat", Inter, ui-sans-serif, system-ui, sans-serif;
   font-size: 12px;
   font-weight: 600;
