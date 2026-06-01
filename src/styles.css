@@ -4081,9 +4081,53 @@ textarea,
 
   body[data-active-page="home"] .layout {
     height: 100vh;
+    overflow: visible;
   }
 
   body[data-active-page="home"] .home-hero {
-    padding-top: calc(var(--desktop-header-height) + clamp(34px, 6vw, 88px));
+    align-content: start;
+    overflow: visible;
+    padding-top: calc(var(--desktop-header-height) + clamp(18px, 3.6vw, 54px));
+  }
+}
+
+/* Home CTA polish: keep the hero links behaving like premium buttons. */
+.button,
+.button:visited {
+  text-decoration: none;
+}
+
+.home-cta {
+  min-width: 0;
+  min-height: 56px;
+  padding: 0 28px;
+  font-family: var(--ui-font);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-decoration: none;
+}
+
+.home-cta:hover,
+.home-cta:focus-visible {
+  text-decoration: none;
+}
+
+@media (min-width: 901px) {
+  body[data-active-page="home"] .home-hero__content {
+    max-width: min(1500px, 82vw);
+  }
+
+  body[data-active-page="home"] .home-hero h1 {
+    max-width: 12.5em;
+    font-size: clamp(72px, 7.7vw, 132px);
+  }
+
+  body[data-active-page="home"] .home-hero p:not(.section-eyebrow) {
+    max-width: 680px;
+  }
+
+  body[data-active-page="home"] .home-hero__actions {
+    margin-top: clamp(20px, 3vh, 34px);
   }
 }
