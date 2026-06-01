@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="src/styles.css?v=initial-route-1" />
+  <link rel="stylesheet" href="src/styles.css?v=catalog-compact-1" />
 </head>
 <body class="quote-panel-closed" data-active-page="home">
   <script>
@@ -156,22 +156,11 @@
             <span>Ordenar por</span>
             <select id="sortFilter" class="control" aria-label="Orden"></select>
           </label>
+          <div id="catalogCount" class="catalog__count">0 props</div>
           <button id="clearFilters" class="button button--filter" type="button">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h10"></path><path d="M4 17h10"></path><path d="M17 5v4"></path><path d="M17 15v4"></path><path d="M14 7h6"></path><path d="M14 17h6"></path></svg>
             <span>Limpiar filtros</span>
           </button>
-        </div>
-
-        <div class="catalog-tools">
-          <div id="catalogCount" class="catalog__count">0 props disponibles</div>
-          <div class="view-toggle" aria-label="Cambiar vista de catálogo">
-            <button id="gridViewButton" class="view-toggle__button view-toggle__button--active" type="button" aria-label="Vista en grid" aria-pressed="true">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h6v6H4z"></path><path d="M14 4h6v6h-6z"></path><path d="M4 14h6v6H4z"></path><path d="M14 14h6v6h-6z"></path></svg>
-            </button>
-            <button id="listViewButton" class="view-toggle__button" type="button" aria-label="Vista en lista" aria-pressed="false">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6h12"></path><path d="M8 12h12"></path><path d="M8 18h12"></path><path d="M4 6h.01"></path><path d="M4 12h.01"></path><path d="M4 18h.01"></path></svg>
-            </button>
-          </div>
         </div>
 
         <div id="loadingState" class="empty-state">Cargando catálogo...</div>
@@ -376,6 +365,6 @@
     </form>
   </dialog>
 
-  <script type="module" src="src/app.js?v=home-header-1"></script>
+  <script type="module" src="src/app.js?v=catalog-compact-1"></script>
 </body>
 </html>

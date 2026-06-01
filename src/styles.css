@@ -4149,3 +4149,109 @@ textarea,
     margin-top: clamp(20px, 3vh, 34px);
   }
 }
+
+/* Catalog compact tools: keep the photos as the visual priority. */
+.search--catalog {
+  margin-bottom: 8px;
+}
+
+.search--catalog input {
+  height: 46px;
+  font-size: 15px;
+}
+
+.search--catalog svg {
+  left: 18px;
+  width: 18px;
+  height: 18px;
+}
+
+.filters {
+  grid-template-columns: minmax(116px, 1fr) minmax(108px, 0.95fr) minmax(108px, 0.95fr) minmax(132px, 1.08fr) minmax(136px, 1.08fr) auto 150px;
+  margin-bottom: 8px;
+}
+
+.filter-field {
+  min-height: 46px;
+  gap: 2px;
+  padding: 8px 32px 7px 14px;
+}
+
+.filter-field span {
+  font-size: 10px;
+  letter-spacing: 0;
+}
+
+.control {
+  min-height: 20px;
+  font-size: 14px;
+  line-height: 1.1;
+}
+
+.filter-field::after {
+  right: 14px;
+  width: 7px;
+  height: 7px;
+}
+
+.filters .catalog__count {
+  align-self: center;
+  justify-self: center;
+  min-width: 72px;
+  border: 1px solid rgba(181, 121, 22, 0.28);
+  border-radius: 999px;
+  padding: 7px 10px;
+  color: var(--gold);
+  background: rgba(181, 121, 22, 0.08);
+  font-family: "Montserrat", Inter, ui-sans-serif, system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.button--filter {
+  min-height: 34px;
+  margin: 6px 8px;
+  gap: 8px;
+  font-size: 12px;
+}
+
+.button--filter svg {
+  width: 18px;
+  height: 18px;
+}
+
+.catalog-tools,
+.view-toggle {
+  display: none;
+}
+
+@media (min-width: 901px) {
+  .catalog {
+    grid-template-rows: auto auto auto auto minmax(0, 1fr);
+  }
+
+  .search--catalog input {
+    height: 44px;
+  }
+
+  .filter-field {
+    min-height: 44px;
+  }
+
+  .button--filter {
+    min-height: 32px;
+    margin: 6px 8px;
+  }
+}
+
+@media (max-width: 900px) {
+  .filters {
+    grid-template-columns: repeat(2, minmax(150px, 1fr));
+  }
+
+  .filters .catalog__count {
+    justify-self: start;
+  }
+}

@@ -54,8 +54,6 @@ const els = {
   stateFilter: document.querySelector("#stateFilter"),
   priceFilter: document.querySelector("#priceFilter"),
   sortFilter: document.querySelector("#sortFilter"),
-  gridViewButton: document.querySelector("#gridViewButton"),
-  listViewButton: document.querySelector("#listViewButton"),
   quoteHeaderCount: document.querySelector("#quoteHeaderCount"),
   headerQuoteButton: document.querySelector("#headerQuoteButton"),
   quoteCloseButton: document.querySelector("#quoteCloseButton"),
@@ -142,8 +140,6 @@ function bindEvents() {
     renderCatalog();
   });
 
-  els.gridViewButton.addEventListener("click", () => setViewMode("grid"));
-  els.listViewButton.addEventListener("click", () => setViewMode("list"));
   els.productBack.addEventListener("click", closeProductPage);
   window.addEventListener("hashchange", renderRoute);
 
@@ -301,8 +297,9 @@ function renderAll() {
 
 function renderCatalog() {
   const items = filterCatalogItems(state.props, state.filters, state.config.allowedStates);
-  applyViewMode();
-  els.catalogCount.textContent = `${items.length} ${items.length === 1 ? "prop disponible" : "props disponibles"}`;
+  state.viewMode = "grid";
+  els.catalogGrid.classList.remove("catalog-grid--list");
+  els.catalogCount.textContent = `${items.length} ${items.length === 1 ? "prop" : "props"}`;
 
   if (!items.length) {
     els.catalogGrid.innerHTML = `<div class="empty-state empty-state--wide">No encontramos props con esos filtros.</div>`;
@@ -332,20 +329,6 @@ function renderCatalog() {
       </article>
     `;
   }).join("");
-}
-
-function setViewMode(mode) {
-  state.viewMode = mode;
-  applyViewMode();
-}
-
-function applyViewMode() {
-  const isList = state.viewMode === "list";
-  els.catalogGrid.classList.toggle("catalog-grid--list", isList);
-  els.gridViewButton.classList.toggle("view-toggle__button--active", !isList);
-  els.listViewButton.classList.toggle("view-toggle__button--active", isList);
-  els.gridViewButton.setAttribute("aria-pressed", String(!isList));
-  els.listViewButton.setAttribute("aria-pressed", String(isList));
 }
 
 function renderCart() {
