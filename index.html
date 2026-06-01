@@ -7,9 +7,22 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="src/styles.css?v=home-hero-edge-1" />
+  <link rel="stylesheet" href="src/styles.css?v=initial-route-1" />
 </head>
 <body class="quote-panel-closed" data-active-page="home">
+  <script>
+    (() => {
+      const hash = window.location.hash;
+      const activePage = hash === "#contacto"
+        ? "contacto"
+        : hash === "#catalogo" || hash.startsWith("#producto/")
+          ? "catalogo"
+          : "home";
+
+      document.body.dataset.activePage = activePage;
+      document.body.classList.toggle("quote-panel-closed", activePage !== "catalogo");
+    })();
+  </script>
   <div class="app-shell">
     <header class="topbar">
       <div class="container topbar__inner">
@@ -34,7 +47,7 @@
         </a>
         <div class="topbar__actions">
           <nav class="main-nav" aria-label="Navegación principal">
-            <a class="main-nav__link main-nav__link--active" href="#home" data-nav-page="home">Inicio</a>
+            <a class="main-nav__link" href="#home" data-nav-page="home">Inicio</a>
             <a class="main-nav__link" href="#catalogo" data-nav-page="catalogo">Catálogo</a>
             <a class="main-nav__link" href="#contacto" data-nav-page="contacto">Contacto</a>
           </nav>

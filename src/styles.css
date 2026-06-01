@@ -1551,10 +1551,23 @@ h1 {
   font-weight: 600;
 }
 
-.main-nav__link--active::after {
+.main-nav__link--active::after,
+body[data-active-page="home"] .main-nav__link[data-nav-page="home"]::after,
+body[data-active-page="catalogo"] .main-nav__link[data-nav-page="catalogo"]::after,
+body[data-active-page="contacto"] .main-nav__link[data-nav-page="contacto"]::after {
+  position: absolute;
+  right: 0;
   bottom: -11px;
+  left: 0;
   height: 2px;
   background: #bd7b16;
+  content: "";
+}
+
+body[data-active-page="home"] .main-nav__link[data-nav-page="home"],
+body[data-active-page="catalogo"] .main-nav__link[data-nav-page="catalogo"],
+body[data-active-page="contacto"] .main-nav__link[data-nav-page="contacto"] {
+  font-weight: 600;
 }
 
 .topbar__actions {
