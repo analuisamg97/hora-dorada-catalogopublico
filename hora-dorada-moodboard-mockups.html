@@ -1,0 +1,577 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hora Dorada | Moodboard Mockups</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #fffdf8;
+      --ivory: #f7f1e7;
+      --ink: #15130f;
+      --muted: #6d665f;
+      --line: #e3d7c7;
+      --gold: #b57916;
+      --olive: #193d16;
+      --terracotta: #bf5a22;
+      --gray: #77706a;
+      font-family: "Montserrat", "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+      color-scheme: light;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+    }
+
+    .board-nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: center;
+      border-bottom: 1px solid var(--line);
+      padding: 14px 24px;
+      background: rgba(255, 253, 248, 0.95);
+      backdrop-filter: blur(16px);
+    }
+
+    .board-nav strong {
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .board-nav nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .board-nav a {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 12px;
+      color: inherit;
+      font-size: 12px;
+      text-decoration: none;
+    }
+
+    .mock {
+      min-height: 100vh;
+      border-bottom: 1px solid var(--line);
+      background: var(--paper);
+    }
+
+    .topbar {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 34px;
+      align-items: center;
+      min-height: 92px;
+      padding: 18px 34px;
+    }
+
+    .brand {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .sun {
+      width: 54px;
+      height: 54px;
+      flex: 0 0 auto;
+      background:
+        radial-gradient(circle at center, transparent 0 10px, var(--gold) 11px 13px, transparent 14px),
+        repeating-conic-gradient(from 0deg, var(--gold) 0 4deg, transparent 4deg 11deg);
+      mask: radial-gradient(circle at center, transparent 0 14px, #000 15px);
+    }
+
+    .brand strong {
+      display: block;
+      font-size: 26px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      line-height: 0.95;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .brand span {
+      display: block;
+      margin-top: 7px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+    }
+
+    .topbar nav,
+    .topbar__actions {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+      font-size: 14px;
+    }
+
+    .topbar a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .active {
+      position: relative;
+      font-weight: 600;
+    }
+
+    .active::after {
+      position: absolute;
+      right: 0;
+      bottom: -11px;
+      left: 0;
+      height: 2px;
+      background: var(--gold);
+      content: "";
+    }
+
+    .eyebrow {
+      margin: 0 0 14px;
+      color: var(--gold);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2 {
+      margin: 0;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-weight: 600;
+      letter-spacing: 0;
+    }
+
+    h1 {
+      font-size: clamp(58px, 8vw, 132px);
+      line-height: 0.88;
+    }
+
+    h2 {
+      font-size: clamp(46px, 5.8vw, 92px);
+      line-height: 0.92;
+    }
+
+    .copy {
+      max-width: 620px;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.48;
+    }
+
+    .button {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 46px;
+      border: 0;
+      border-radius: 4px;
+      padding: 0 22px;
+      color: #fffdf8;
+      background: var(--olive);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .tiny-meta {
+      color: rgba(21, 19, 15, 0.64);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      line-height: 1.4;
+      text-transform: uppercase;
+    }
+
+    .photo {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(227, 215, 199, 0.85);
+      border-radius: 6px;
+      background: var(--ivory) center / cover;
+      box-shadow: 0 18px 46px rgba(51, 38, 24, 0.08);
+    }
+
+    .photo__caption {
+      position: absolute;
+      right: 12px;
+      bottom: 12px;
+      left: 12px;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: end;
+      padding: 9px 10px;
+      color: #fffdf8;
+      background: rgba(18, 14, 10, 0.42);
+      backdrop-filter: blur(10px);
+    }
+
+    .photo__caption strong {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .photo__caption span {
+      display: block;
+      margin-top: 2px;
+      color: rgba(255, 253, 248, 0.72);
+      font-size: 9px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .img-chair { background-image: url("https://images.unsplash.com/photo-1519947486511-46149fa0a254?auto=format&fit=crop&w=1200&q=85"); }
+    .img-lamp { background-image: url("https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=1200&q=85"); }
+    .img-vase { background-image: url("https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&w=1200&q=85"); }
+    .img-mirror { background-image: url("https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1200&q=85"); }
+    .img-pedestal { background-image: url("https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=85"); }
+    .img-frame { background-image: url("https://images.unsplash.com/photo-1616047006789-b7af5afb8c20?auto=format&fit=crop&w=1200&q=85"); }
+
+    /* Mockup 1 */
+    .lookbook {
+      display: grid;
+      grid-template-columns: 0.78fr 1.22fr;
+      gap: 26px;
+      min-height: calc(100vh - 92px);
+      padding: 24px 34px 34px;
+      background: #fbf8f1;
+    }
+
+    .lookbook__copy {
+      display: grid;
+      align-content: space-between;
+      border: 1px solid var(--line);
+      padding: clamp(26px, 4vw, 54px);
+      background: #fffdf8;
+    }
+
+    .lookbook__saved {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 28px;
+    }
+
+    .pill {
+      border: 1px solid rgba(117, 104, 93, 0.22);
+      border-radius: 999px;
+      padding: 7px 9px;
+      color: #6f675f;
+      background: rgba(117, 104, 93, 0.07);
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .lookbook__grid {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      grid-template-rows: repeat(6, minmax(70px, 1fr));
+      gap: 12px;
+      min-height: 650px;
+    }
+
+    .lookbook__grid .photo:nth-child(1) { grid-area: 1 / 1 / 4 / 5; }
+    .lookbook__grid .photo:nth-child(2) { grid-area: 1 / 5 / 3 / 9; }
+    .lookbook__grid .photo:nth-child(3) { grid-area: 4 / 1 / 7 / 3; }
+    .lookbook__grid .photo:nth-child(4) { grid-area: 3 / 5 / 7 / 9; }
+    .lookbook__grid .photo:nth-child(5) { grid-area: 4 / 3 / 7 / 5; }
+
+    /* Mockup 2 */
+    .board {
+      min-height: calc(100vh - 92px);
+      padding: 26px 34px 34px;
+      background: linear-gradient(180deg, #fffdf8 0, #f6ecdf 100%);
+    }
+
+    .board__head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 30px;
+      align-items: end;
+      margin-bottom: 22px;
+    }
+
+    .board__canvas {
+      display: grid;
+      grid-template-columns: 1.1fr 0.8fr 0.9fr;
+      grid-template-rows: 360px 230px;
+      gap: 14px;
+    }
+
+    .board__canvas .photo:nth-child(1) { grid-row: 1 / 3; }
+    .board__canvas .photo:nth-child(2) { grid-column: 2 / 4; }
+    .board__canvas .photo:nth-child(3) { grid-column: 2; }
+    .board__canvas .photo:nth-child(4) { grid-column: 3; }
+
+    .board__sidebar {
+      display: grid;
+      gap: 10px;
+      min-width: 260px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 16px;
+      background: rgba(255, 253, 248, 0.78);
+    }
+
+    .mini-row {
+      display: grid;
+      grid-template-columns: 42px minmax(0, 1fr) auto;
+      gap: 10px;
+      align-items: center;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 10px;
+    }
+
+    .mini-thumb {
+      width: 42px;
+      height: 42px;
+      border-radius: 4px;
+      background: var(--ivory) center / cover;
+    }
+
+    .mini-row strong {
+      display: block;
+      overflow: hidden;
+      font-size: 11px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .mini-row span {
+      color: var(--muted);
+      font-size: 9px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* Mockup 3 */
+    .story {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 420px;
+      gap: 0;
+      min-height: calc(100vh - 92px);
+      background: #15120f;
+      color: #fffdf8;
+    }
+
+    .story__scene {
+      display: grid;
+      align-content: end;
+      padding: 34px;
+      background:
+        linear-gradient(180deg, rgba(21, 18, 15, 0.08), rgba(21, 18, 15, 0.86)),
+        url("https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1800&q=85") center / cover;
+    }
+
+    .story__strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .story__strip .photo {
+      min-height: 145px;
+      box-shadow: none;
+    }
+
+    .story__panel {
+      display: grid;
+      align-content: space-between;
+      border-left: 1px solid rgba(255, 253, 248, 0.18);
+      padding: 30px;
+      background: rgba(255, 253, 248, 0.08);
+      backdrop-filter: blur(18px);
+    }
+
+    .note-card {
+      border: 1px solid rgba(255, 253, 248, 0.18);
+      border-radius: 6px;
+      padding: 16px;
+      color: rgba(255, 253, 248, 0.78);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .palette {
+      display: flex;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .swatch {
+      width: 34px;
+      height: 34px;
+      border: 1px solid rgba(255, 253, 248, 0.34);
+      border-radius: 50%;
+    }
+
+    @media (max-width: 980px) {
+      .topbar,
+      .lookbook,
+      .board__head,
+      .story {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar nav,
+      .topbar__actions {
+        flex-wrap: wrap;
+      }
+
+      .lookbook__grid,
+      .board__canvas,
+      .story__strip {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: none;
+      }
+
+      .lookbook__grid .photo,
+      .board__canvas .photo,
+      .story__strip .photo {
+        grid-area: auto !important;
+        min-height: 260px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="board-nav">
+    <strong>Moodboard / Look and Feel Mockups</strong>
+    <nav>
+      <a href="#mockup-1">1 Lookbook</a>
+      <a href="#mockup-2">2 Canvas</a>
+      <a href="#mockup-3">3 Set story</a>
+    </nav>
+  </div>
+
+  <section id="mockup-1" class="mock">
+    <header class="topbar">
+      <div class="brand">
+        <span class="sun"></span>
+        <div><strong>Hora Dorada</strong><span>Prop House</span></div>
+      </div>
+      <nav><a>Inicio</a><a>Catalogo</a><a>Contacto</a><a class="active">Moodboard</a></nav>
+      <div class="topbar__actions"><a>Cotizacion <b>8</b></a></div>
+    </header>
+
+    <main class="lookbook">
+      <section class="lookbook__copy">
+        <div>
+          <p class="eyebrow">Mockup 1 · Lookbook editorial</p>
+          <h1>Look and Feel</h1>
+          <p class="copy">Un tablero limpio para ver como conviven las piezas. Las fotos mandan; nombres, codigos y precios viven en miniatura para no romper la composicion.</p>
+          <div class="lookbook__saved">
+            <span class="pill">8 props guardados</span>
+            <span class="pill">Tono: oliva, crema, bronce</span>
+            <span class="pill">Exportar moodboard</span>
+          </div>
+        </div>
+        <a class="button">Seguir explorando props</a>
+      </section>
+
+      <section class="lookbook__grid" aria-label="Moodboard editorial">
+        <article class="photo img-chair"><div class="photo__caption"><div><strong>Silla terciopelo oliva</strong><span>HD-CH-014</span></div><span>$850</span></div></article>
+        <article class="photo img-lamp"><div class="photo__caption"><div><strong>Lampara laton curvo</strong><span>HD-LA-028</span></div><span>$620</span></div></article>
+        <article class="photo img-frame"><div class="photo__caption"><div><strong>Marco dorado</strong><span>HD-FR-012</span></div><span>$450</span></div></article>
+        <article class="photo img-mirror"><div class="photo__caption"><div><strong>Espejo oval</strong><span>HD-MI-018</span></div><span>$900</span></div></article>
+        <article class="photo img-vase"><div class="photo__caption"><div><strong>Jarron miel</strong><span>HD-VA-007</span></div><span>$380</span></div></article>
+      </section>
+    </main>
+  </section>
+
+  <section id="mockup-2" class="mock">
+    <header class="topbar">
+      <div class="brand">
+        <span class="sun"></span>
+        <div><strong>Hora Dorada</strong><span>Prop House</span></div>
+      </div>
+      <nav><a>Inicio</a><a>Catalogo</a><a>Contacto</a><a class="active">Moodboard</a></nav>
+      <div class="topbar__actions"><a>Cotizacion <b>8</b></a></div>
+    </header>
+
+    <main class="board">
+      <section class="board__head">
+        <div>
+          <p class="eyebrow">Mockup 2 · Canvas de seleccion</p>
+          <h2>Una vista para juntar piezas antes de cotizar.</h2>
+          <p class="copy">Mas practica: se siente como un area de trabajo para comparar proporciones, texturas y colores. Buen punto medio entre moodboard y herramienta.</p>
+        </div>
+        <aside class="board__sidebar" aria-label="Lista mini de props guardados">
+          <div class="mini-row"><span class="mini-thumb img-chair"></span><div><strong>Silla terciopelo oliva</strong><span>HD-CH-014</span></div><b class="tiny-meta">$850</b></div>
+          <div class="mini-row"><span class="mini-thumb img-lamp"></span><div><strong>Lampara laton curvo</strong><span>HD-LA-028</span></div><b class="tiny-meta">$620</b></div>
+          <div class="mini-row"><span class="mini-thumb img-mirror"></span><div><strong>Espejo oval antiguo</strong><span>HD-MI-018</span></div><b class="tiny-meta">$900</b></div>
+          <a class="button">Mandar a cotizacion</a>
+        </aside>
+      </section>
+
+      <section class="board__canvas">
+        <article class="photo img-chair"><div class="photo__caption"><div><strong>Silla oliva</strong><span>Vintage</span></div><span>$850</span></div></article>
+        <article class="photo img-mirror"><div class="photo__caption"><div><strong>Espejo oval</strong><span>Clasico</span></div><span>$900</span></div></article>
+        <article class="photo img-pedestal"><div class="photo__caption"><div><strong>Pedestal crema</strong><span>Editorial</span></div><span>$760</span></div></article>
+        <article class="photo img-lamp"><div class="photo__caption"><div><strong>Lampara laton</strong><span>Art deco</span></div><span>$620</span></div></article>
+      </section>
+    </main>
+  </section>
+
+  <section id="mockup-3" class="mock">
+    <header class="topbar">
+      <div class="brand">
+        <span class="sun"></span>
+        <div><strong>Hora Dorada</strong><span>Prop House</span></div>
+      </div>
+      <nav><a>Inicio</a><a>Catalogo</a><a>Contacto</a><a class="active">Look & Feel</a></nav>
+      <div class="topbar__actions"><a>Cotizacion <b>8</b></a></div>
+    </header>
+
+    <main class="story">
+      <section class="story__scene">
+        <p class="eyebrow">Mockup 3 · Set story</p>
+        <h1>Golden hour lounge</h1>
+        <p class="copy" style="color:rgba(255,253,248,.78)">Una version mas cinematica: el moodboard se siente como una escena armada, no como una lista. Ideal si queremos vender atmosfera.</p>
+        <div class="story__strip">
+          <article class="photo img-chair"></article>
+          <article class="photo img-lamp"></article>
+          <article class="photo img-vase"></article>
+          <article class="photo img-frame"></article>
+        </div>
+      </section>
+      <aside class="story__panel">
+        <div>
+          <p class="eyebrow">8 props guardados</p>
+          <h2 style="font-size:56px">Look calido, editorial, con laton y oliva.</h2>
+          <div class="palette">
+            <span class="swatch" style="background:#193d16"></span>
+            <span class="swatch" style="background:#bd8d35"></span>
+            <span class="swatch" style="background:#f1e5d0"></span>
+            <span class="swatch" style="background:#ad593b"></span>
+          </div>
+        </div>
+        <div class="note-card">
+          <strong>Nota para integracion:</strong> esta seccion podria abrirse desde un boton "Guardar en moodboard" en cada prop. No tendria que mostrar totales grandes; solo mini precios y luego un CTA para mandar todo a cotizacion.
+        </div>
+      </aside>
+    </main>
+  </section>
+</body>
+</html>
