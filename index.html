@@ -6,8 +6,17 @@
   <title>Hora Dorada Prop House</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link rel="preload" as="image" href="https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&w=2200&q=85">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="src/styles.css?v=moodboard-clean-1" />
+  <style>
+    .page-view { display: none; }
+    body[data-active-page="home"] .page-view[data-page="home"],
+    body[data-active-page="catalogo"] .page-view[data-page="catalogo"],
+    body[data-active-page="contacto"] .page-view[data-page="contacto"],
+    body[data-active-page="moodboard"] .page-view[data-page="moodboard"] { display: block; }
+  </style>
+  <link rel="stylesheet" href="src/styles.css?v=refresh-glitch-1" />
 </head>
 <body class="quote-panel-closed" data-active-page="home">
   <script>
@@ -92,7 +101,7 @@
   </div>
 </section>
 
-<section id="contactPage" class="page-view contact-page" data-page="contacto" hidden>
+<section id="contactPage" class="page-view contact-page" data-page="contacto">
   <div class="contact-landing">
     <section class="contact-landing__copy">
       <p class="section-eyebrow">Contacto</p>
@@ -117,7 +126,7 @@
   </div>
 </section>
 
-<section id="moodboardPage" class="page-view moodboard-page" data-page="moodboard" hidden>
+<section id="moodboardPage" class="page-view moodboard-page" data-page="moodboard">
   <div class="moodboard-shell">
     <section class="moodboard-intro">
       <p class="section-eyebrow">Moodboard</p>
@@ -143,7 +152,7 @@
   </div>
 </section>
 
-<section class="catalog page-view" data-page="catalogo" hidden>
+<section class="catalog page-view" data-page="catalogo">
         <div class="catalog__head">
           <div>
             <h1>Catálogo de props</h1>
@@ -375,6 +384,6 @@
     </form>
   </dialog>
 
-  <script type="module" src="src/app.js?v=moodboard-clean-1"></script>
+  <script type="module" src="src/app.js?v=refresh-glitch-1"></script>
 </body>
 </html>

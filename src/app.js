@@ -113,7 +113,7 @@ init();
 
 async function init() {
   bindEvents();
-  setQuotePanelOpen(false);
+  setQuotePanelOpen(document.body.dataset.activePage === "catalogo");
   fillSettingsForm();
   setDefaultDates();
   await loadData();
