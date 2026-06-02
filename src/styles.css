@@ -4976,3 +4976,109 @@ textarea,
     grid-template-columns: 1fr;
   }
 }
+
+/* Moodboard visual polish: home-style CTAs and a tighter editorial collage. */
+.moodboard-shell {
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 300px);
+  gap: 14px;
+}
+
+.moodboard-intro {
+  padding-bottom: 16px;
+}
+
+.moodboard-intro__actions {
+  gap: 14px;
+  min-width: min(560px, 100%);
+}
+
+.moodboard-intro__actions .button {
+  min-height: 56px;
+  border-radius: 8px;
+  padding: 0 28px;
+  font-family: var(--ui-font);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.moodboard-board {
+  min-height: calc(100vh - var(--desktop-header-height) - 138px);
+  padding: 10px;
+}
+
+.moodboard-grid {
+  display: block;
+  column-count: 3;
+  column-gap: 10px;
+  min-height: 0;
+}
+
+.moodboard-tile {
+  display: block;
+  width: 100%;
+  margin: 0 0 10px;
+  break-inside: avoid;
+  aspect-ratio: 4 / 5;
+}
+
+.moodboard-tile--1,
+.moodboard-tile--2,
+.moodboard-tile--3,
+.moodboard-tile--4,
+.moodboard-tile--5,
+.moodboard-tile--6,
+.moodboard-tile--7,
+.moodboard-tile--8 {
+  grid-column: auto;
+  grid-row: auto;
+}
+
+.moodboard-tile--2,
+.moodboard-tile--6 {
+  aspect-ratio: 1 / 1;
+}
+
+.moodboard-tile--3,
+.moodboard-tile--8 {
+  aspect-ratio: 5 / 4;
+}
+
+.moodboard-tile--4 {
+  aspect-ratio: 3 / 4;
+}
+
+.moodboard-tile--5 {
+  aspect-ratio: 4 / 3;
+}
+
+.moodboard-tile__photo {
+  position: absolute;
+  inset: 0;
+}
+
+.moodboard-list-card {
+  min-height: calc(100vh - var(--desktop-header-height) - 138px);
+}
+
+@media (max-width: 1180px) {
+  .moodboard-shell {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .moodboard-grid {
+    column-count: 2;
+  }
+}
+
+@media (max-width: 760px) {
+  .moodboard-grid {
+    display: block;
+    column-count: 1;
+  }
+
+  .moodboard-tile {
+    flex: none;
+    aspect-ratio: 4 / 5;
+  }
+}
