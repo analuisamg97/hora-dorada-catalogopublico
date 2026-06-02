@@ -5092,8 +5092,9 @@ textarea,
   gap: 18px;
   border-radius: 0;
   padding: 15px 18px;
-  background: linear-gradient(90deg, rgba(43, 34, 27, 0.94), rgba(43, 34, 27, 0.84));
-  box-shadow: 0 12px 24px rgba(24, 18, 14, 0.18);
+  background: linear-gradient(90deg, rgba(65, 54, 43, 0.72), rgba(65, 54, 43, 0.58));
+  box-shadow: 0 12px 24px rgba(24, 18, 14, 0.14);
+  backdrop-filter: blur(10px) saturate(0.95);
 }
 
 .moodboard-tile__caption > span {
@@ -5110,7 +5111,7 @@ textarea,
 
 .moodboard-tile__caption em {
   overflow: hidden;
-  color: rgba(255, 253, 248, 0.74);
+  color: rgba(255, 253, 248, 0.7);
   font-size: 12px;
   font-style: normal;
   font-weight: 500;
@@ -5122,7 +5123,7 @@ textarea,
 
 .moodboard-tile__caption b {
   flex: 0 0 auto;
-  color: rgba(255, 253, 248, 0.84);
+  color: rgba(255, 253, 248, 0.88);
   font-size: 16px;
   font-weight: 500;
   white-space: nowrap;
