@@ -7,6 +7,7 @@ import { calculateQuote, getUnavailableMessage, isPropUnavailable } from "./quot
 
 const cartStorageKey = "horaDoradaClientCart";
 const datesStorageKey = "horaDoradaClientDates";
+const moodboardStorageKey = "horaDoradaClientMoodboard";
 const defaultSelectedIds = ["p1", "p2", "p5"];
 const defaultDates = { startDate: "2026-06-06", endDate: "2026-06-08" };
 const savedDates = loadSavedDates();
@@ -17,6 +18,7 @@ const state = {
   props: [],
   rentals: [],
   selectedIds: loadSavedSelectedIds(defaultSelectedIds),
+  moodboardIds: loadSavedMoodboardIds(),
   filters: {
     search: "",
     category: "Todas",
@@ -61,6 +63,10 @@ const els = {
   loadingState: document.querySelector("#loadingState"),
   catalogGrid: document.querySelector("#catalogGrid"),
   catalogCount: document.querySelector("#catalogCount"),
+  moodboardCount: document.querySelector("#moodboardCount"),
+  moodboardGrid: document.querySelector("#moodboardGrid"),
+  moodboardList: document.querySelector("#moodboardList"),
+  moodboardToQuote: document.querySelector("#moodboardToQuote"),
   productPage: document.querySelector("#productPage"),
   productDetail: document.querySelector("#productDetail"),
   productBack: document.querySelector("#productBack"),
@@ -190,12 +196,27 @@ function bindEvents() {
   document.addEventListener("click", (event) => {
     const add = event.target.closest("[data-add]");
     const remove = event.target.closest("[data-remove]");
+    const moodboard = event.target.closest("[data-moodboard]");
+    const removeMoodboard = event.target.closest("[data-remove-moodboard]");
     const productCard = event.target.closest("[data-product-id]");
 
     if (add) {
       const wasSelected = state.selectedIds.includes(add.dataset.add);
       toggleSelected(add.dataset.add);
       showProductSelectionStatus(!wasSelected);
+      return;
+    }
+
+    if (moodboard) {
+      const wasSaved = state.moodboardIds.includes(moodboard.dataset.moodboard);
+      toggleMoodboard(moodboard.dataset.moodboard);
+      showMoodboardStatus(!wasSaved);
+      return;
+    }
+
+    if (removeMoodboard) {
+      removeMoodboardItem(removeMoodboard.dataset.removeMoodboard);
+      showMoodboardStatus(false);
       return;
     }
 
@@ -224,6 +245,7 @@ function bindEvents() {
   els.shareWhatsApp.addEventListener("click", shareWhatsApp);
   els.successWhatsApp.addEventListener("click", shareWhatsApp);
   els.downloadPdf.addEventListener("click", () => window.print());
+  els.moodboardToQuote?.addEventListener("click", sendMoodboardToQuote);
   lockCartScroll();
   bindProductKeyboard();
 }
@@ -237,11 +259,13 @@ async function loadData() {
       state.props = data.props;
       state.rentals = data.rentals;
       setSelectedIds(state.selectedIds.filter((id) => state.props.some((prop) => prop.id === id)), { render: false });
+      setMoodboardIds(state.moodboardIds.filter((id) => state.props.some((prop) => prop.id === id)), { render: false });
       setSource("Airtable conectado", true);
     } else {
       state.props = mockProps;
       state.rentals = mockRentals;
       setSelectedIds(loadSavedSelectedIds(defaultSelectedIds), { render: false });
+      setMoodboardIds(loadSavedMoodboardIds(), { render: false });
       setSource("Datos de prueba", false);
     }
 
@@ -293,6 +317,7 @@ function setSelectOptions(select, options, value) {
 function renderAll() {
   renderCatalog();
   renderCart();
+  renderMoodboard();
 }
 
 function renderCatalog() {
@@ -308,6 +333,7 @@ function renderCatalog() {
 
   els.catalogGrid.innerHTML = items.map((prop) => {
     const selected = state.selectedIds.includes(prop.id);
+    const inMoodboard = state.moodboardIds.includes(prop.id);
     return `
       <article class="prop-card" data-product-id="${escapeHtml(prop.id)}" tabindex="0" role="button" aria-label="Ver detalle de ${escapeHtml(prop.name)}">
         <div class="prop-card__photo" style="--photo-a: ${prop.colors?.[0] || "#ead8bd"}; --photo-b: ${prop.colors?.[1] || "#bd8d35"}">
@@ -321,9 +347,14 @@ function renderCatalog() {
           </div>
           <div class="prop-card__foot">
             <div class="price"><strong>${formatCompactMoney(prop.price)}</strong><span>MXN / día</span></div>
-            <button class="add-button ${selected ? "add-button--selected" : ""}" type="button" data-add="${escapeHtml(prop.id)}" aria-label="${selected ? "Quitar" : "Agregar"} ${escapeHtml(prop.name)}">
-              ${selected ? "✓" : "+"}
-            </button>
+            <div class="prop-actions">
+              <button class="moodboard-button ${inMoodboard ? "moodboard-button--selected" : ""}" type="button" data-moodboard="${escapeHtml(prop.id)}" aria-label="${inMoodboard ? "Quitar" : "Agregar"} ${escapeHtml(prop.name)} al moodboard">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h14v16l-7-3.8L5 20V4Z"></path></svg>
+              </button>
+              <button class="add-button ${selected ? "add-button--selected" : ""}" type="button" data-add="${escapeHtml(prop.id)}" aria-label="${selected ? "Quitar" : "Agregar"} ${escapeHtml(prop.name)} a cotización">
+                ${selected ? "✓" : "+"}
+              </button>
+            </div>
           </div>
         </div>
       </article>
@@ -419,6 +450,11 @@ function renderRoute() {
     return;
   }
 
+  if (hash === "#moodboard") {
+    setActivePage("moodboard");
+    return;
+  }
+
   if (hash === "#catalogo") {
     setActivePage("catalogo");
     return;
@@ -468,6 +504,7 @@ function renderProductPage(id) {
 
   state.activeProductId = id;
   const selected = state.selectedIds.includes(prop.id);
+  const inMoodboard = state.moodboardIds.includes(prop.id);
   const unavailable = isPropUnavailable(prop.id, state.rentals, state.startDate, state.endDate);
   const statusText = unavailable ? "Rentado en estas fechas" : prop.state;
 
@@ -487,9 +524,14 @@ function renderProductPage(id) {
         <div><span>Estado</span><strong>${escapeHtml(statusText || "Por confirmar")}</strong></div>
         <div><span>Estilo</span><strong>${escapeHtml(prop.style || "Por definir")}</strong></div>
       </div>
-      <button class="product-add ${selected ? "product-add--selected" : ""}" type="button" data-add="${escapeHtml(prop.id)}">
-        ${selected ? "Quitar de la cotización" : "Agregar a cotización"}
-      </button>
+      <div class="product-actions">
+        <button class="product-moodboard ${inMoodboard ? "product-moodboard--selected" : ""}" type="button" data-moodboard="${escapeHtml(prop.id)}">
+          ${inMoodboard ? "Quitar del moodboard" : "Agregar a moodboard"}
+        </button>
+        <button class="product-add ${selected ? "product-add--selected" : ""}" type="button" data-add="${escapeHtml(prop.id)}">
+          ${selected ? "Quitar de la cotización" : "Agregar a cotización"}
+        </button>
+      </div>
       <div class="product-note">
         <button class="product-note__head" type="button" aria-expanded="true">
           IVA
@@ -513,18 +555,75 @@ function renderProductPage(id) {
 }
 
 function showProductSelectionStatus(isSelected) {
+  showToast(
+    isSelected ? "Producto agregado a tu cotización." : "Producto quitado de tu cotización.",
+    isSelected
+  );
+}
+
+function showMoodboardStatus(isSelected) {
+  showToast(
+    isSelected ? "Producto agregado al moodboard." : "Producto quitado del moodboard.",
+    isSelected
+  );
+}
+
+function showToast(message, isPositive) {
   if (!els.quoteToast) return;
 
   window.clearTimeout(quoteToastTimer);
-  els.quoteToast.innerHTML = isSelected
-    ? `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"></path></svg><span>Producto agregado a tu cotización.</span>`
-    : `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7l10 10M17 7 7 17"></path></svg><span>Producto quitado de tu cotización.</span>`;
+  els.quoteToast.innerHTML = isPositive
+    ? `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"></path></svg><span>${escapeHtml(message)}</span>`
+    : `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7l10 10M17 7 7 17"></path></svg><span>${escapeHtml(message)}</span>`;
   els.quoteToast.hidden = false;
   els.quoteToast.classList.add("quote-toast--show");
   quoteToastTimer = window.setTimeout(() => {
     els.quoteToast.classList.remove("quote-toast--show");
     els.quoteToast.hidden = true;
   }, 6000);
+}
+
+function renderMoodboard() {
+  if (!els.moodboardGrid || !els.moodboardList) return;
+
+  const props = getMoodboardProps();
+  els.moodboardCount.textContent = `${props.length} ${props.length === 1 ? "prop" : "props"}`;
+  els.moodboardToQuote.disabled = props.length === 0;
+
+  if (!props.length) {
+    els.moodboardGrid.innerHTML = `
+      <div class="moodboard-empty">
+        <span>Moodboard vacío</span>
+        <strong>Agrega props desde el catálogo para verlos juntos aquí.</strong>
+        <a class="button button--secondary moodboard-link" href="#catalogo">Ir al catálogo</a>
+      </div>
+    `;
+    els.moodboardList.innerHTML = `<div class="empty-state">Todavía no hay props guardados.</div>`;
+    return;
+  }
+
+  els.moodboardGrid.innerHTML = props.map((prop, index) => `
+    <article class="moodboard-tile moodboard-tile--${(index % 8) + 1}">
+      <div class="moodboard-tile__photo" style="--photo-a: ${prop.colors?.[0] || "#ead8bd"}; --photo-b: ${prop.colors?.[1] || "#bd8d35"}">
+        ${renderPhoto(prop)}
+      </div>
+      <div class="moodboard-tile__caption">
+        <strong>${escapeHtml(getCartDisplayName(prop.name))}</strong>
+        <span>${escapeHtml(prop.code)}</span>
+      </div>
+    </article>
+  `).join("");
+
+  els.moodboardList.innerHTML = props.map((prop) => `
+    <div class="moodboard-list-item">
+      <div class="moodboard-list-item__thumb" style="--photo-a: ${prop.colors?.[0] || "#ead8bd"}; --photo-b: ${prop.colors?.[1] || "#bd8d35"}">${renderPhoto(prop)}</div>
+      <div>
+        <strong>${escapeHtml(getCartDisplayName(prop.name))}</strong>
+        <span>${escapeHtml(prop.code)} · ${formatCompactMoney(prop.price)} / día</span>
+      </div>
+      <button type="button" data-remove-moodboard="${escapeHtml(prop.id)}" aria-label="Quitar ${escapeHtml(prop.name)} del moodboard">×</button>
+    </div>
+  `).join("");
 }
 
 function bindProductKeyboard() {
@@ -724,6 +823,45 @@ function removeSelected(id) {
   setSelectedIds(state.selectedIds.filter((selectedId) => selectedId !== id));
 }
 
+function getMoodboardProps() {
+  return state.moodboardIds.map((id) => state.props.find((prop) => prop.id === id)).filter(Boolean);
+}
+
+function setMoodboardIds(ids, options = {}) {
+  state.moodboardIds = [...new Set(ids)].filter(Boolean);
+  saveMoodboardIds();
+
+  if (options.render === false) return;
+  renderMoodboard();
+  updateCatalogMoodboardStates();
+}
+
+function toggleMoodboard(id) {
+  setMoodboardIds(state.moodboardIds.includes(id)
+    ? state.moodboardIds.filter((moodboardId) => moodboardId !== id)
+    : [...state.moodboardIds, id]);
+}
+
+function removeMoodboardItem(id) {
+  setMoodboardIds(state.moodboardIds.filter((moodboardId) => moodboardId !== id));
+}
+
+function sendMoodboardToQuote() {
+  const moodboardIds = getMoodboardProps().map((prop) => prop.id);
+  if (!moodboardIds.length) return;
+
+  setSelectedIds([...state.selectedIds, ...moodboardIds]);
+  showToast("Moodboard agregado a tu cotización.", true);
+
+  if (window.location.hash === "#catalogo") {
+    setQuotePanelOpen(true);
+    return;
+  }
+
+  window.location.hash = "catalogo";
+  window.setTimeout(() => setQuotePanelOpen(true), 0);
+}
+
 function loadSavedSelectedIds(fallback = []) {
   const raw = localStorage.getItem(cartStorageKey);
   if (raw === null) return [...fallback];
@@ -738,6 +876,22 @@ function loadSavedSelectedIds(fallback = []) {
 
 function saveSelectedIds() {
   localStorage.setItem(cartStorageKey, JSON.stringify(state.selectedIds));
+}
+
+function loadSavedMoodboardIds() {
+  const raw = localStorage.getItem(moodboardStorageKey);
+  if (raw === null) return [];
+
+  try {
+    const saved = JSON.parse(raw);
+    return Array.isArray(saved) ? saved.map(String) : [];
+  } catch {
+    return [];
+  }
+}
+
+function saveMoodboardIds() {
+  localStorage.setItem(moodboardStorageKey, JSON.stringify(state.moodboardIds));
 }
 
 function loadSavedDates() {
@@ -767,6 +921,21 @@ function updateCatalogSelectionStates() {
       ? selected ? "Quitar de la cotización" : "Agregar a cotización"
       : selected ? "✓" : "+";
     button.setAttribute("aria-label", `${selected ? "Quitar" : "Agregar"} ${prop.name}`);
+  });
+}
+
+function updateCatalogMoodboardStates() {
+  document.querySelectorAll("[data-moodboard]").forEach((button) => {
+    const prop = state.props.find((item) => item.id === button.dataset.moodboard);
+    if (!prop) return;
+
+    const inMoodboard = state.moodboardIds.includes(prop.id);
+    button.classList.toggle("moodboard-button--selected", inMoodboard);
+    button.classList.toggle("product-moodboard--selected", inMoodboard);
+    if (button.classList.contains("product-moodboard")) {
+      button.textContent = inMoodboard ? "Quitar del moodboard" : "Agregar a moodboard";
+    }
+    button.setAttribute("aria-label", `${inMoodboard ? "Quitar" : "Agregar"} ${prop.name} al moodboard`);
   });
 }
 

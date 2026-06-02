@@ -1554,7 +1554,8 @@ h1 {
 .main-nav__link--active::after,
 body[data-active-page="home"] .main-nav__link[data-nav-page="home"]::after,
 body[data-active-page="catalogo"] .main-nav__link[data-nav-page="catalogo"]::after,
-body[data-active-page="contacto"] .main-nav__link[data-nav-page="contacto"]::after {
+body[data-active-page="contacto"] .main-nav__link[data-nav-page="contacto"]::after,
+body[data-active-page="moodboard"] .main-nav__link[data-nav-page="moodboard"]::after {
   position: absolute;
   right: 0;
   bottom: -11px;
@@ -1568,7 +1569,8 @@ body[data-active-page="contacto"] .main-nav__link[data-nav-page="contacto"]::aft
 
 body[data-active-page="home"] .main-nav__link[data-nav-page="home"],
 body[data-active-page="catalogo"] .main-nav__link[data-nav-page="catalogo"],
-body[data-active-page="contacto"] .main-nav__link[data-nav-page="contacto"] {
+body[data-active-page="contacto"] .main-nav__link[data-nav-page="contacto"],
+body[data-active-page="moodboard"] .main-nav__link[data-nav-page="moodboard"] {
   font-weight: 600;
 }
 
@@ -1761,7 +1763,8 @@ body[data-active-page="contacto"] .main-nav__link[data-nav-page="contacto"] {
 .main-nav__link--active:active::after,
 body[data-active-page="home"] .main-nav__link[data-nav-page="home"]:active::after,
 body[data-active-page="catalogo"] .main-nav__link[data-nav-page="catalogo"]:active::after,
-body[data-active-page="contacto"] .main-nav__link[data-nav-page="contacto"]:active::after {
+body[data-active-page="contacto"] .main-nav__link[data-nav-page="contacto"]:active::after,
+body[data-active-page="moodboard"] .main-nav__link[data-nav-page="moodboard"]:active::after {
   opacity: 0.78;
   transform: scaleX(0.82);
 }
@@ -4298,5 +4301,450 @@ textarea,
   body[data-active-page="contacto"] .contact-landing {
     min-height: calc(100vh - var(--desktop-header-height) - (var(--desktop-page-gap) * 2));
     align-items: center;
+  }
+}
+
+/* Moodboard: visual-only saved props before sending the final selection to quote. */
+.prop-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.moodboard-button {
+  display: inline-grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(181, 121, 22, 0.34);
+  border-radius: 50%;
+  color: var(--gold);
+  background: rgba(255, 253, 248, 0.88);
+  transition: color 160ms ease, background-color 160ms ease, border-color 160ms ease, transform 160ms ease;
+}
+
+.moodboard-button svg {
+  width: 17px;
+  height: 17px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.9;
+  stroke-linejoin: round;
+}
+
+.moodboard-button:hover,
+.moodboard-button:focus-visible {
+  border-color: var(--gold);
+  background: #fff7e6;
+  transform: translateY(-1px);
+}
+
+.moodboard-button--selected {
+  color: #fffdf8;
+  background: var(--gold);
+}
+
+.moodboard-button--selected svg {
+  fill: currentColor;
+}
+
+.moodboard-page {
+  min-width: 0;
+}
+
+.moodboard-shell {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.42fr) minmax(0, 1fr) minmax(280px, 0.34fr);
+  gap: 18px;
+  align-items: stretch;
+}
+
+.moodboard-intro,
+.moodboard-board,
+.moodboard-list-card {
+  border: 1px solid #ded1c0;
+  border-radius: 8px;
+  background: rgba(255, 253, 248, 0.94);
+}
+
+.moodboard-intro {
+  display: grid;
+  align-content: space-between;
+  min-height: 620px;
+  padding: clamp(22px, 2.5vw, 34px);
+}
+
+.moodboard-intro h1 {
+  display: block;
+  margin: 0;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(58px, 6vw, 104px);
+  font-weight: 600;
+  line-height: 0.9;
+}
+
+.moodboard-intro > p:not(.section-eyebrow) {
+  margin: 18px 0 0;
+  color: var(--muted);
+  font-size: clamp(17px, 1.5vw, 22px);
+  line-height: 1.4;
+}
+
+.moodboard-intro__actions {
+  display: grid;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.moodboard-link {
+  width: 100%;
+  margin: 0;
+  text-decoration: none;
+}
+
+.moodboard-board {
+  min-height: 620px;
+  padding: 14px;
+  background:
+    linear-gradient(135deg, rgba(255, 253, 248, 0.88), rgba(247, 241, 231, 0.94)),
+    radial-gradient(circle at 20% 12%, rgba(181, 121, 22, 0.14), transparent 28%);
+}
+
+.moodboard-grid {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  grid-auto-rows: minmax(78px, 1fr);
+  gap: 10px;
+  min-height: 100%;
+}
+
+.moodboard-tile {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(222, 209, 192, 0.9);
+  border-radius: 8px;
+  background: #efe4d3;
+}
+
+.moodboard-tile--1 {
+  grid-column: span 5;
+  grid-row: span 3;
+}
+
+.moodboard-tile--2 {
+  grid-column: span 3;
+  grid-row: span 2;
+}
+
+.moodboard-tile--3 {
+  grid-column: span 3;
+  grid-row: span 3;
+}
+
+.moodboard-tile--4 {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.moodboard-tile--5 {
+  grid-column: span 4;
+  grid-row: span 2;
+}
+
+.moodboard-tile--6,
+.moodboard-tile--7,
+.moodboard-tile--8 {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.moodboard-tile__photo {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(140deg, var(--photo-a), var(--photo-b));
+}
+
+.moodboard-tile__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.moodboard-tile__photo .prop-art {
+  width: 72%;
+  height: 72%;
+  margin: 14%;
+}
+
+.moodboard-tile__caption {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  left: 8px;
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  border-radius: 6px;
+  padding: 7px 8px;
+  color: #fffdf8;
+  background: rgba(20, 17, 14, 0.48);
+  font-size: 11px;
+  backdrop-filter: blur(10px);
+}
+
+.moodboard-tile__caption strong,
+.moodboard-tile__caption span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.moodboard-tile__caption strong {
+  font-weight: 600;
+}
+
+.moodboard-tile__caption span {
+  flex: 0 0 auto;
+  opacity: 0.78;
+}
+
+.moodboard-list-card {
+  min-height: 620px;
+  padding: 18px;
+}
+
+.moodboard-list-card__head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.moodboard-list-card__head span {
+  border: 1px solid rgba(118, 104, 93, 0.24);
+  border-radius: 999px;
+  padding: 6px 9px;
+  color: #6f675f;
+  background: rgba(117, 104, 93, 0.08);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.moodboard-list-card__head strong {
+  font-family: "Montserrat", Inter, ui-sans-serif, system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.moodboard-list {
+  display: grid;
+  gap: 8px;
+  max-height: 488px;
+  overflow: auto;
+  padding-right: 2px;
+}
+
+.moodboard-list-item {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+  border-bottom: 1px solid #e6dbcb;
+  padding: 8px 0;
+}
+
+.moodboard-list-item__thumb {
+  width: 48px;
+  height: 48px;
+  overflow: hidden;
+  border-radius: 6px;
+  background: linear-gradient(140deg, var(--photo-a), var(--photo-b));
+}
+
+.moodboard-list-item__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.moodboard-list-item__thumb .prop-art {
+  width: 68%;
+  height: 68%;
+  margin: 16%;
+}
+
+.moodboard-list-item strong,
+.moodboard-list-item span {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.moodboard-list-item strong {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.moodboard-list-item span {
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.moodboard-list-item button {
+  width: 28px;
+  height: 28px;
+  border: 0;
+  border-radius: 50%;
+  color: #756d63;
+  background: transparent;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.moodboard-list-item button:hover,
+.moodboard-list-item button:focus-visible {
+  color: var(--terracotta-dark);
+  background: rgba(191, 90, 34, 0.1);
+}
+
+.moodboard-empty {
+  grid-column: 1 / -1;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 12px;
+  min-height: 480px;
+  border: 1px dashed #d8c7b6;
+  border-radius: 8px;
+  padding: 30px;
+  color: var(--muted);
+  text-align: center;
+  background: rgba(255, 250, 241, 0.58);
+}
+
+.moodboard-empty span {
+  color: var(--gold);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.moodboard-empty strong {
+  max-width: 360px;
+  color: #171612;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 34px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.product-actions {
+  display: grid;
+  grid-template-columns: 0.72fr 1fr;
+  gap: 10px;
+}
+
+.product-actions .product-add {
+  width: 100%;
+}
+
+.product-moodboard {
+  min-height: 44px;
+  border: 1px solid rgba(181, 121, 22, 0.42);
+  color: var(--gold);
+  background: #fff8ec;
+  font-family: "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+  font-size: 15px;
+  transition: color 160ms ease, background-color 160ms ease, transform 160ms ease;
+}
+
+.product-moodboard:hover,
+.product-moodboard:focus-visible {
+  color: #fffdf8;
+  background: var(--gold);
+  transform: translateY(-1px);
+}
+
+.product-moodboard--selected {
+  color: #fffdf8;
+  background: var(--gold);
+}
+
+@media (min-width: 901px) {
+  body[data-active-page="moodboard"] {
+    overflow: auto;
+  }
+
+  body[data-active-page="moodboard"] .app-shell {
+    min-height: 100vh;
+    padding-bottom: 0;
+  }
+
+  body[data-active-page="moodboard"] .layout {
+    height: auto;
+    min-height: calc(100vh - var(--desktop-header-height));
+    overflow: visible;
+  }
+
+  body[data-active-page="moodboard"] .moodboard-page {
+    height: auto;
+    overflow: visible;
+  }
+}
+
+@media (max-width: 1180px) {
+  .moodboard-shell {
+    grid-template-columns: minmax(0, 1fr) 300px;
+  }
+
+  .moodboard-intro {
+    grid-column: 1 / -1;
+    min-height: auto;
+  }
+
+  .moodboard-intro__actions {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .prop-actions {
+    gap: 6px;
+  }
+
+  .moodboard-button,
+  .add-button {
+    width: 32px;
+    height: 32px;
+  }
+
+  .moodboard-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .moodboard-board,
+  .moodboard-list-card {
+    min-height: auto;
+  }
+
+  .moodboard-grid {
+    display: flex;
+    gap: 10px;
+    min-height: 0;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+
+  .moodboard-tile {
+    flex: 0 0 min(76vw, 320px);
+    aspect-ratio: 4 / 5;
+  }
+
+  .moodboard-intro__actions,
+  .product-actions {
+    grid-template-columns: 1fr;
   }
 }
