@@ -4304,6 +4304,92 @@ textarea,
   }
 }
 
+/* Catalog single-line controls: search, category, clear action, and count. */
+.catalog-controls {
+  display: grid;
+  grid-template-columns: minmax(320px, 1fr) minmax(190px, 220px) auto auto;
+  gap: 10px;
+  align-items: stretch;
+  margin-bottom: 12px;
+}
+
+.catalog-controls .search--catalog {
+  margin: 0;
+}
+
+.catalog-controls .search--catalog input {
+  height: 54px;
+}
+
+.catalog-controls .filters {
+  display: block;
+  margin: 0;
+  overflow: visible;
+  border: 1px solid #deceba;
+  border-radius: 6px;
+  background: rgba(255, 253, 248, 0.92);
+}
+
+.catalog-controls .filter-field {
+  min-height: 54px;
+  border: 0;
+  padding: 10px 36px 8px 15px;
+}
+
+.catalog-controls .filter-field::after {
+  right: 15px;
+}
+
+.catalog-controls .button--filter {
+  width: auto;
+  min-width: 142px;
+  min-height: 54px;
+  margin: 0;
+  padding: 0 18px;
+}
+
+.catalog-controls .catalog__count {
+  align-self: center;
+  min-width: 88px;
+  margin: 0;
+  padding: 10px 14px;
+}
+
+@media (min-width: 901px) {
+  .catalog {
+    grid-template-rows: auto auto minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .catalog-controls {
+    grid-template-columns: 1fr;
+  }
+
+  .catalog-controls .filters {
+    min-width: 0;
+  }
+
+  .catalog-controls .button--filter,
+  .catalog-controls .catalog__count {
+    justify-self: start;
+  }
+}
+
+@media (min-width: 560px) and (max-width: 900px) {
+  .catalog-controls {
+    grid-template-columns: 1fr auto auto;
+  }
+
+  .catalog-controls .search--catalog {
+    grid-column: 1 / -1;
+  }
+
+  .catalog-controls .filters {
+    min-width: 220px;
+  }
+}
+
 /* Moodboard: visual-only saved props before sending the final selection to quote. */
 .prop-actions {
   display: inline-flex;

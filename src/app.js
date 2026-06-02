@@ -164,12 +164,9 @@ function bindEvents() {
   });
 
   [
-    [els.categoryFilter, "category"],
-    [els.styleFilter, "style"],
-    [els.stateFilter, "state"],
-    [els.priceFilter, "price"],
-    [els.sortFilter, "sort"]
+    [els.categoryFilter, "category"]
   ].forEach(([select, key]) => {
+    if (!select) return;
     select.addEventListener("change", (event) => {
       state.filters[key] = event.target.value;
       renderCatalog();
@@ -303,13 +300,10 @@ function setLoading(isLoading) {
 function populateFilters() {
   const publicItems = state.props.filter((prop) => state.config.allowedStates.includes(prop.state));
   setSelectOptions(els.categoryFilter, getUniqueOptions(publicItems, "category", "Todas"), state.filters.category);
-  setSelectOptions(els.styleFilter, getUniqueOptions(publicItems, "style", "Todos"), state.filters.style);
-  setSelectOptions(els.stateFilter, ["Todos", ...state.config.allowedStates], state.filters.state);
-  setSelectOptions(els.priceFilter, ["Todos", "Hasta $500", "$501 - $900", "Más de $900"], state.filters.price);
-  setSelectOptions(els.sortFilter, ["Destacados", "Precio menor", "Precio mayor", "Nombre A-Z"], state.filters.sort);
 }
 
 function setSelectOptions(select, options, value) {
+  if (!select) return;
   select.innerHTML = options.map((option) => `<option value="${escapeHtml(option)}">${escapeHtml(option)}</option>`).join("");
   select.value = options.includes(value) ? value : options[0];
 }

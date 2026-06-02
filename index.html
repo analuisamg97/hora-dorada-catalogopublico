@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="src/styles.css?v=moodboard-1" />
+  <link rel="stylesheet" href="src/styles.css?v=catalog-single-filter-1" />
 </head>
 <body class="quote-panel-closed" data-active-page="home">
   <script>
@@ -151,35 +151,21 @@
           </div>
         </div>
 
-        <label class="search search--catalog" aria-label="Buscar props">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <circle cx="11" cy="11" r="7"></circle>
-            <path d="m20 20-3.5-3.5"></path>
-          </svg>
-          <input id="searchInput" type="search" placeholder="Buscar props por nombre, código o palabra clave..." autocomplete="off" />
-        </label>
+        <div class="catalog-controls" aria-label="Búsqueda y filtros de catálogo">
+          <label class="search search--catalog" aria-label="Buscar props">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="11" cy="11" r="7"></circle>
+              <path d="m20 20-3.5-3.5"></path>
+            </svg>
+            <input id="searchInput" type="search" placeholder="Buscar props por nombre, código o palabra clave..." autocomplete="off" />
+          </label>
 
-        <div class="filters" aria-label="Filtros de catálogo">
-          <label class="filter-field">
-            <span>Categoría</span>
-            <select id="categoryFilter" class="control" aria-label="Categoría"></select>
-          </label>
-          <label class="filter-field">
-            <span>Estilo</span>
-            <select id="styleFilter" class="control" aria-label="Estilo"></select>
-          </label>
-          <label class="filter-field">
-            <span>Estado</span>
-            <select id="stateFilter" class="control" aria-label="Estado"></select>
-          </label>
-          <label class="filter-field filter-field--wide">
-            <span>Precio por día</span>
-            <select id="priceFilter" class="control" aria-label="Precio"></select>
-          </label>
-          <label class="filter-field">
-            <span>Ordenar por</span>
-            <select id="sortFilter" class="control" aria-label="Orden"></select>
-          </label>
+          <div class="filters" aria-label="Filtros de catálogo">
+            <label class="filter-field">
+              <span>Categoría</span>
+              <select id="categoryFilter" class="control" aria-label="Categoría"></select>
+            </label>
+          </div>
           <button id="clearFilters" class="button button--filter" type="button">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h10"></path><path d="M4 17h10"></path><path d="M17 5v4"></path><path d="M17 15v4"></path><path d="M14 7h6"></path><path d="M14 17h6"></path></svg>
             <span>Limpiar filtros</span>
@@ -389,6 +375,6 @@
     </form>
   </dialog>
 
-  <script type="module" src="src/app.js?v=moodboard-1"></script>
+  <script type="module" src="src/app.js?v=catalog-single-filter-1"></script>
 </body>
 </html>
