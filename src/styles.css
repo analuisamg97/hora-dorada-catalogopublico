@@ -5082,3 +5082,57 @@ textarea,
     aspect-ratio: 4 / 5;
   }
 }
+
+/* Moodboard badges: closer to the editorial mockup. */
+.moodboard-tile__caption {
+  right: 18px;
+  bottom: 18px;
+  left: 18px;
+  align-items: center;
+  gap: 18px;
+  border-radius: 0;
+  padding: 15px 18px;
+  background: linear-gradient(90deg, rgba(43, 34, 27, 0.94), rgba(43, 34, 27, 0.84));
+  box-shadow: 0 12px 24px rgba(24, 18, 14, 0.18);
+}
+
+.moodboard-tile__caption > span {
+  display: grid;
+  min-width: 0;
+  gap: 3px;
+}
+
+.moodboard-tile__caption strong {
+  color: #fffdf8;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.moodboard-tile__caption em {
+  overflow: hidden;
+  color: rgba(255, 253, 248, 0.74);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.moodboard-tile__caption b {
+  flex: 0 0 auto;
+  color: rgba(255, 253, 248, 0.84);
+  font-size: 16px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+@media (max-width: 760px) {
+  .moodboard-tile__caption {
+    right: 12px;
+    bottom: 12px;
+    left: 12px;
+    padding: 12px 14px;
+  }
+}

@@ -619,8 +619,11 @@ function renderMoodboard() {
         ${renderPhoto(prop)}
       </div>
       <div class="moodboard-tile__caption">
-        <strong>${escapeHtml(getCartDisplayName(prop.name))}</strong>
-        <span>${escapeHtml(prop.code)}</span>
+        <span>
+          <strong>${escapeHtml(getCartDisplayName(prop.name))}</strong>
+          <em>${escapeHtml(prop.style || prop.category || "Prop")}</em>
+        </span>
+        <b>${formatCompactMoney(prop.price)}</b>
       </div>
     </article>
   `).join("");
