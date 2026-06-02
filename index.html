@@ -10,13 +10,13 @@
   <link rel="preload" as="image" href="https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&w=2200&q=85">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    .page-view { display: none; }
+    .page-view { display: none !important; }
     body[data-active-page="home"] .page-view[data-page="home"],
-    body[data-active-page="catalogo"] .page-view[data-page="catalogo"],
     body[data-active-page="contacto"] .page-view[data-page="contacto"],
-    body[data-active-page="moodboard"] .page-view[data-page="moodboard"] { display: block; }
+    body[data-active-page="moodboard"] .page-view[data-page="moodboard"] { display: block !important; }
+    body[data-active-page="catalogo"] .page-view[data-page="catalogo"] { display: grid !important; }
   </style>
-  <link rel="stylesheet" href="src/styles.css?v=moodboard-editorial-1" />
+  <link rel="stylesheet" href="src/styles.css?v=route-flash-guard-1" />
 </head>
 <body class="quote-panel-closed" data-active-page="home">
   <script>
@@ -385,6 +385,6 @@
     </form>
   </dialog>
 
-  <script type="module" src="src/app.js?v=moodboard-editorial-1"></script>
+  <script type="module" src="src/app.js?v=route-flash-guard-1"></script>
 </body>
 </html>
