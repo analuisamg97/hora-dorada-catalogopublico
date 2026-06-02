@@ -199,8 +199,16 @@ function bindEvents() {
 
     if (add) {
       const wasSelected = state.selectedIds.includes(add.dataset.add);
-      toggleSelected(add.dataset.add);
-      showProductSelectionStatus(!wasSelected);
+      if (wasSelected) {
+        removeSelected(add.dataset.add);
+        showQuoteRemovalStatus(add.dataset.add);
+      } else {
+        setSelectedIds([...state.selectedIds, add.dataset.add]);
+        if (!state.moodboardIds.includes(add.dataset.add)) {
+          setMoodboardIds([...state.moodboardIds, add.dataset.add]);
+        }
+        showToast("Agregado a cotización y moodboard.", true);
+      }
       return;
     }
 
@@ -219,7 +227,7 @@ function bindEvents() {
 
     if (remove) {
       removeSelected(remove.dataset.remove);
-      showProductSelectionStatus(false);
+      showQuoteRemovalStatus(remove.dataset.remove);
       return;
     }
 
@@ -555,6 +563,15 @@ function showProductSelectionStatus(isSelected) {
   );
 }
 
+function showQuoteRemovalStatus(id) {
+  showToast(
+    state.moodboardIds.includes(id)
+      ? "Se eliminó de cotización. El prop sigue en tu moodboard."
+      : "Producto quitado de tu cotización.",
+    false
+  );
+}
+
 function showMoodboardStatus(isSelected) {
   showToast(
     isSelected ? "Producto agregado al moodboard." : "Producto quitado del moodboard.",
@@ -844,9 +861,19 @@ function sendMoodboardToQuote() {
   const moodboardIds = getMoodboardProps().map((prop) => prop.id);
   if (!moodboardIds.length) return;
 
-  setSelectedIds([...state.selectedIds, ...moodboardIds]);
-  showToast("Moodboard agregado a tu cotización.", true);
+  const newQuoteIds = moodboardIds.filter((id) => !state.selectedIds.includes(id));
+  if (!newQuoteIds.length) {
+    showToast("Todos los props del moodboard ya están en cotización.", true);
+    openQuotePanelFromMoodboard();
+    return;
+  }
 
+  setSelectedIds([...state.selectedIds, ...newQuoteIds]);
+  showToast("Moodboard agregado a cotización.", true);
+  openQuotePanelFromMoodboard();
+}
+
+function openQuotePanelFromMoodboard() {
   if (window.location.hash === "#catalogo") {
     setQuotePanelOpen(true);
     return;
