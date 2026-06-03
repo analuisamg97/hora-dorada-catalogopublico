@@ -253,6 +253,7 @@ function bindEvents() {
   els.downloadPdf.addEventListener("click", () => window.print());
   els.moodboardToQuote?.addEventListener("click", sendMoodboardToQuote);
   lockCartScroll();
+  bindCatalogWheelScroll();
   bindProductKeyboard();
 }
 
@@ -750,6 +751,24 @@ function lockCartScroll() {
       event.stopPropagation();
     }
   }, { passive: true });
+}
+
+function bindCatalogWheelScroll() {
+  document.addEventListener("wheel", (event) => {
+    if (state.activePage !== "catalogo" || isMobileViewport() || document.body.classList.contains("product-route-active")) return;
+    if (event.target.closest("dialog")) return;
+
+    const targetScroller = event.target.closest("#quotePanel")
+      ? els.cartList
+      : els.catalogGrid;
+
+    if (!targetScroller || !targetScroller.scrollHeight || !event.deltaY) return;
+    if (targetScroller.scrollHeight <= targetScroller.clientHeight) return;
+
+    targetScroller.scrollTop += event.deltaY;
+    event.preventDefault();
+    event.stopPropagation();
+  }, { passive: false });
 }
 
 function submitContactLead(event) {
