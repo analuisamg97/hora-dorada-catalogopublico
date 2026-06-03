@@ -5149,3 +5149,13 @@ textarea,
     linear-gradient(90deg, rgba(255, 253, 248, 0.86) 0 48%, rgba(255, 253, 248, 0.16)),
     url("../assets/contact-hero-moodboard.jpg") center / cover;
 }
+
+/* Contact composition: lift the copy so the branded card in the photo remains visible. */
+.contact-landing__copy {
+  align-self: start;
+  padding-top: clamp(12px, 2.3vw, 34px);
+}
+
+.contact-info-list {
+  margin-top: 20px;
+}
