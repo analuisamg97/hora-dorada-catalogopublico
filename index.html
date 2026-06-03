@@ -16,7 +16,7 @@
     body[data-active-page="moodboard"] .page-view[data-page="moodboard"] { display: block !important; }
     body[data-active-page="catalogo"] .page-view[data-page="catalogo"] { display: grid !important; }
   </style>
-  <link rel="stylesheet" href="src/styles.css?v=contact-copy-lift-1" />
+  <link rel="stylesheet" href="src/styles.css?v=contact-editorial-1" />
 </head>
 <body class="quote-panel-closed" data-active-page="home">
   <script>
@@ -102,26 +102,60 @@
 
 <section id="contactPage" class="page-view contact-page" data-page="contacto">
   <div class="contact-landing">
-    <section class="contact-landing__copy">
-      <p class="section-eyebrow">Contacto</p>
-      <h1>Cuéntanos qué escena quieres crear.</h1>
-      <p>Desde comerciales hasta shootings editoriales, te ayudamos a encontrar los props que harán que la historia cobre vida.</p>
-      <div class="contact-info-list">
-        <div><span>WhatsApp</span><strong>Respuesta rápida para cotizaciones</strong></div>
-        <div><span>Instagram</span><strong>@horadoradaprophouse</strong></div>
-        <div><span>Bodega</span><strong>Recolección de props con cita previa</strong></div>
+    <section class="contact-landing__hero">
+      <div class="contact-landing__copy">
+        <p class="section-eyebrow">Contacto</p>
+        <h1>Hablemos del mood de tu producción.</h1>
+        <p>Renta de props para producciones que buscan atmósfera, carácter e intención. Escríbenos y seguimos por WhatsApp.</p>
       </div>
     </section>
+
     <aside class="contact-card">
-      <p class="contact-card__badge">Solicitud rápida</p>
+      <div class="contact-action-stack" aria-label="Canales de contacto">
+        <div class="contact-action-card">
+          <span>WhatsApp</span>
+          <strong>Respuesta rápida para cotizaciones</strong>
+          <a class="button button--primary contact-action-button" href="https://wa.me/?text=Hola%20Hora%20Dorada%2C%20quiero%20informaci%C3%B3n%20para%20una%20renta%20de%20props." target="_blank" rel="noopener">
+            <span class="contact-action-icon" aria-hidden="true">WA</span>
+            Enviar WhatsApp
+          </a>
+        </div>
+        <div class="contact-action-card">
+          <span>Instagram</span>
+          <strong>@horadoradaprophouse</strong>
+          <a class="button button--secondary contact-action-button" href="https://www.instagram.com/horadoradaprophouse/" target="_blank" rel="noopener">
+            <span class="contact-action-icon" aria-hidden="true">IG</span>
+            Ver Instagram
+          </a>
+        </div>
+      </div>
+
       <form id="contactLeadForm" class="contact-lead-form">
+        <p class="contact-card__badge">Envíanos tus datos y nos comunicaremos contigo.</p>
         <label>Nombre<input id="contactName" class="field" type="text" placeholder="Tu nombre" /></label>
         <label>WhatsApp<input id="contactWhatsapp" class="field" type="tel" placeholder="Número de WhatsApp" /></label>
-        <label>¿Qué necesitas?<textarea id="contactMessage" class="field" placeholder="Fechas, tipo de props o idea general"></textarea></label>
-        <button class="button button--primary" type="submit">Enviar y continuar por WhatsApp</button>
+        <textarea id="contactMessage" class="field contact-message-hidden" placeholder="Fechas, tipo de props o idea general"></textarea>
+        <button class="button button--primary" type="submit">Enviar</button>
         <p id="contactStatus" class="form-status"></p>
       </form>
     </aside>
+
+    <section class="contact-bodega" aria-label="Ubicación de bodega">
+      <div>
+        <p class="section-eyebrow">Bodega</p>
+        <h2>Ubicación de bodega.</h2>
+        <p>Recolección de props con cita previa. Integraremos el mapa real en cuanto tengamos el link de Google Maps.</p>
+      </div>
+      <div class="contact-bodega__details">
+        <div><span>Visita</span><strong>Pickup con cita</strong></div>
+        <div><span>Confirmación</span><strong>Por WhatsApp</strong></div>
+        <div><span>Mapa</span><strong>Google Maps próximamente</strong></div>
+      </div>
+      <div class="contact-bodega__map" aria-hidden="true">
+        <span>HD</span>
+        <strong>Bodega Hora Dorada</strong>
+      </div>
+    </section>
   </div>
 </section>
 
@@ -384,6 +418,6 @@
     </form>
   </dialog>
 
-  <script type="module" src="src/app.js?v=contact-copy-lift-1"></script>
+  <script type="module" src="src/app.js?v=contact-editorial-1"></script>
 </body>
 </html>

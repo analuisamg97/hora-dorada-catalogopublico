@@ -5166,3 +5166,326 @@ textarea,
     transform: none;
   }
 }
+
+/* Contact editorial: live version based on the approved full-editorial mockup. */
+.contact-landing {
+  min-height: auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(340px, 420px);
+  grid-template-areas:
+    "hero card"
+    "bodega bodega";
+  gap: 0;
+  align-items: stretch;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0;
+  background: #16120e;
+}
+
+.contact-landing__hero {
+  position: relative;
+  grid-area: hero;
+  min-height: clamp(570px, 66vh, 760px);
+  overflow: hidden;
+  background:
+    linear-gradient(90deg, rgba(19, 15, 11, 0.72), rgba(19, 15, 11, 0.2) 62%, rgba(19, 15, 11, 0.52)),
+    url("../assets/contact-hero-moodboard.jpg") center / cover;
+}
+
+.contact-landing__copy {
+  position: absolute;
+  right: clamp(24px, 4vw, 58px);
+  bottom: clamp(34px, 5vw, 70px);
+  left: clamp(24px, 4vw, 58px);
+  max-width: 860px;
+  padding-top: 0;
+  color: #fffdf8;
+  transform: none;
+}
+
+.contact-landing h1 {
+  max-width: 860px;
+  color: #fffdf8;
+  font-size: clamp(54px, 7vw, 112px);
+  line-height: 0.88;
+}
+
+.contact-landing__copy > p:not(.section-eyebrow) {
+  max-width: 590px;
+  margin-top: 24px;
+  color: rgba(255, 253, 248, 0.82);
+}
+
+.contact-card {
+  grid-area: card;
+  display: grid;
+  align-content: center;
+  gap: 16px;
+  border: 0;
+  border-left: 1px solid rgba(255, 253, 248, 0.12);
+  border-radius: 0;
+  padding: clamp(20px, 2.4vw, 34px);
+  background: #16120e;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+.contact-action-stack {
+  display: grid;
+  gap: 14px;
+}
+
+.contact-action-card {
+  border: 1px solid rgba(227, 215, 199, 0.84);
+  border-radius: 10px;
+  padding: 18px;
+  background: rgba(255, 253, 248, 0.94);
+}
+
+.contact-action-card > span {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 850;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.contact-action-card > strong {
+  display: block;
+  margin-bottom: 14px;
+  color: var(--charcoal);
+  font-size: 18px;
+  line-height: 1.25;
+}
+
+.contact-action-button {
+  width: 100%;
+  min-height: 54px;
+  margin: 0;
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+.contact-action-button.button--secondary {
+  border: 1px solid rgba(30, 74, 24, 0.12);
+}
+
+.contact-action-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  margin-right: 9px;
+  border-radius: 50%;
+  color: #fffdf8;
+  background: rgba(255, 253, 248, 0.18);
+  font-size: 11px;
+  font-weight: 950;
+}
+
+.button--secondary .contact-action-icon {
+  background: var(--terracotta);
+}
+
+.contact-lead-form {
+  display: grid;
+  gap: 14px;
+  border: 1px solid rgba(227, 215, 199, 0.84);
+  border-radius: 14px;
+  padding: 24px;
+  background: rgba(255, 253, 248, 0.94);
+  box-shadow: 0 18px 54px rgba(0, 0, 0, 0.18);
+}
+
+.contact-card__badge {
+  width: auto;
+  margin: 0 0 4px;
+  border-radius: 0;
+  padding: 0;
+  color: var(--gold);
+  background: transparent;
+  font-size: 17px;
+  font-weight: 850;
+  line-height: 1.28;
+}
+
+.contact-lead-form label {
+  display: grid;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 850;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.contact-lead-form .field {
+  min-height: 54px;
+  border-color: rgba(225, 211, 191, 0.92);
+  border-radius: 8px;
+  background: rgba(255, 253, 248, 0.72);
+}
+
+.contact-message-hidden {
+  display: none;
+}
+
+.contact-lead-form .button {
+  width: 100%;
+  min-height: 60px;
+  margin: 4px 0 0;
+  border-radius: 8px;
+}
+
+.contact-bodega {
+  grid-area: bodega;
+  display: grid;
+  grid-template-columns: minmax(0, 0.78fr) minmax(260px, 0.58fr) minmax(260px, 0.5fr);
+  gap: clamp(20px, 3vw, 44px);
+  align-items: center;
+  border-top: 1px solid rgba(255, 253, 248, 0.14);
+  padding: clamp(28px, 4vw, 50px);
+  color: #fffdf8;
+  background:
+    linear-gradient(90deg, rgba(22, 18, 14, 0.96), rgba(38, 31, 23, 0.92)),
+    url("../assets/contact-hero-moodboard.jpg") center 64% / cover;
+}
+
+.contact-bodega h2 {
+  margin: 0;
+  color: #fffdf8;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(36px, 4vw, 70px);
+  font-weight: 600;
+  line-height: 0.94;
+}
+
+.contact-bodega p:not(.section-eyebrow) {
+  max-width: 520px;
+  margin-top: 14px;
+  color: rgba(255, 253, 248, 0.76);
+}
+
+.contact-bodega__details {
+  display: grid;
+  border-top: 1px solid rgba(255, 253, 248, 0.2);
+}
+
+.contact-bodega__details div {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  border-bottom: 1px solid rgba(255, 253, 248, 0.18);
+  padding: 14px 0;
+  color: rgba(255, 253, 248, 0.62);
+  font-size: 14px;
+}
+
+.contact-bodega__details strong {
+  color: rgba(255, 253, 248, 0.92);
+  text-align: right;
+}
+
+.contact-bodega__map {
+  position: relative;
+  display: grid;
+  min-height: 190px;
+  align-content: end;
+  overflow: hidden;
+  border: 1px solid rgba(255, 253, 248, 0.18);
+  border-radius: 10px;
+  padding: 18px;
+  background:
+    linear-gradient(90deg, rgba(255, 253, 248, 0.08) 1px, transparent 1px) 0 0 / 46px 46px,
+    linear-gradient(rgba(255, 253, 248, 0.08) 1px, transparent 1px) 0 0 / 46px 46px,
+    rgba(255, 253, 248, 0.08);
+}
+
+.contact-bodega__map::before,
+.contact-bodega__map::after {
+  content: "";
+  position: absolute;
+  inset: 34% -14%;
+  height: 16px;
+  border-radius: 999px;
+  background: rgba(255, 253, 248, 0.12);
+  transform: rotate(-17deg);
+}
+
+.contact-bodega__map::after {
+  inset: 55% -14%;
+  transform: rotate(25deg);
+}
+
+.contact-bodega__map span {
+  position: absolute;
+  top: 40%;
+  left: 52%;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  border: 7px solid rgba(255, 253, 248, 0.38);
+  border-radius: 50%;
+  background: var(--olive);
+  font-size: 12px;
+  font-weight: 950;
+  transform: translate(-50%, -50%);
+}
+
+.contact-bodega__map strong {
+  position: relative;
+  z-index: 1;
+  color: rgba(255, 253, 248, 0.9);
+  font-size: 14px;
+}
+
+.contact-info-list {
+  display: none;
+}
+
+@media (min-width: 901px) {
+  body[data-active-page="contacto"] .contact-landing {
+    min-height: auto;
+    align-items: stretch;
+  }
+}
+
+@media (max-width: 1040px) {
+  .contact-landing {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "hero"
+      "card"
+      "bodega";
+  }
+
+  .contact-card {
+    border-top: 1px solid rgba(255, 253, 248, 0.12);
+    border-left: 0;
+  }
+
+  .contact-bodega {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .contact-landing__hero {
+    min-height: 540px;
+  }
+
+  .contact-landing h1 {
+    font-size: clamp(48px, 15vw, 76px);
+  }
+
+  .contact-card,
+  .contact-bodega {
+    padding: 20px;
+  }
+}
