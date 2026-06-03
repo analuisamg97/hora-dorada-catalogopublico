@@ -64,4 +64,5 @@ El token se guarda en `localStorage` del navegador y no se escribe en el reposit
 
 ## Antes de lanzamiento público
 
-Mover las llamadas de Airtable a un backend serverless para proteger el token. La app ya tiene la capa separada en `src/airtable.js`, así que el cambio debe ser directo.
+- [ ] Mover las llamadas de Airtable a un backend serverless para proteger el token. La app ya tiene la capa separada en `src/airtable.js`, así que el cambio debe ser directo.
+- [ ] Automatización pro de cotización: backend que genere PDF de cotización con diseño Hora Dorada, guarde la solicitud en Airtable y mande a Hora Dorada por WhatsApp el PDF/link junto con un mensaje separado con nombre y teléfono del cliente para dar seguimiento manual.
