@@ -5489,3 +5489,35 @@ textarea,
     padding: 20px;
   }
 }
+
+/* Moodboard empty state: no collage columns until there are props to arrange. */
+.moodboard-grid.moodboard-grid--empty {
+  display: grid;
+  column-count: initial;
+  place-items: center;
+  min-height: 100%;
+}
+
+.moodboard-grid--empty .moodboard-empty {
+  width: min(560px, 100%);
+  min-height: 0;
+  border: 1px solid rgba(222, 209, 192, 0.9);
+  border-radius: 10px;
+  padding: clamp(34px, 5vw, 58px);
+  background:
+    linear-gradient(135deg, rgba(255, 253, 248, 0.94), rgba(250, 244, 235, 0.9)),
+    radial-gradient(circle at 18% 8%, rgba(181, 121, 22, 0.12), transparent 32%);
+  box-shadow: 0 18px 54px rgba(48, 35, 22, 0.08);
+}
+
+.moodboard-grid--empty .moodboard-empty strong {
+  max-width: 440px;
+  font-size: clamp(36px, 4vw, 58px);
+  line-height: 0.92;
+}
+
+.moodboard-grid--empty .moodboard-empty .button {
+  width: auto;
+  min-width: 210px;
+  margin-top: 8px;
+}

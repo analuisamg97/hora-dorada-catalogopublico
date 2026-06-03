@@ -601,6 +601,7 @@ function renderMoodboard() {
   const props = getMoodboardProps();
   els.moodboardCount.textContent = `${props.length} ${props.length === 1 ? "prop" : "props"}`;
   els.moodboardToQuote.disabled = props.length === 0;
+  els.moodboardGrid.classList.toggle("moodboard-grid--empty", props.length === 0);
 
   if (!props.length) {
     els.moodboardGrid.innerHTML = `
