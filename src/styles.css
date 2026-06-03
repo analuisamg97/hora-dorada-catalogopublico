@@ -5153,9 +5153,16 @@ textarea,
 /* Contact composition: lift the copy so the branded card in the photo remains visible. */
 .contact-landing__copy {
   align-self: start;
-  padding-top: clamp(12px, 2.3vw, 34px);
+  padding-top: 0;
+  transform: translateY(clamp(-72px, -4vw, -36px));
 }
 
 .contact-info-list {
-  margin-top: 20px;
+  margin-top: 14px;
+}
+
+@media (max-width: 900px) {
+  .contact-landing__copy {
+    transform: none;
+  }
 }
