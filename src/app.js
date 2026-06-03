@@ -8,6 +8,7 @@ import { calculateQuote, getUnavailableMessage, isPropUnavailable } from "./quot
 const cartStorageKey = "horaDoradaClientCart";
 const datesStorageKey = "horaDoradaClientDates";
 const moodboardStorageKey = "horaDoradaClientMoodboard";
+const businessWhatsAppNumber = "528117160541";
 const defaultSelectedIds = ["p1", "p2", "p5"];
 const defaultDates = { startDate: "2026-06-06", endDate: "2026-06-08" };
 const savedDates = loadSavedDates();
@@ -770,7 +771,7 @@ function submitContactLead(event) {
     `WhatsApp: ${whatsapp}`,
     message ? `Necesito: ${message}` : ""
   ].filter(Boolean);
-  window.open(`https://wa.me/?text=${encodeURIComponent(lines.join("\n"))}`, "_blank");
+  openBusinessWhatsApp(lines);
 }
 
 function shareWhatsApp() {
@@ -782,7 +783,11 @@ function shareWhatsApp() {
     `Total estimado: ${formatMoney(quote.total)}`
   ];
 
-  window.open(`https://wa.me/?text=${encodeURIComponent(lines.join("\n"))}`, "_blank");
+  openBusinessWhatsApp(lines);
+}
+
+function openBusinessWhatsApp(lines) {
+  window.open(`https://wa.me/${businessWhatsAppNumber}?text=${encodeURIComponent(lines.join("\n"))}`, "_blank");
 }
 
 function getFriendlyRequestError(error) {
