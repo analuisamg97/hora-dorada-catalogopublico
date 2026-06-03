@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hora Dorada | Página Cotización Mockups</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --paper: #fffdf8;
+      --cream: #f6eee3;
+      --ink: #17140f;
+      --muted: #70675e;
+      --gold: #b8842d;
+      --olive: #1f4a19;
+      --terracotta: #b65e34;
+      --line: #ded0bd;
+      --soft: #eef5eb;
+      font-family: "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+    }
+
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--paper); }
+    a { color: inherit; text-decoration: none; }
+    h1, h2, h3 { margin: 0; font-family: "Cormorant Garamond", Georgia, serif; font-weight: 600; letter-spacing: 0; }
+    h1 { font-size: clamp(64px, 7vw, 112px); line-height: 0.86; }
+    h2 { font-size: clamp(40px, 4.6vw, 76px); line-height: 0.92; }
+    h3 { font-size: 30px; line-height: 1; }
+    p { margin: 0; color: var(--muted); line-height: 1.45; }
+
+    .mock-nav {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: center;
+      border-bottom: 1px solid var(--line);
+      padding: 14px 24px;
+      background: rgba(255, 253, 248, 0.92);
+      backdrop-filter: blur(18px);
+    }
+
+    .mock-nav strong,
+    .eyebrow {
+      color: var(--gold);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .mock-nav nav { display: flex; flex-wrap: wrap; gap: 8px; }
+    .mock-nav a { border: 1px solid var(--line); border-radius: 999px; padding: 8px 12px; color: var(--muted); font-size: 12px; font-weight: 700; }
+
+    .topbar {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 28px;
+      min-height: 96px;
+      border-bottom: 1px solid var(--line);
+      padding: 18px 34px;
+      background: rgba(255, 253, 248, 0.96);
+    }
+
+    .brand { display: flex; align-items: center; gap: 14px; }
+    .sun {
+      width: 58px;
+      height: 58px;
+      flex: 0 0 auto;
+      background:
+        radial-gradient(circle at center, transparent 0 11px, var(--gold) 12px 14px, transparent 15px),
+        repeating-conic-gradient(from 0deg, var(--gold) 0 4deg, transparent 4deg 11deg);
+      mask: radial-gradient(circle at center, transparent 0 15px, #000 16px);
+    }
+
+    .brand strong { display: block; font-size: 27px; font-weight: 800; letter-spacing: 0.12em; line-height: 0.94; text-transform: uppercase; }
+    .brand span span { display: block; margin-top: 7px; font-size: 11px; font-weight: 800; letter-spacing: 0.42em; text-transform: uppercase; }
+    .topbar nav, .topbar__actions { display: flex; justify-content: center; gap: 30px; font-size: 15px; }
+    .topbar__actions { justify-content: flex-end; gap: 18px; }
+
+    .mock { min-height: 100vh; border-bottom: 1px solid var(--line); }
+    .button { display: inline-flex; align-items: center; justify-content: center; min-height: 64px; border: 0; border-radius: 9px; padding: 0 32px; color: var(--paper); background: linear-gradient(135deg, #183512, #244f18); font-size: 18px; font-weight: 800; }
+    .button--secondary { color: var(--olive); background: var(--soft); }
+
+    .quote-page {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(340px, 420px);
+      gap: 24px;
+      padding: 34px;
+      background: linear-gradient(180deg, #fffdf8, #f7efe4);
+    }
+
+    .quote-main,
+    .quote-side,
+    .quote-card {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: rgba(255, 253, 248, 0.92);
+    }
+
+    .quote-main { padding: clamp(28px, 4vw, 54px); }
+    .quote-side { display: grid; align-content: start; gap: 18px; padding: 24px; }
+    .quote-intro { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 30px; align-items: end; border-bottom: 1px solid var(--line); padding-bottom: 34px; }
+    .quote-intro p:not(.eyebrow) { max-width: 580px; margin-top: 18px; font-size: 18px; }
+
+    .date-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      margin-top: 24px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .date-strip div { padding: 16px; background: #fbf6ed; border-right: 1px solid var(--line); }
+    .date-strip div:last-child { border-right: 0; }
+    .date-strip span,
+    .total-box span,
+    .client-form label,
+    .prop-row span { display: block; color: var(--muted); font-size: 11px; font-weight: 900; letter-spacing: 0.12em; text-transform: uppercase; }
+    .date-strip strong { display: block; margin-top: 6px; font-size: 16px; }
+
+    .props-section { margin-top: 34px; }
+    .props-head { display: flex; justify-content: space-between; gap: 18px; align-items: end; margin-bottom: 14px; }
+    .prop-list { display: grid; gap: 12px; }
+    .prop-row {
+      display: grid;
+      grid-template-columns: 80px minmax(0, 1fr) auto;
+      gap: 16px;
+      align-items: center;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      padding: 12px;
+      background: rgba(255, 253, 248, 0.86);
+    }
+
+    .thumb { width: 80px; height: 80px; border-radius: 8px; background: linear-gradient(140deg, #dcc5a4, #b8842d); }
+    .thumb--photo { background: linear-gradient(140deg, rgba(220, 197, 164, 0.32), rgba(184, 132, 45, 0.22)), url("assets/contact-hero-moodboard.jpg") center / cover; }
+    .prop-row strong { display: block; font-size: 18px; }
+    .prop-row em { display: block; margin-top: 4px; color: var(--muted); font-style: normal; font-size: 13px; }
+    .prop-row b { color: var(--olive); font-size: 18px; }
+
+    .unavailable { opacity: 0.52; filter: grayscale(0.5); }
+    .unavailable b { color: var(--muted); }
+
+    .total-box { display: grid; gap: 12px; border: 1px solid var(--line); border-radius: 10px; padding: 22px; background: #fbf6ed; }
+    .total-box div { display: flex; justify-content: space-between; gap: 18px; color: var(--muted); }
+    .total-box strong { color: var(--ink); }
+    .total-box .grand { border-top: 1px solid var(--line); margin-top: 4px; padding-top: 14px; color: var(--ink); font-size: 21px; font-weight: 900; }
+
+    .client-form { display: grid; gap: 13px; }
+    .client-form input,
+    .client-form textarea { width: 100%; border: 1px solid var(--line); border-radius: 8px; padding: 15px 16px; background: rgba(255, 253, 248, 0.86); font: inherit; }
+    .client-form textarea { min-height: 110px; resize: vertical; }
+    .client-form .button { width: 100%; margin-top: 8px; }
+
+    .note {
+      border-left: 3px solid var(--gold);
+      padding: 12px 15px;
+      background: rgba(184, 132, 45, 0.08);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .concept-2 .quote-page {
+      grid-template-columns: 0.72fr 1fr;
+      min-height: calc(100vh - 96px);
+      background: #17120d;
+    }
+
+    .concept-2 .quote-main {
+      display: grid;
+      align-content: space-between;
+      color: var(--paper);
+      background:
+        linear-gradient(180deg, rgba(23, 18, 13, 0.12), rgba(23, 18, 13, 0.86)),
+        url("assets/contact-hero-moodboard.jpg") center / cover;
+    }
+
+    .concept-2 .quote-main p:not(.eyebrow) { color: rgba(255, 253, 248, 0.78); }
+    .concept-2 .quote-main h1 { color: var(--paper); }
+    .concept-2 .quote-side { background: var(--paper); }
+
+    .concept-3 .quote-page { grid-template-columns: minmax(0, 1fr); }
+    .concept-3 .quote-main { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 30px; }
+    .concept-3 .quote-intro { display: block; border: 0; padding: 0; }
+    .concept-3 .quote-side { grid-template-columns: 1fr 1fr; }
+
+    @media (max-width: 980px) {
+      .topbar,
+      .quote-page,
+      .concept-2 .quote-page,
+      .concept-3 .quote-main,
+      .concept-3 .quote-side,
+      .quote-intro,
+      .date-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar nav,
+      .topbar__actions { justify-content: flex-start; flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+  <div class="mock-nav">
+    <strong>Mockups Página Cotización</strong>
+    <nav>
+      <a href="#concepto-1">1 Checkout editorial</a>
+      <a href="#concepto-2">2 Split premium</a>
+      <a href="#concepto-3">3 Compacta</a>
+    </nav>
+  </div>
+
+  <section id="concepto-1" class="mock concept-1">
+    <header class="topbar">
+      <a class="brand" href="#"><i class="sun"></i><span><strong>Hora Dorada</strong><span>Prop House</span></span></a>
+      <nav><a>Inicio</a><a>Catálogo</a><a>Moodboard</a><a>Cotización</a><a>Contacto</a></nav>
+      <div class="topbar__actions"><a>16 props</a></div>
+    </header>
+    <main class="quote-page">
+      <section class="quote-main">
+        <div class="quote-intro">
+          <div>
+            <p class="eyebrow">Cotización</p>
+            <h1>Revisa tu selección.</h1>
+            <p>Confirma fechas, props disponibles y total estimado antes de enviar la solicitud a Hora Dorada.</p>
+          </div>
+          <a class="button button--secondary">Volver al catálogo</a>
+        </div>
+        <div class="date-strip">
+          <div><span>Salida</span><strong>06 Jun 2026</strong></div>
+          <div><span>Regreso</span><strong>08 Jun 2026</strong></div>
+          <div><span>Días cobrados</span><strong>1 día</strong></div>
+        </div>
+        <section class="props-section">
+          <div class="props-head"><h2>Props seleccionados</h2><p>Los no disponibles no se suman al total.</p></div>
+          <div class="prop-list">
+            <article class="prop-row"><div class="thumb thumb--photo"></div><div><span>MO-014</span><strong>Sillón cuero vintage</strong><em>Mobiliario · $300 / día</em></div><b>$300</b></article>
+            <article class="prop-row"><div class="thumb"></div><div><span>DE-002</span><strong>Canasta grande natural</strong><em>Decoración · $50 / día</em></div><b>$50</b></article>
+            <article class="prop-row unavailable"><div class="thumb"></div><div><span>AR-007</span><strong>Set 3 marcos madera</strong><em>Rentado en estas fechas</em></div><b>$0</b></article>
+          </div>
+        </section>
+      </section>
+      <aside class="quote-side">
+        <div class="total-box">
+          <div><span>Subtotal</span><strong>$350 MXN</strong></div>
+          <div><span>IVA 16%</span><strong>$56 MXN</strong></div>
+          <div><span>Anticipo sugerido</span><strong>$81 MXN</strong></div>
+          <div class="grand"><span>Total estimado</span><strong>$406 MXN</strong></div>
+        </div>
+        <form class="client-form">
+          <label>Nombre<input placeholder="Nombre del cliente" /></label>
+          <label>WhatsApp<input placeholder="Número de WhatsApp" /></label>
+          <label>Notas<textarea placeholder="Comentarios, medidas, locación o dudas"></textarea></label>
+          <button class="button" type="button">Enviar solicitud</button>
+          <button class="button button--secondary" type="button">Compartir por WhatsApp</button>
+        </form>
+        <p class="note">El día de salida y el día de regreso no se cobran por práctica de la industria. La solicitud no aparta inventario hasta confirmación.</p>
+      </aside>
+    </main>
+  </section>
+
+  <section id="concepto-2" class="mock concept-2">
+    <header class="topbar">
+      <a class="brand" href="#"><i class="sun"></i><span><strong>Hora Dorada</strong><span>Prop House</span></span></a>
+      <nav><a>Inicio</a><a>Catálogo</a><a>Moodboard</a><a>Cotización</a><a>Contacto</a></nav>
+      <div class="topbar__actions"><a>16 props</a></div>
+    </header>
+    <main class="quote-page">
+      <section class="quote-main">
+        <div>
+          <p class="eyebrow">Solicitud estimada</p>
+          <h1>Tu selección está lista para revisión.</h1>
+          <p>Una versión más visual: cotización como cierre editorial después de catálogo y moodboard.</p>
+        </div>
+        <div class="date-strip">
+          <div><span>Salida</span><strong>06 Jun</strong></div>
+          <div><span>Regreso</span><strong>08 Jun</strong></div>
+          <div><span>Total</span><strong>$406 MXN</strong></div>
+        </div>
+      </section>
+      <aside class="quote-side">
+        <div class="props-head"><h2>Props seleccionados</h2><p>3 piezas en revisión.</p></div>
+        <div class="prop-list">
+          <article class="prop-row"><div class="thumb thumb--photo"></div><div><span>MO-014</span><strong>Sillón cuero vintage</strong><em>$300 / día</em></div><b>$300</b></article>
+          <article class="prop-row"><div class="thumb"></div><div><span>DE-002</span><strong>Canasta grande natural</strong><em>$50 / día</em></div><b>$50</b></article>
+        </div>
+        <div class="total-box"><div class="grand"><span>Total estimado</span><strong>$406 MXN</strong></div></div>
+        <form class="client-form">
+          <label>Nombre<input placeholder="Nombre del cliente" /></label>
+          <label>WhatsApp<input placeholder="Número de WhatsApp" /></label>
+          <button class="button" type="button">Enviar solicitud</button>
+        </form>
+      </aside>
+    </main>
+  </section>
+
+  <section id="concepto-3" class="mock concept-3">
+    <header class="topbar">
+      <a class="brand" href="#"><i class="sun"></i><span><strong>Hora Dorada</strong><span>Prop House</span></span></a>
+      <nav><a>Inicio</a><a>Catálogo</a><a>Moodboard</a><a>Cotización</a><a>Contacto</a></nav>
+      <div class="topbar__actions"><a>16 props</a></div>
+    </header>
+    <main class="quote-page">
+      <section class="quote-main">
+        <div class="quote-intro">
+          <p class="eyebrow">Cotización</p>
+          <h1>Resumen final.</h1>
+          <p>Más compacta y operativa, buena si queremos minimizar scroll.</p>
+        </div>
+        <div>
+          <div class="date-strip">
+            <div><span>Salida</span><strong>06 Jun</strong></div>
+            <div><span>Regreso</span><strong>08 Jun</strong></div>
+            <div><span>Días cobrados</span><strong>1 día</strong></div>
+          </div>
+          <section class="props-section">
+            <div class="prop-list">
+              <article class="prop-row"><div class="thumb thumb--photo"></div><div><span>MO-014</span><strong>Sillón cuero vintage</strong><em>Mobiliario</em></div><b>$300</b></article>
+              <article class="prop-row"><div class="thumb"></div><div><span>DE-002</span><strong>Canasta grande natural</strong><em>Decoración</em></div><b>$50</b></article>
+            </div>
+          </section>
+        </div>
+      </section>
+      <aside class="quote-side">
+        <div class="total-box"><div><span>Subtotal</span><strong>$350 MXN</strong></div><div><span>IVA</span><strong>$56 MXN</strong></div><div class="grand"><span>Total</span><strong>$406 MXN</strong></div></div>
+        <form class="client-form">
+          <label>Nombre<input placeholder="Nombre" /></label>
+          <label>WhatsApp<input placeholder="WhatsApp" /></label>
+          <label>Notas<textarea placeholder="Notas"></textarea></label>
+          <button class="button" type="button">Enviar solicitud</button>
+        </form>
+      </aside>
+    </main>
+  </section>
+</body>
+</html>

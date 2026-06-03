@@ -228,36 +228,85 @@
 
     .concept-1 {
       display: grid;
-      grid-template-rows: 370px 1fr;
+      grid-template-rows: 230px 1fr;
     }
 
     .concept-1__hero {
       position: relative;
-      display: grid;
-      align-content: end;
-      padding: 44px;
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+      align-items: end;
+      padding: 34px 40px;
       color: var(--paper);
       background:
-        linear-gradient(90deg, rgba(21, 16, 12, 0.78), rgba(21, 16, 12, 0.2)),
-        url("assets/home-hero-golden-room.png") center / cover;
+        linear-gradient(90deg, rgba(21, 16, 12, 0.68), rgba(21, 16, 12, 0.18) 58%, rgba(21, 16, 12, 0.62)),
+        url("assets/home-hero-golden-room.png") center 58% / cover;
     }
 
-    .concept-1__hero .brand {
-      position: absolute;
-      top: 34px;
-      left: 38px;
+    .concept-1__hero .brand strong,
+    .concept-1__hero .brand span span {
+      color: var(--paper);
     }
 
-    .concept-1__hero p {
-      max-width: 430px;
-      margin-top: 16px;
+    .concept-1__hero-meta {
+      display: grid;
+      justify-items: end;
+      gap: 9px;
+      text-align: right;
+    }
+
+    .concept-1__hero-meta strong {
+      color: var(--paper);
+      font-size: 15px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .concept-1__hero-meta span {
       color: rgba(255, 253, 248, 0.78);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
     }
 
     .concept-1__content {
       display: grid;
-      gap: 28px;
-      padding: 36px 44px 42px;
+      gap: 24px;
+      padding: 38px 44px 42px;
+    }
+
+    .concept-1__title {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 30px;
+      align-items: end;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 28px;
+    }
+
+    .concept-1__title h1 {
+      margin-top: 8px;
+      font-size: 46px;
+      line-height: 0.96;
+    }
+
+    .concept-1__title small {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .concept-1__title p {
+      max-width: 250px;
+      color: var(--muted);
+      font-size: 12px;
+      text-align: right;
     }
 
     .meta-grid {
@@ -481,18 +530,27 @@
   </div>
 
   <main class="sheet-wrap">
-    <p id="concepto-1" class="concept-label">Concepto 1 · Editorial / premium</p>
+    <p id="concepto-1" class="concept-label">Concepto 1 · Híbrido editorial claro</p>
     <section class="sheet concept-1">
       <div class="concept-1__hero">
         <div class="brand">
           <i class="sun"></i>
           <span><strong>Hora Dorada</strong><span>Prop House</span></span>
         </div>
-        <p class="eyebrow">Cotización estimada</p>
-        <h1>Colección curada para contar historias.</h1>
-        <p>Props seleccionados para una producción con atmósfera cálida, objetos con historia y presencia editorial.</p>
+        <div class="concept-1__hero-meta">
+          <span>Solicitud HD-2026</span>
+          <strong>Cotización estimada</strong>
+        </div>
       </div>
       <div class="concept-1__content">
+        <div class="concept-1__title">
+          <div>
+            <p class="eyebrow">Cotización para Ana Martínez</p>
+            <h1>Props seleccionados</h1>
+            <small>Resumen para revisión por WhatsApp</small>
+          </div>
+          <p>Esta cotización no aparta inventario hasta confirmación de Hora Dorada.</p>
+        </div>
         <div class="meta-grid">
           <div><span>Cliente</span><strong>Ana Martínez</strong></div>
           <div><span>Salida</span><strong>06 Jun 2026</strong></div>
