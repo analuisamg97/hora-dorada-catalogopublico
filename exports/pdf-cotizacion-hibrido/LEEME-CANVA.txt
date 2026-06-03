@@ -1,0 +1,18 @@
+Paquete editable - Cotizacion hibrido editorial claro
+
+1. Sube a Canva:
+   hora-dorada-cotizacion-hibrido-editable.pptx
+
+2. Usa como referencia visual:
+   hora-dorada-cotizacion-hibrido-preview.pdf
+   preview/preview.png
+
+3. Imagenes para reemplazar en Canva:
+   assets/home-hero-golden-room.png
+   assets/contact-hero-moodboard.jpg
+   assets/hora-dorada-logo.svg
+
+Nota:
+El PPTX esta armado para que textos, tabla, logo y bloques se puedan mover o editar.
+Canva puede importar algunos elementos con ligeras diferencias de font, pero este formato
+suele ser mucho mas editable que subir un PDF directo.
