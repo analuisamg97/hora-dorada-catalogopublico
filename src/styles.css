@@ -5140,5 +5140,12 @@ textarea,
 
 /* Contact copy polish: slightly quieter title scale. */
 .contact-landing h1 {
-  font-size: clamp(50px, 7.4vw, 112px);
+  font-size: clamp(44px, 6.5vw, 98px);
+}
+
+/* Contact image balance: let the new background photo show through more. */
+.contact-landing {
+  background:
+    linear-gradient(90deg, rgba(255, 253, 248, 0.86) 0 48%, rgba(255, 253, 248, 0.16)),
+    url("../assets/contact-hero-moodboard.jpg") center / cover;
 }
