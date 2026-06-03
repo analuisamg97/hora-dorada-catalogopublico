@@ -5490,6 +5490,38 @@ textarea,
   }
 }
 
+/* Contact polish: home-style CTAs and first-view title visibility. */
+.contact-landing__hero {
+  min-height: clamp(520px, 62vh, 700px);
+  background:
+    linear-gradient(90deg, rgba(19, 15, 11, 0.68), rgba(19, 15, 11, 0.16) 62%, rgba(19, 15, 11, 0.5)),
+    url("../assets/contact-hero-moodboard.jpg") center 38% / cover;
+}
+
+.contact-landing__copy {
+  bottom: clamp(88px, 12vh, 150px);
+}
+
+.contact-action-button,
+.contact-lead-form .button {
+  min-height: 64px;
+  border-radius: 9px;
+  font-family: var(--ui-font);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.contact-action-button.button--primary,
+.contact-lead-form .button {
+  background: linear-gradient(135deg, #183512, #244f18);
+}
+
+.contact-action-button.button--secondary {
+  color: var(--olive);
+  background: #eef5eb;
+}
+
 /* Moodboard empty state: no collage columns until there are props to arrange. */
 .moodboard-grid.moodboard-grid--empty {
   display: grid;
@@ -5512,7 +5544,7 @@ textarea,
 
 .moodboard-grid--empty .moodboard-empty strong {
   max-width: 440px;
-  font-size: clamp(36px, 4vw, 58px);
+  font-size: clamp(34px, 3.8vw, 54px);
   line-height: 0.92;
 }
 
