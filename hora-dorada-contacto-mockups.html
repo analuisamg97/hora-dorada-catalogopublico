@@ -507,25 +507,200 @@
       gap: 16px;
     }
 
-    .concept-3 .side-card {
-      border: 1px solid rgba(255, 253, 248, 0.16);
+    .concept-3 .contact-actions {
+      display: grid;
+      gap: 14px;
+    }
+
+    .concept-3 .contact-action {
       border-radius: 10px;
-      padding: 22px;
-      background: rgba(255, 253, 248, 0.08);
+      padding: 18px;
+      color: var(--ink);
+      background: rgba(255, 253, 248, 0.92);
     }
 
-    .concept-3 .side-card b {
+    .concept-3 .contact-action span {
       display: block;
+      margin-bottom: 10px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .concept-3 .contact-action b {
+      display: block;
+      margin-bottom: 14px;
+      color: var(--ink);
+      font-size: 22px;
+    }
+
+    .concept-3 .contact-action .button {
+      width: 100%;
+      min-height: 54px;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    .concept-3 .contact-action .button--soft {
+      border: 1px solid rgba(30, 74, 24, 0.14);
+      color: var(--olive);
+      background: #edf4ea;
+    }
+
+    .concept-3 .icon {
+      display: inline-grid;
+      place-items: center;
+      width: 30px;
+      height: 30px;
+      margin-right: 10px;
+      border-radius: 50%;
       color: var(--paper);
-      font-size: 21px;
+      background: rgba(255, 253, 248, 0.2);
+      font-size: 12px;
+      font-weight: 900;
     }
 
-    .concept-3 .side-card span {
+    .concept-3 .button--soft .icon {
+      color: var(--paper);
+      background: var(--terracotta);
+    }
+
+    .concept-3 .mini-contact-card {
+      border: 1px solid rgba(225, 211, 191, 0.84);
+      border-radius: 14px;
+      padding: 24px;
+      color: var(--ink);
+      background: rgba(255, 253, 248, 0.94);
+      box-shadow: 0 18px 54px rgba(0, 0, 0, 0.18);
+    }
+
+    .concept-3 .mini-contact-card p {
+      margin-bottom: 18px;
+      color: var(--gold);
+      font-size: 17px;
+      font-weight: 800;
+      line-height: 1.28;
+    }
+
+    .concept-3 .mini-contact-card .contact-form {
+      gap: 14px;
+    }
+
+    .concept-3 .mini-contact-card input {
+      background: rgba(255, 253, 248, 0.72);
+    }
+
+    .concept-3 .bodega-section {
+      display: grid;
+      grid-template-columns: minmax(0, 0.65fr) minmax(420px, 1fr);
+      gap: 32px;
+      align-items: center;
+      min-height: 72vh;
+      padding: clamp(42px, 5vw, 82px);
+      background: var(--paper);
+      color: var(--ink);
+    }
+
+    .concept-3 .bodega-section p:not(.eyebrow) {
+      max-width: 520px;
+      margin-top: 20px;
+    }
+
+    .concept-3 .bodega-details {
+      display: grid;
+      max-width: 520px;
+      margin-top: 34px;
+      border-top: 1px solid var(--line);
+    }
+
+    .concept-3 .bodega-details div {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      border-bottom: 1px solid var(--line);
+      padding: 16px 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .concept-3 .bodega-details strong {
+      color: var(--ink);
+      text-align: right;
+    }
+
+    .concept-3 .map-preview {
+      position: relative;
+      min-height: 480px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background:
+        linear-gradient(90deg, rgba(255, 253, 248, 0.22) 1px, transparent 1px) 0 0 / 78px 78px,
+        linear-gradient(rgba(255, 253, 248, 0.22) 1px, transparent 1px) 0 0 / 78px 78px,
+        linear-gradient(135deg, #e9e3d8, #f8f5ee);
+      box-shadow: var(--shadow);
+    }
+
+    .concept-3 .map-preview::before,
+    .concept-3 .map-preview::after {
+      content: "";
+      position: absolute;
+      inset: 20% -10%;
+      height: 28px;
+      border-radius: 999px;
+      background: rgba(194, 180, 158, 0.65);
+      transform: rotate(-18deg);
+    }
+
+    .concept-3 .map-preview::after {
+      inset: 48% -10%;
+      height: 22px;
+      transform: rotate(24deg);
+    }
+
+    .concept-3 .map-pin {
+      position: absolute;
+      top: 43%;
+      left: 52%;
+      z-index: 2;
+      display: grid;
+      place-items: center;
+      width: 74px;
+      height: 74px;
+      border: 10px solid rgba(255, 253, 248, 0.82);
+      border-radius: 50%;
+      color: var(--paper);
+      background: var(--olive);
+      box-shadow: 0 18px 40px rgba(30, 74, 24, 0.3);
+      font-weight: 900;
+    }
+
+    .concept-3 .map-label {
+      position: absolute;
+      right: 22px;
+      bottom: 22px;
+      left: 22px;
+      z-index: 2;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      border: 1px solid rgba(225, 211, 191, 0.9);
+      border-radius: 8px;
+      padding: 18px;
+      background: rgba(255, 253, 248, 0.9);
+      backdrop-filter: blur(12px);
+    }
+
+    .concept-3 .map-label b {
       display: block;
-      margin-top: 8px;
-      color: rgba(255, 253, 248, 0.66);
+      color: var(--ink);
+    }
+
+    .concept-3 .map-label span {
+      color: var(--muted);
       font-size: 14px;
-      line-height: 1.45;
     }
 
     .concept-3 .button--soft {
@@ -686,6 +861,10 @@
       .concept-3 .main-copy {
         inset: auto 24px 28px 24px;
       }
+
+      .concept-3 .bodega-section {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -787,12 +966,44 @@
         </div>
       </section>
       <aside class="side">
-        <a class="button" href="#">Enviar WhatsApp</a>
-        <a class="button button--soft" href="#">Ver Instagram</a>
-        <div class="side-card"><b>Bodega</b><span>Recolección de props con cita previa. Aquí después puede entrar el mapa.</span></div>
-        <div class="side-card"><b>¿Qué mandar?</b><span>Fechas, tipo de producción, props que viste en catálogo y referencias visuales.</span></div>
+        <div class="contact-actions">
+          <div class="contact-action">
+            <span>WhatsApp</span>
+            <b>+52 81 0000 0000</b>
+            <a class="button" href="#"><i class="icon">WA</i>Enviar WhatsApp</a>
+          </div>
+          <div class="contact-action">
+            <span>Instagram</span>
+            <b>@horadoradaprophouse</b>
+            <a class="button button--soft" href="#"><i class="icon">IG</i>Ver Instagram</a>
+          </div>
+        </div>
+        <div class="mini-contact-card">
+          <p>Envíanos tus datos y nos comunicaremos contigo.</p>
+          <form class="contact-form">
+            <label>Nombre<input placeholder="Tu nombre" /></label>
+            <label>WhatsApp<input placeholder="Número de WhatsApp" /></label>
+            <a class="button" href="#">Enviar</a>
+          </form>
+        </div>
       </aside>
     </main>
+    <section class="bodega-section">
+      <div>
+        <p class="eyebrow">Bodega</p>
+        <h2>Ubicación de bodega.</h2>
+        <p>Recolección de props con cita previa. Aquí podemos integrar el mapa real en cuanto tengas el link de Google Maps.</p>
+        <div class="bodega-details">
+          <div><span>Tipo de visita</span><strong>Pickup con cita</strong></div>
+          <div><span>Confirmación</span><strong>Por WhatsApp</strong></div>
+          <div><span>Mapa</span><strong>Google Maps</strong></div>
+        </div>
+      </div>
+      <div class="map-preview" aria-label="Mapa de ubicación de bodega">
+        <div class="map-pin">HD</div>
+        <div class="map-label"><b>Bodega Hora Dorada</b><span>Mapa integrado aquí</span></div>
+      </div>
+    </section>
   </section>
 
   <section id="concepto-4" class="mock concept-4">
