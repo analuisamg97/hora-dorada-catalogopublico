@@ -1,0 +1,600 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hora Dorada | Mockups PDF Cotización</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --paper: #fffdf8;
+      --cream: #f6eee3;
+      --ink: #17140f;
+      --muted: #71685f;
+      --gold: #b8842d;
+      --olive: #1f4a19;
+      --terracotta: #b65e34;
+      --line: #ded0bd;
+      font-family: "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+      color: var(--ink);
+      background: #ece4d8;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+    }
+
+    .mock-nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: center;
+      border-bottom: 1px solid var(--line);
+      padding: 14px 22px;
+      background: rgba(255, 253, 248, 0.92);
+      backdrop-filter: blur(16px);
+    }
+
+    .mock-nav strong {
+      color: var(--gold);
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .mock-nav nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .mock-nav a,
+    .mock-nav button {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 12px;
+      color: var(--muted);
+      background: var(--paper);
+      font: inherit;
+      font-size: 12px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .sheet-wrap {
+      display: grid;
+      gap: 36px;
+      justify-items: center;
+      padding: 34px 20px 70px;
+    }
+
+    .concept-label {
+      width: min(816px, 100%);
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .sheet {
+      width: 816px;
+      min-height: 1056px;
+      overflow: hidden;
+      border: 1px solid rgba(80, 57, 37, 0.15);
+      background: var(--paper);
+      box-shadow: 0 24px 70px rgba(48, 35, 22, 0.2);
+    }
+
+    .sheet + .sheet {
+      margin-top: -16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .sun {
+      width: 42px;
+      height: 42px;
+      flex: 0 0 auto;
+      background:
+        radial-gradient(circle at center, transparent 0 8px, var(--gold) 9px 11px, transparent 12px),
+        repeating-conic-gradient(from 0deg, var(--gold) 0 4deg, transparent 4deg 11deg);
+      mask: radial-gradient(circle at center, transparent 0 12px, #000 13px);
+    }
+
+    .brand strong {
+      display: block;
+      font-size: 21px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      line-height: 0.95;
+      text-transform: uppercase;
+    }
+
+    .brand span span {
+      display: block;
+      margin-top: 6px;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 0.42em;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-weight: 600;
+      letter-spacing: 0;
+    }
+
+    h1 {
+      font-size: 76px;
+      line-height: 0.88;
+    }
+
+    h2 {
+      font-size: 44px;
+      line-height: 0.94;
+    }
+
+    h3 {
+      font-size: 28px;
+      line-height: 1;
+    }
+
+    p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .eyebrow {
+      color: var(--gold);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .quote-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    .quote-table th {
+      border-bottom: 1px solid var(--line);
+      padding: 10px 0;
+      color: var(--muted);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-align: left;
+      text-transform: uppercase;
+    }
+
+    .quote-table td {
+      border-bottom: 1px solid #eadfce;
+      padding: 14px 0;
+      vertical-align: top;
+    }
+
+    .quote-table td:last-child,
+    .quote-table th:last-child {
+      text-align: right;
+    }
+
+    .totals {
+      display: grid;
+      gap: 8px;
+      margin-left: auto;
+      width: 270px;
+      font-size: 13px;
+    }
+
+    .totals div {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      color: var(--muted);
+    }
+
+    .totals strong {
+      color: var(--ink);
+    }
+
+    .totals .total {
+      border-top: 1px solid var(--line);
+      margin-top: 4px;
+      padding-top: 10px;
+      color: var(--ink);
+      font-size: 20px;
+      font-weight: 900;
+    }
+
+    .concept-1 {
+      display: grid;
+      grid-template-rows: 370px 1fr;
+    }
+
+    .concept-1__hero {
+      position: relative;
+      display: grid;
+      align-content: end;
+      padding: 44px;
+      color: var(--paper);
+      background:
+        linear-gradient(90deg, rgba(21, 16, 12, 0.78), rgba(21, 16, 12, 0.2)),
+        url("assets/home-hero-golden-room.png") center / cover;
+    }
+
+    .concept-1__hero .brand {
+      position: absolute;
+      top: 34px;
+      left: 38px;
+    }
+
+    .concept-1__hero p {
+      max-width: 430px;
+      margin-top: 16px;
+      color: rgba(255, 253, 248, 0.78);
+    }
+
+    .concept-1__content {
+      display: grid;
+      gap: 28px;
+      padding: 36px 44px 42px;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .meta-grid div {
+      border-right: 1px solid var(--line);
+      padding: 16px;
+      background: #fbf6ed;
+    }
+
+    .meta-grid div:last-child {
+      border-right: 0;
+    }
+
+    .meta-grid span {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .meta-grid strong {
+      font-size: 14px;
+    }
+
+    .note-box {
+      border-left: 3px solid var(--gold);
+      padding: 12px 16px;
+      background: rgba(184, 132, 45, 0.08);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .concept-2 {
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      padding: 42px;
+      background:
+        linear-gradient(90deg, rgba(255, 253, 248, 0.95), rgba(255, 253, 248, 0.9)),
+        url("assets/contact-hero-moodboard.jpg") center / cover;
+    }
+
+    .concept-2__top {
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+      align-items: flex-start;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 30px;
+    }
+
+    .concept-2__title {
+      margin-top: 42px;
+      max-width: 500px;
+    }
+
+    .concept-2__title p {
+      margin-top: 14px;
+    }
+
+    .summary-card {
+      align-self: start;
+      width: 260px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 20px;
+      background: rgba(255, 253, 248, 0.9);
+    }
+
+    .summary-card b {
+      display: block;
+      margin-top: 10px;
+      color: var(--olive);
+      font-size: 28px;
+    }
+
+    .concept-2__items {
+      display: grid;
+      gap: 14px;
+      margin-top: 34px;
+    }
+
+    .item-row {
+      display: grid;
+      grid-template-columns: 74px 1fr auto;
+      gap: 16px;
+      align-items: center;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      padding: 12px;
+      background: rgba(255, 253, 248, 0.82);
+    }
+
+    .thumb {
+      width: 74px;
+      height: 74px;
+      border-radius: 7px;
+      background:
+        linear-gradient(140deg, rgba(222, 205, 181, 0.78), rgba(180, 133, 69, 0.4)),
+        url("assets/contact-hero-moodboard.jpg") center / cover;
+    }
+
+    .item-row span {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .concept-2__footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+      align-items: end;
+      border-top: 1px solid var(--line);
+      margin-top: 36px;
+      padding-top: 24px;
+    }
+
+    .concept-3 {
+      display: grid;
+      grid-template-columns: 250px 1fr;
+      min-height: 1056px;
+      background: var(--paper);
+    }
+
+    .concept-3__side {
+      display: grid;
+      align-content: space-between;
+      padding: 34px 28px;
+      color: var(--paper);
+      background: #18130f;
+    }
+
+    .concept-3__side p {
+      color: rgba(255, 253, 248, 0.7);
+      font-size: 13px;
+    }
+
+    .concept-3__side .eyebrow {
+      color: #d3a85e;
+    }
+
+    .concept-3__main {
+      display: grid;
+      grid-template-rows: auto auto 1fr auto;
+      gap: 28px;
+      padding: 38px;
+    }
+
+    .concept-3__client {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      border: 1px solid var(--line);
+      padding: 18px;
+      background: #fbf6ed;
+    }
+
+    .concept-3__client span {
+      display: block;
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .terms {
+      display: grid;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.45;
+    }
+
+    @media print {
+      .mock-nav,
+      .concept-label {
+        display: none;
+      }
+
+      body {
+        background: white;
+      }
+
+      .sheet-wrap {
+        display: block;
+        padding: 0;
+      }
+
+      .sheet {
+        width: auto;
+        min-height: 0;
+        border: 0;
+        box-shadow: none;
+        page-break-after: always;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="mock-nav">
+    <strong>Mockups PDF Cotización</strong>
+    <nav>
+      <a href="#concepto-1">1 Editorial</a>
+      <a href="#concepto-2">2 Claro</a>
+      <a href="#concepto-3">3 Formal</a>
+      <button type="button" onclick="window.print()">Probar PDF</button>
+    </nav>
+  </div>
+
+  <main class="sheet-wrap">
+    <p id="concepto-1" class="concept-label">Concepto 1 · Editorial / premium</p>
+    <section class="sheet concept-1">
+      <div class="concept-1__hero">
+        <div class="brand">
+          <i class="sun"></i>
+          <span><strong>Hora Dorada</strong><span>Prop House</span></span>
+        </div>
+        <p class="eyebrow">Cotización estimada</p>
+        <h1>Colección curada para contar historias.</h1>
+        <p>Props seleccionados para una producción con atmósfera cálida, objetos con historia y presencia editorial.</p>
+      </div>
+      <div class="concept-1__content">
+        <div class="meta-grid">
+          <div><span>Cliente</span><strong>Ana Martínez</strong></div>
+          <div><span>Salida</span><strong>06 Jun 2026</strong></div>
+          <div><span>Regreso</span><strong>08 Jun 2026</strong></div>
+          <div><span>Días cobrados</span><strong>1 día</strong></div>
+        </div>
+        <table class="quote-table">
+          <thead><tr><th>Prop</th><th>Código</th><th>Cantidad</th><th>Renta</th><th>Importe</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Sillón cuero vintage</strong><br><span>Decoración</span></td><td>MO-014</td><td>1</td><td>$300</td><td>$300</td></tr>
+            <tr><td><strong>Canasta grande natural</strong><br><span>Arte / textura</span></td><td>DE-002</td><td>1</td><td>$50</td><td>$50</td></tr>
+            <tr><td><strong>Maceta color blanco</strong><br><span>Accesorio</span></td><td>DE-009</td><td>1</td><td>$70</td><td>$70</td></tr>
+          </tbody>
+        </table>
+        <div class="totals">
+          <div><span>Subtotal</span><strong>$420 MXN</strong></div>
+          <div><span>IVA 16%</span><strong>$67 MXN</strong></div>
+          <div><span>Anticipo sugerido</span><strong>$97 MXN</strong></div>
+          <div class="total"><span>Total estimado</span><strong>$487 MXN</strong></div>
+        </div>
+        <p class="note-box">El día de salida y el día de regreso no se cobran por práctica de la industria. Cotización sujeta a disponibilidad final y confirmación por WhatsApp.</p>
+      </div>
+    </section>
+
+    <p id="concepto-2" class="concept-label">Concepto 2 · Claro / una página para WhatsApp</p>
+    <section class="sheet concept-2">
+      <div class="concept-2__top">
+        <div class="brand">
+          <i class="sun"></i>
+          <span><strong>Hora Dorada</strong><span>Prop House</span></span>
+        </div>
+        <p class="eyebrow">Solicitud HD-026</p>
+      </div>
+      <div class="concept-2__title">
+        <p class="eyebrow">Cotización para Ana Martínez</p>
+        <h1>Props seleccionados.</h1>
+        <p>Resumen estimado para revisar por WhatsApp antes de confirmar renta, anticipo y recolección.</p>
+      </div>
+      <div class="concept-2__items">
+        <div class="item-row"><div class="thumb"></div><div><strong>Sillón cuero vintage</strong><span>MO-014 · Decoración · $300 / día</span></div><b>$300</b></div>
+        <div class="item-row"><div class="thumb"></div><div><strong>Canasta grande natural</strong><span>DE-002 · Textura · $50 / día</span></div><b>$50</b></div>
+        <div class="item-row"><div class="thumb"></div><div><strong>Maceta color blanco</strong><span>DE-009 · Accesorio · $70 / día</span></div><b>$70</b></div>
+      </div>
+      <div class="concept-2__footer">
+        <div class="summary-card">
+          <span class="eyebrow">Total estimado</span>
+          <b>$487 MXN</b>
+          <p>Incluye IVA. No incluye logística, daños ni cargos adicionales.</p>
+        </div>
+        <div class="totals">
+          <div><span>Fechas</span><strong>06 Jun - 08 Jun</strong></div>
+          <div><span>Días cobrados</span><strong>1 día</strong></div>
+          <div><span>Anticipo sugerido</span><strong>$97 MXN</strong></div>
+          <div><span>WhatsApp</span><strong>81 1716 0541</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <p id="concepto-3" class="concept-label">Concepto 3 · Formal / operativo premium</p>
+    <section class="sheet concept-3">
+      <aside class="concept-3__side">
+        <div class="brand">
+          <i class="sun"></i>
+          <span><strong>Hora Dorada</strong><span>Prop House</span></span>
+        </div>
+        <div>
+          <p class="eyebrow">Cotización estimada</p>
+          <h2>HD-026</h2>
+          <p>Documento para seguimiento interno y confirmación con cliente.</p>
+        </div>
+        <p>WhatsApp 81 1716 0541<br>@horadoradaprophouse</p>
+      </aside>
+      <section class="concept-3__main">
+        <div>
+          <p class="eyebrow">Cliente</p>
+          <h1>Ana Martínez</h1>
+        </div>
+        <div class="concept-3__client">
+          <div><span>WhatsApp</span><strong>81 0000 0000</strong></div>
+          <div><span>Fechas</span><strong>06 Jun - 08 Jun 2026</strong></div>
+          <div><span>Días cobrados</span><strong>1 día</strong></div>
+          <div><span>Notas</span><strong>Producción editorial interior.</strong></div>
+        </div>
+        <table class="quote-table">
+          <thead><tr><th>Prop</th><th>Código</th><th>Renta x día</th><th>Importe</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Sillón cuero vintage</strong></td><td>MO-014</td><td>$300</td><td>$300</td></tr>
+            <tr><td><strong>Canasta grande natural</strong></td><td>DE-002</td><td>$50</td><td>$50</td></tr>
+            <tr><td><strong>Maceta color blanco</strong></td><td>DE-009</td><td>$70</td><td>$70</td></tr>
+          </tbody>
+        </table>
+        <div class="totals">
+          <div><span>Subtotal</span><strong>$420 MXN</strong></div>
+          <div><span>IVA 16%</span><strong>$67 MXN</strong></div>
+          <div class="total"><span>Total</span><strong>$487 MXN</strong></div>
+        </div>
+        <div class="terms">
+          <strong>Notas</strong>
+          <span>Esta cotización es estimada y no aparta inventario hasta confirmación. Props sujetos a disponibilidad, estado físico y condiciones de renta. El día de salida y regreso no se cobran por práctica de la industria.</span>
+        </div>
+      </section>
+    </section>
+  </main>
+</body>
+</html>
