@@ -1,0 +1,692 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hora Dorada | Home Scroll Mockups</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --paper: #fffdf8;
+      --cream: #f6eee3;
+      --ink: #17140f;
+      --muted: #71685f;
+      --gold: #b8842d;
+      --olive: #1f4a19;
+      --terracotta: #b65e34;
+      --line: #ded0bd;
+      --shadow: 0 24px 70px rgba(48, 35, 22, 0.18);
+      color: var(--ink);
+      font-family: "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+      background: var(--paper);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-weight: 600;
+      letter-spacing: 0;
+    }
+
+    h1 {
+      font-size: clamp(64px, 8.4vw, 136px);
+      line-height: 0.86;
+    }
+
+    h2 {
+      font-size: clamp(48px, 6vw, 92px);
+      line-height: 0.9;
+    }
+
+    h3 {
+      font-size: clamp(32px, 4vw, 56px);
+      line-height: 0.94;
+    }
+
+    p {
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(16px, 1.35vw, 21px);
+      line-height: 1.46;
+    }
+
+    .mock-nav {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      border-bottom: 1px solid var(--line);
+      padding: 14px 24px;
+      background: rgba(255, 253, 248, 0.92);
+      backdrop-filter: blur(18px);
+    }
+
+    .mock-nav strong {
+      color: var(--gold);
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .mock-nav nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+
+    .mock-nav a {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 12px;
+      color: var(--muted);
+      background: rgba(255, 253, 248, 0.82);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .mock {
+      border-bottom: 1px solid var(--line);
+      background: var(--paper);
+    }
+
+    .topbar {
+      position: sticky;
+      top: 45px;
+      z-index: 20;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 26px;
+      min-height: 96px;
+      border-bottom: 1px solid rgba(222, 208, 189, 0.78);
+      padding: 17px 34px;
+      background: rgba(255, 253, 248, 0.94);
+      backdrop-filter: blur(18px);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .sun {
+      width: 58px;
+      height: 58px;
+      flex: 0 0 auto;
+      background:
+        radial-gradient(circle at center, transparent 0 11px, var(--gold) 12px 14px, transparent 15px),
+        repeating-conic-gradient(from 0deg, var(--gold) 0 4deg, transparent 4deg 11deg);
+      mask: radial-gradient(circle at center, transparent 0 15px, #000 16px);
+    }
+
+    .brand strong {
+      display: block;
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      line-height: 0.94;
+      text-transform: uppercase;
+    }
+
+    .brand span span {
+      display: block;
+      margin-top: 7px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.42em;
+      text-transform: uppercase;
+    }
+
+    .topbar nav,
+    .topbar__actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    .topbar__actions {
+      justify-content: flex-end;
+      gap: 18px;
+    }
+
+    .eyebrow {
+      color: var(--gold);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 64px;
+      border: 0;
+      border-radius: 9px;
+      padding: 0 32px;
+      color: var(--paper);
+      background: var(--olive);
+      font-size: 18px;
+      font-weight: 850;
+      box-shadow: 0 12px 30px rgba(30, 74, 24, 0.18);
+    }
+
+    .button--secondary {
+      color: var(--olive);
+      background: #eef5eb;
+      box-shadow: none;
+    }
+
+    .hero {
+      position: relative;
+      display: grid;
+      min-height: calc(100vh - 96px);
+      align-content: center;
+      overflow: hidden;
+      padding: clamp(44px, 7vw, 96px);
+      color: var(--paper);
+      background:
+        linear-gradient(90deg, rgba(24, 18, 13, 0.72), rgba(24, 18, 13, 0.18) 62%, rgba(24, 18, 13, 0.52)),
+        url("assets/home-hero-golden-room.png") center / cover;
+    }
+
+    .hero__content {
+      max-width: 860px;
+    }
+
+    .hero p:not(.eyebrow) {
+      max-width: 590px;
+      margin-top: 24px;
+      color: rgba(255, 253, 248, 0.82);
+    }
+
+    .hero__note {
+      position: absolute;
+      right: 28px;
+      bottom: 26px;
+      max-width: 320px;
+      border: 1px solid rgba(255, 253, 248, 0.28);
+      border-radius: 8px;
+      padding: 16px;
+      background: rgba(0, 0, 0, 0.24);
+      backdrop-filter: blur(14px);
+    }
+
+    .hero__note b {
+      display: block;
+      margin-bottom: 7px;
+      color: #e8c06d;
+      font-size: 12px;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .hero__note span {
+      color: rgba(255, 253, 248, 0.78);
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    .section {
+      padding: clamp(54px, 7vw, 96px) clamp(28px, 5vw, 70px);
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(220px, 0.35fr) minmax(0, 1fr);
+      gap: 38px;
+      align-items: end;
+      margin-bottom: clamp(28px, 4vw, 54px);
+    }
+
+    .section-head p:not(.eyebrow) {
+      max-width: 620px;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(34px, 4vw, 58px);
+      line-height: 0.98;
+    }
+
+    .lookbook-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-auto-rows: 78px;
+      gap: 14px;
+    }
+
+    .look {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background:
+        linear-gradient(140deg, rgba(219, 200, 174, 0.7), rgba(122, 82, 46, 0.18)),
+        url("assets/contact-hero-moodboard.jpg") center / cover;
+      box-shadow: 0 16px 46px rgba(48, 35, 22, 0.09);
+    }
+
+    .look::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 36%, rgba(25, 19, 14, 0.62));
+    }
+
+    .look__caption {
+      position: absolute;
+      right: 18px;
+      bottom: 18px;
+      left: 18px;
+      z-index: 1;
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: end;
+      color: var(--paper);
+    }
+
+    .look__caption strong {
+      display: block;
+      font-size: 22px;
+      line-height: 1.05;
+    }
+
+    .look__caption span {
+      color: rgba(255, 253, 248, 0.72);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .look--a {
+      grid-column: span 5;
+      grid-row: span 6;
+      background-image:
+        linear-gradient(140deg, rgba(219, 200, 174, 0.35), rgba(122, 82, 46, 0.18)),
+        url("assets/home-hero-golden-room.png");
+    }
+
+    .look--b {
+      grid-column: span 3;
+      grid-row: span 3;
+      background-position: 32% 50%;
+    }
+
+    .look--c {
+      grid-column: span 4;
+      grid-row: span 4;
+      background-image:
+        linear-gradient(140deg, rgba(31, 74, 25, 0.15), rgba(246, 238, 227, 0.12)),
+        url("assets/contact-hero-moodboard.jpg");
+      background-position: 62% 18%;
+    }
+
+    .look--d {
+      grid-column: span 3;
+      grid-row: span 3;
+      background: linear-gradient(135deg, #efe1ce, #bd8a45);
+    }
+
+    .look--e {
+      grid-column: span 4;
+      grid-row: span 2;
+      background: #1f4a19;
+    }
+
+    .process {
+      background: linear-gradient(180deg, #fffdf8, #f7efe4);
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .step {
+      display: grid;
+      min-height: 280px;
+      align-content: space-between;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 26px;
+      background: rgba(255, 253, 248, 0.86);
+      box-shadow: 0 18px 54px rgba(48, 35, 22, 0.07);
+    }
+
+    .step i {
+      display: grid;
+      place-items: center;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      color: var(--paper);
+      background: var(--olive);
+      font-style: normal;
+      font-weight: 900;
+    }
+
+    .step h3 {
+      margin-top: 42px;
+    }
+
+    .step p {
+      margin-top: 14px;
+      font-size: 15px;
+    }
+
+    .concept-2 .lookbook-grid {
+      grid-auto-rows: 92px;
+    }
+
+    .concept-2 .look {
+      border-radius: 0;
+    }
+
+    .concept-2 .look--a {
+      grid-column: span 7;
+      grid-row: span 5;
+    }
+
+    .concept-2 .look--b {
+      grid-column: span 5;
+      grid-row: span 3;
+    }
+
+    .concept-2 .look--c {
+      grid-column: span 3;
+      grid-row: span 3;
+    }
+
+    .concept-2 .look--d {
+      grid-column: span 4;
+      grid-row: span 3;
+    }
+
+    .concept-2 .look--e {
+      grid-column: span 5;
+      grid-row: span 2;
+    }
+
+    .concept-2 .process {
+      color: var(--paper);
+      background: #17120d;
+    }
+
+    .concept-2 .process p,
+    .concept-2 .process .step p {
+      color: rgba(255, 253, 248, 0.72);
+    }
+
+    .concept-2 .step {
+      border-color: rgba(255, 253, 248, 0.16);
+      background: rgba(255, 253, 248, 0.08);
+      box-shadow: none;
+    }
+
+    .concept-2 .step i {
+      color: var(--ink);
+      background: #e8c06d;
+    }
+
+    .concept-3 .lookbook-grid {
+      display: block;
+      column-count: 3;
+      column-gap: 14px;
+    }
+
+    .concept-3 .look {
+      display: block;
+      min-height: 360px;
+      margin-bottom: 14px;
+      break-inside: avoid;
+    }
+
+    .concept-3 .look--a {
+      min-height: 620px;
+    }
+
+    .concept-3 .look--c {
+      min-height: 480px;
+    }
+
+    .concept-3 .look--e {
+      min-height: 260px;
+    }
+
+    @media (max-width: 980px) {
+      .topbar,
+      .section-head,
+      .steps {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar nav,
+      .topbar__actions {
+        justify-content: flex-start;
+        flex-wrap: wrap;
+      }
+
+      .lookbook-grid,
+      .concept-2 .lookbook-grid {
+        grid-template-columns: 1fr;
+        grid-auto-rows: auto;
+      }
+
+      .look,
+      .look--a,
+      .look--b,
+      .look--c,
+      .look--d,
+      .look--e,
+      .concept-2 .look--a,
+      .concept-2 .look--b,
+      .concept-2 .look--c,
+      .concept-2 .look--d,
+      .concept-2 .look--e {
+        grid-column: auto;
+        grid-row: auto;
+        min-height: 360px;
+      }
+
+      .concept-3 .lookbook-grid {
+        column-count: 1;
+      }
+
+      .hero__note {
+        position: static;
+        margin-top: 34px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="mock-nav">
+    <strong>Home Scroll Mockups</strong>
+    <nav>
+      <a href="#concepto-1">1 Lookbook cálido</a>
+      <a href="#concepto-2">2 Galería campaña</a>
+      <a href="#concepto-3">3 Revista vertical</a>
+    </nav>
+  </div>
+
+  <section id="concepto-1" class="mock concept-1">
+    <header class="topbar">
+      <a class="brand" href="#">
+        <i class="sun"></i>
+        <span><strong>Hora Dorada</strong><span>Prop House</span></span>
+      </a>
+      <nav><a>Inicio</a><a>Catálogo</a><a>Moodboard</a><a>Contacto</a></nav>
+      <div class="topbar__actions"><a>Cotización</a></div>
+    </header>
+    <main class="hero">
+      <div class="hero__content">
+        <p class="eyebrow">Concepto 1 · Lookbook cálido</p>
+        <h1>Colección curada para contar historias.</h1>
+        <p>Renta de props para producciones que buscan atmósfera, carácter e intención.</p>
+        <div class="button-row">
+          <a class="button">Explorar catálogo</a>
+          <a class="button button--secondary">Cotizar con ayuda</a>
+        </div>
+      </div>
+      <div class="hero__note"><b>Selección editorial</b><span>Props elegidos por dirección de arte para cámara, no para showroom.</span></div>
+    </main>
+    <section class="section">
+      <div class="section-head">
+        <p class="eyebrow">Lookbook</p>
+        <p>Sets que enseñan cómo se sienten las piezas juntas antes de cotizarlas.</p>
+      </div>
+      <div class="lookbook-grid">
+        <article class="look look--a"><div class="look__caption"><strong>Sala cálida con objetos de época</strong><span>Living set</span></div></article>
+        <article class="look look--b"><div class="look__caption"><strong>Texturas naturales</strong><span>Detalles</span></div></article>
+        <article class="look look--c"><div class="look__caption"><strong>Moodboard de producción</strong><span>Pre-set</span></div></article>
+        <article class="look look--d"><div class="look__caption"><strong>Paleta dorada</strong><span>Color</span></div></article>
+        <article class="look look--e"><div class="look__caption"><strong>Dirección de arte</strong><span>Curaduría</span></div></article>
+      </div>
+    </section>
+    <section class="section process">
+      <div class="section-head">
+        <p class="eyebrow">Cómo funciona</p>
+        <p>Un flujo simple para pasar de inspiración a cotización sin perder el mood.</p>
+      </div>
+      <div class="steps">
+        <article class="step"><div><i>1</i><h3>Explora props.</h3><p>Busca por categoría, nombre o código y arma una selección visual.</p></div></article>
+        <article class="step"><div><i>2</i><h3>Arma moodboard.</h3><p>Guarda piezas para verlas juntas antes de llevarlas a cotización.</p></div></article>
+        <article class="step"><div><i>3</i><h3>Solicita cotización.</h3><p>Revisamos disponibilidad, fechas y seguimiento por WhatsApp.</p></div></article>
+      </div>
+    </section>
+  </section>
+
+  <section id="concepto-2" class="mock concept-2">
+    <header class="topbar">
+      <a class="brand" href="#">
+        <i class="sun"></i>
+        <span><strong>Hora Dorada</strong><span>Prop House</span></span>
+      </a>
+      <nav><a>Inicio</a><a>Catálogo</a><a>Moodboard</a><a>Contacto</a></nav>
+      <div class="topbar__actions"><a>Cotización</a></div>
+    </header>
+    <main class="hero">
+      <div class="hero__content">
+        <p class="eyebrow">Concepto 2 · Galería campaña</p>
+        <h1>Props que hacen que la escena respire.</h1>
+        <p>Una entrada más dramática y visual, seguida por una galería grande tipo campaña.</p>
+        <div class="button-row">
+          <a class="button">Ver catálogo</a>
+          <a class="button button--secondary">Crear moodboard</a>
+        </div>
+      </div>
+    </main>
+    <section class="section">
+      <div class="section-head">
+        <p class="eyebrow">Sets curados</p>
+        <p>Una galería más grande, casi de campaña, para vender estatus visual.</p>
+      </div>
+      <div class="lookbook-grid">
+        <article class="look look--a"><div class="look__caption"><strong>Escena 01</strong><span>Editorial interior</span></div></article>
+        <article class="look look--b"><div class="look__caption"><strong>Escena 02</strong><span>Vintage</span></div></article>
+        <article class="look look--c"><div class="look__caption"><strong>Escena 03</strong><span>Textura</span></div></article>
+        <article class="look look--d"><div class="look__caption"><strong>Escena 04</strong><span>Objeto</span></div></article>
+        <article class="look look--e"><div class="look__caption"><strong>Escena 05</strong><span>Atmósfera</span></div></article>
+      </div>
+    </section>
+    <section class="section process">
+      <div class="section-head">
+        <p class="eyebrow">Proceso</p>
+        <p>De una referencia visual a una solicitud lista para seguimiento.</p>
+      </div>
+      <div class="steps">
+        <article class="step"><div><i>1</i><h3>Selecciona.</h3><p>Agrega props desde catálogo o desde tu moodboard.</p></div></article>
+        <article class="step"><div><i>2</i><h3>Revisa.</h3><p>Fechas, días cobrados, disponibilidad y total estimado.</p></div></article>
+        <article class="step"><div><i>3</i><h3>Confirma.</h3><p>Enviamos la solicitud y seguimos por WhatsApp.</p></div></article>
+      </div>
+    </section>
+  </section>
+
+  <section id="concepto-3" class="mock concept-3">
+    <header class="topbar">
+      <a class="brand" href="#">
+        <i class="sun"></i>
+        <span><strong>Hora Dorada</strong><span>Prop House</span></span>
+      </a>
+      <nav><a>Inicio</a><a>Catálogo</a><a>Moodboard</a><a>Contacto</a></nav>
+      <div class="topbar__actions"><a>Cotización</a></div>
+    </header>
+    <main class="hero">
+      <div class="hero__content">
+        <p class="eyebrow">Concepto 3 · Revista vertical</p>
+        <h1>Objetos con historia para escenas con intención.</h1>
+        <p>La opción más editorial: se siente como revista, con scroll lento y más aire entre fotos.</p>
+        <div class="button-row">
+          <a class="button">Explorar catálogo</a>
+          <a class="button button--secondary">Ver moodboard</a>
+        </div>
+      </div>
+    </main>
+    <section class="section">
+      <div class="section-head">
+        <p class="eyebrow">Look & feel</p>
+        <p>Inspiración vertical para mostrar sets y props como piezas de dirección de arte.</p>
+      </div>
+      <div class="lookbook-grid">
+        <article class="look look--a"><div class="look__caption"><strong>Sillón cuero, vinilos y luz cálida</strong><span>Set principal</span></div></article>
+        <article class="look look--b"><div class="look__caption"><strong>Materiales nobles</strong><span>Texturas</span></div></article>
+        <article class="look look--c"><div class="look__caption"><strong>Mesa de dirección de arte</strong><span>Preproducción</span></div></article>
+        <article class="look look--d"><div class="look__caption"><strong>Accentos dorados</strong><span>Detalle</span></div></article>
+        <article class="look look--e"><div class="look__caption"><strong>Color de escena</strong><span>Paleta</span></div></article>
+      </div>
+    </section>
+    <section class="section process">
+      <div class="section-head">
+        <p class="eyebrow">De idea a renta</p>
+        <p>Un cierre simple para guiar sin convertir la página en tutorial.</p>
+      </div>
+      <div class="steps">
+        <article class="step"><div><i>1</i><h3>Inspírate.</h3><p>Explora sets y piezas para definir el mood visual.</p></div></article>
+        <article class="step"><div><i>2</i><h3>Junta piezas.</h3><p>Guárdalas en moodboard o mándalas directo a cotización.</p></div></article>
+        <article class="step"><div><i>3</i><h3>Te damos seguimiento.</h3><p>Confirmamos disponibilidad, recolección y detalles por WhatsApp.</p></div></article>
+      </div>
+    </section>
+  </section>
+</body>
+</html>
