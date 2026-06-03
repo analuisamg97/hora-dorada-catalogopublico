@@ -3928,7 +3928,7 @@ textarea,
   padding: clamp(28px, 5vw, 68px);
   background:
     linear-gradient(90deg, rgba(255, 253, 248, 0.96) 0 50%, rgba(255, 253, 248, 0.28)),
-    url("https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1800&q=85") center / cover;
+    url("../assets/contact-hero-moodboard.jpg") center / cover;
 }
 
 .contact-landing__copy > p:not(.section-eyebrow) {
