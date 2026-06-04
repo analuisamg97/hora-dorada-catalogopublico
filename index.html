@@ -17,7 +17,7 @@
     body[data-active-page="cotizacion"] .page-view[data-page="cotizacion"] { display: block !important; }
     body[data-active-page="catalogo"] .page-view[data-page="catalogo"] { display: grid !important; }
   </style>
-  <link rel="stylesheet" href="src/styles.css?v=contact-title-up-1" />
+  <link rel="stylesheet" href="src/styles.css?v=contact-form-hero-1" />
 </head>
 <body class="quote-panel-closed" data-active-page="home">
   <script>
@@ -110,6 +110,14 @@
         <p class="section-eyebrow">Contacto</p>
         <h1>Hablemos del mood de tu producción.</h1>
         <p>Renta de props para producciones que buscan atmósfera, carácter e intención. Escríbenos y seguimos por WhatsApp.</p>
+        <form id="contactLeadForm" class="contact-lead-form">
+          <p class="contact-card__badge">Envíanos tus datos y nos comunicaremos contigo.</p>
+          <label>Nombre<input id="contactName" class="field" type="text" placeholder="Tu nombre" /></label>
+          <label>WhatsApp<input id="contactWhatsapp" class="field" type="tel" placeholder="Número de WhatsApp" /></label>
+          <textarea id="contactMessage" class="field contact-message-hidden" placeholder="Fechas, tipo de props o idea general"></textarea>
+          <button class="button button--primary" type="submit">Enviar</button>
+          <p id="contactStatus" class="form-status"></p>
+        </form>
       </div>
     </section>
 
@@ -132,15 +140,6 @@
           </a>
         </div>
       </div>
-
-      <form id="contactLeadForm" class="contact-lead-form">
-        <p class="contact-card__badge">Envíanos tus datos y nos comunicaremos contigo.</p>
-        <label>Nombre<input id="contactName" class="field" type="text" placeholder="Tu nombre" /></label>
-        <label>WhatsApp<input id="contactWhatsapp" class="field" type="tel" placeholder="Número de WhatsApp" /></label>
-        <textarea id="contactMessage" class="field contact-message-hidden" placeholder="Fechas, tipo de props o idea general"></textarea>
-        <button class="button button--primary" type="submit">Enviar</button>
-        <p id="contactStatus" class="form-status"></p>
-      </form>
     </aside>
 
     <section class="contact-bodega" aria-label="Ubicación de bodega">
@@ -498,6 +497,6 @@
     </form>
   </dialog>
 
-  <script type="module" src="src/app.js?v=contact-title-up-1"></script>
+  <script type="module" src="src/app.js?v=contact-form-hero-1"></script>
 </body>
 </html>
