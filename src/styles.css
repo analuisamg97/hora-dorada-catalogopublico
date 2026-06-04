@@ -5980,7 +5980,6 @@ body[data-active-page="cotizacion"] .layout {
   min-height: auto;
   height: auto;
   overflow: visible;
-  padding-top: 0;
   padding-bottom: clamp(32px, 4vw, 56px);
 }
 
