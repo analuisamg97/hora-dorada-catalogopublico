@@ -5537,6 +5537,87 @@ textarea,
   background: #eef5eb;
 }
 
+/* Contact full-bleed: editorial background behind the header, with clear action cards. */
+@media (min-width: 901px) {
+  body[data-active-page="contacto"] {
+    background: #16120e;
+  }
+
+  body[data-active-page="contacto"] .topbar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    border-bottom: 0;
+    background: linear-gradient(180deg, rgba(18, 14, 10, 0.58), rgba(18, 14, 10, 0));
+    backdrop-filter: none;
+  }
+
+  body[data-active-page="contacto"] .topbar__inner {
+    min-height: var(--desktop-header-height);
+  }
+
+  body[data-active-page="contacto"] .brand__copy strong,
+  body[data-active-page="contacto"] .brand__copy span,
+  body[data-active-page="contacto"] .main-nav__link,
+  body[data-active-page="contacto"] .header-action {
+    color: #fffdf8;
+  }
+
+  body[data-active-page="contacto"] .header-action svg,
+  body[data-active-page="contacto"] .icon-action--header svg {
+    stroke: #fffdf8;
+  }
+
+  body[data-active-page="contacto"] .icon-action--header {
+    color: #fffdf8;
+    background: rgba(255, 253, 248, 0.16);
+  }
+
+  body[data-active-page="contacto"] .app-shell {
+    background: #16120e;
+  }
+
+  body[data-active-page="contacto"] .layout {
+    width: 100%;
+    min-height: 100vh;
+    padding-top: 0;
+  }
+
+  body[data-active-page="contacto"] .contact-page {
+    grid-column: 1 / -1;
+    min-height: 100vh;
+  }
+
+  body[data-active-page="contacto"] .contact-landing {
+    min-height: 100vh;
+    border: 0;
+    border-radius: 0;
+  }
+
+  body[data-active-page="contacto"] .contact-landing__hero {
+    min-height: 100vh;
+    background:
+      linear-gradient(90deg, rgba(19, 15, 11, 0.62), rgba(19, 15, 11, 0.1) 58%, rgba(19, 15, 11, 0.46)),
+      linear-gradient(0deg, rgba(19, 15, 11, 0.48), rgba(19, 15, 11, 0) 46%),
+      url("../assets/contact-hero-moodboard.jpg") center 38% / cover;
+  }
+
+  body[data-active-page="contacto"] .contact-card {
+    padding-top: calc(var(--desktop-header-height) + clamp(34px, 5vw, 78px));
+    padding-bottom: clamp(36px, 5vw, 76px);
+  }
+
+  body[data-active-page="contacto"] .contact-landing__copy {
+    bottom: clamp(62px, 9vh, 122px);
+  }
+
+  body[data-active-page="contacto"] .contact-bodega {
+    padding-right: clamp(40px, 6vw, 94px);
+    padding-left: clamp(40px, 6vw, 94px);
+  }
+}
+
 /* Moodboard empty state: no collage columns until there are props to arrange. */
 .moodboard-grid.moodboard-grid--empty {
   display: grid;
