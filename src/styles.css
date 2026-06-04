@@ -5256,9 +5256,8 @@ textarea,
   border: 1px solid rgba(255, 253, 248, 0.28);
   border-radius: 10px;
   padding: 18px;
-  background: rgba(255, 253, 248, 0.62);
+  background: rgba(255, 253, 248, 0.42);
   box-shadow: 0 18px 46px rgba(0, 0, 0, 0.16);
-  backdrop-filter: blur(18px);
 }
 
 .contact-action-card > span {
@@ -5314,9 +5313,8 @@ textarea,
   border: 1px solid rgba(255, 253, 248, 0.26);
   border-radius: 14px;
   padding: 24px;
-  background: rgba(255, 253, 248, 0.62);
+  background: rgba(255, 253, 248, 0.42);
   box-shadow: 0 18px 54px rgba(0, 0, 0, 0.18);
-  backdrop-filter: blur(18px);
 }
 
 .contact-card__badge {
@@ -5637,9 +5635,8 @@ textarea,
     gap: 12px;
     border-color: rgba(255, 253, 248, 0.28);
     padding: 18px;
-    background: rgba(255, 253, 248, 0.6);
+    background: rgba(255, 253, 248, 0.42);
     box-shadow: 0 18px 54px rgba(0, 0, 0, 0.16);
-    backdrop-filter: blur(18px);
   }
 
   body[data-active-page="contacto"] .contact-landing__copy .contact-card__badge,
