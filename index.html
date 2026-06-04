@@ -13,10 +13,11 @@
     .page-view { display: none !important; }
     body[data-active-page="home"] .page-view[data-page="home"],
     body[data-active-page="contacto"] .page-view[data-page="contacto"],
-    body[data-active-page="moodboard"] .page-view[data-page="moodboard"] { display: block !important; }
+    body[data-active-page="moodboard"] .page-view[data-page="moodboard"],
+    body[data-active-page="cotizacion"] .page-view[data-page="cotizacion"] { display: block !important; }
     body[data-active-page="catalogo"] .page-view[data-page="catalogo"] { display: grid !important; }
   </style>
-  <link rel="stylesheet" href="src/styles.css?v=contact-moodboard-polish-1" />
+  <link rel="stylesheet" href="src/styles.css?v=quote-page-split-1" />
 </head>
 <body class="quote-panel-closed" data-active-page="home">
   <script>
@@ -26,6 +27,8 @@
         ? "contacto"
         : hash === "#moodboard"
           ? "moodboard"
+          : hash === "#cotizacion"
+          ? "cotizacion"
           : hash === "#catalogo" || hash.startsWith("#producto/")
           ? "catalogo"
           : "home";
@@ -182,6 +185,81 @@
         <strong>Props guardados</strong>
       </div>
       <div id="moodboardList" class="moodboard-list"></div>
+    </aside>
+  </div>
+</section>
+
+<section id="quotePage" class="page-view quote-page" data-page="cotizacion">
+  <div class="quote-page__intro">
+    <p class="section-eyebrow">Cotización</p>
+    <p>Revisa props, fechas y total estimado antes de enviar tu solicitud.</p>
+  </div>
+
+  <div class="quote-page__grid">
+    <section class="quote-page__content" aria-label="Props seleccionados para cotización">
+      <div class="quote-page__content-head">
+        <div>
+          <p class="section-eyebrow">Revisión de props</p>
+          <h1>Seleccionados para esta escena.</h1>
+        </div>
+        <p>Los props no disponibles aparecen en gris y no se incluyen en el total final.</p>
+      </div>
+
+      <div id="quotePageItems" class="quote-page-items" aria-live="polite"></div>
+
+      <form id="quotePageRequestForm" class="quote-page-form">
+        <h2>Enviar solicitud</h2>
+        <label>
+          Nombre
+          <input id="quotePageClientName" class="field" name="name" type="text" placeholder="Nombre del cliente" />
+        </label>
+        <label>
+          WhatsApp
+          <input id="quotePageClientWhatsapp" class="field" name="whatsapp" type="tel" placeholder="Número de WhatsApp" />
+        </label>
+        <label class="quote-page-form__wide">
+          Notas
+          <textarea id="quotePageClientNotes" class="field" name="notes" placeholder="Producción, locación, dudas o comentarios"></textarea>
+        </label>
+        <div class="quote-page-form__actions quote-page-form__wide">
+          <button class="button button--primary" type="submit">Enviar solicitud</button>
+          <button id="quotePageShareWhatsApp" class="button button--secondary" type="button">Compartir por WhatsApp</button>
+        </div>
+        <p id="quotePageRequestStatus" class="form-status quote-page-form__wide"></p>
+      </form>
+    </section>
+
+    <aside class="quote-page-summary" aria-label="Resumen de cotización">
+      <p class="section-eyebrow">Solicitud HD-2026</p>
+      <h2>Cotización estimada.</h2>
+      <p>Este panel funciona como portada viva: fechas, disponibilidad y total siempre visibles.</p>
+
+      <div class="quote-page-dates">
+        <label>
+          <span>Salida</span>
+          <input id="quotePageStartDate" class="field" type="date" />
+        </label>
+        <label>
+          <span>Regreso</span>
+          <input id="quotePageEndDate" class="field" type="date" />
+        </label>
+      </div>
+
+      <div class="quote-page-metrics">
+        <div><span>Días cobrados</span><strong id="quotePageDays">1 día</strong></div>
+        <div><span>Props válidos</span><strong id="quotePageAvailableCount">0 disponibles</strong></div>
+        <div><span>No disponibles</span><strong id="quotePageUnavailableCount">0 excluidos</strong></div>
+      </div>
+
+      <div class="quote-page-total">
+        <div><span>Subtotal</span><strong id="quotePageSubtotal">$0 MXN</strong></div>
+        <div><span>IVA 16%</span><strong id="quotePageIva">$0 MXN</strong></div>
+        <div><span>Anticipo sugerido</span><strong id="quotePageDeposit">$0 MXN</strong></div>
+        <div class="quote-page-total__main"><span>Total estimado</span><strong id="quotePageTotal">$0 MXN</strong></div>
+      </div>
+
+      <p id="quotePageAvailability" class="quote-page-note"></p>
+      <a class="button button--secondary quote-page-summary__link" href="#catalogo">Seguir editando</a>
     </aside>
   </div>
 </section>
@@ -418,6 +496,6 @@
     </form>
   </dialog>
 
-  <script type="module" src="src/app.js?v=catalog-scroll-1"></script>
+  <script type="module" src="src/app.js?v=quote-page-split-1"></script>
 </body>
 </html>

@@ -1628,6 +1628,21 @@ body[data-active-page="moodboard"] .main-nav__link[data-nav-page="moodboard"] {
   font-weight: 650;
 }
 
+body[data-active-page="cotizacion"] .header-action {
+  color: var(--gold);
+  font-weight: 600;
+}
+
+body[data-active-page="cotizacion"] .header-action::after {
+  position: absolute;
+  right: 0;
+  bottom: -12px;
+  left: 0;
+  height: 2px;
+  background: #bd7b16;
+  content: "";
+}
+
 .icon-action--header {
   width: 34px;
   height: 34px;
@@ -5552,4 +5567,394 @@ textarea,
   width: auto;
   min-width: 210px;
   margin-top: 8px;
+}
+
+/* Quote page: split editorial summary with operational prop review. */
+.quote-page {
+  grid-column: 1 / -1;
+  padding: clamp(24px, 4vw, 54px) 0 clamp(36px, 5vw, 72px);
+}
+
+.quote-page__intro {
+  display: grid;
+  grid-template-columns: minmax(190px, 0.24fr) minmax(0, 1fr);
+  gap: clamp(18px, 3vw, 34px);
+  align-items: end;
+  margin-bottom: clamp(22px, 3vw, 34px);
+}
+
+.quote-page__intro > p:last-child {
+  max-width: 760px;
+  color: var(--charcoal);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(34px, 3.8vw, 58px);
+  line-height: 0.98;
+}
+
+.quote-page__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(340px, 420px);
+  gap: 22px;
+  align-items: start;
+}
+
+.quote-page__content {
+  display: grid;
+  gap: 18px;
+}
+
+.quote-page__content-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 22px;
+  align-items: end;
+}
+
+.quote-page__content-head h1 {
+  max-width: 760px;
+  margin: 8px 0 0;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(52px, 6vw, 92px);
+  font-weight: 600;
+  line-height: 0.9;
+  letter-spacing: 0;
+}
+
+.quote-page__content-head > p {
+  max-width: 310px;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 750;
+  line-height: 1.45;
+}
+
+.quote-page-items {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.quote-page-item {
+  display: grid;
+  grid-template-columns: 122px minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 12px;
+  background: rgba(255, 250, 241, 0.92);
+  box-shadow: 0 16px 42px rgba(48, 35, 22, 0.07);
+}
+
+.quote-page-item__photo {
+  display: grid;
+  place-items: center;
+  min-height: 116px;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background:
+    linear-gradient(140deg, rgba(220, 197, 164, 0.32), rgba(184, 132, 45, 0.22)),
+    linear-gradient(135deg, var(--photo-a), var(--photo-b));
+}
+
+.quote-page-item__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.quote-page-item__photo .prop-art {
+  width: 74%;
+  height: 74%;
+  color: rgba(55, 43, 34, 0.58);
+}
+
+.quote-page-item__copy {
+  min-width: 0;
+}
+
+.quote-page-item__copy span,
+.quote-page-metrics span,
+.quote-page-total span,
+.quote-page-dates span,
+.quote-page-form label {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.quote-page-item__copy strong {
+  display: block;
+  margin-top: 6px;
+  color: var(--charcoal);
+  font-size: 18px;
+  font-weight: 850;
+  line-height: 1.08;
+}
+
+.quote-page-item__copy em,
+.quote-page-item__copy small {
+  display: block;
+  margin-top: 7px;
+  color: var(--muted);
+  font-style: normal;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.quote-page-item__copy small {
+  color: var(--terracotta-dark);
+}
+
+.quote-page-item__price {
+  display: grid;
+  justify-items: end;
+  gap: 14px;
+}
+
+.quote-page-item__price b {
+  color: var(--olive);
+  font-size: 19px;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.quote-page-item__price button {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 50%;
+  color: var(--muted);
+  background: rgba(57, 77, 53, 0.08);
+  font-size: 24px;
+  line-height: 1;
+}
+
+.quote-page-item--unavailable {
+  opacity: 0.55;
+  filter: grayscale(0.45);
+}
+
+.quote-page-item--unavailable .quote-page-item__price b {
+  color: var(--muted);
+}
+
+.quote-page-summary {
+  position: sticky;
+  top: 108px;
+  display: grid;
+  gap: 18px;
+  border: 1px solid rgba(255, 250, 241, 0.2);
+  border-radius: var(--radius);
+  padding: 24px;
+  color: var(--paper);
+  background:
+    linear-gradient(180deg, rgba(23, 18, 13, 0.08), rgba(23, 18, 13, 0.86)),
+    url("../assets/contact-hero-moodboard.jpg") center / cover;
+  box-shadow: 0 24px 64px rgba(48, 35, 22, 0.16);
+}
+
+.quote-page-summary h2 {
+  margin: 0;
+  color: var(--paper);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(46px, 4.8vw, 76px);
+  font-weight: 600;
+  line-height: 0.9;
+}
+
+.quote-page-summary > p:not(.section-eyebrow),
+.quote-page-note {
+  color: rgba(255, 250, 241, 0.76);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.quote-page-summary .section-eyebrow {
+  color: #e8c06d;
+}
+
+.quote-page-dates,
+.quote-page-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.quote-page-dates label,
+.quote-page-metrics div {
+  border: 1px solid rgba(255, 250, 241, 0.22);
+  border-radius: var(--radius);
+  padding: 13px;
+  background: rgba(255, 250, 241, 0.1);
+}
+
+.quote-page-dates .field {
+  height: auto;
+  margin-top: 8px;
+  border-color: rgba(255, 250, 241, 0.24);
+  color: var(--paper);
+  background: rgba(255, 250, 241, 0.08);
+  font-size: 14px;
+  font-weight: 850;
+}
+
+.quote-page-dates span,
+.quote-page-metrics span,
+.quote-page-total span {
+  color: rgba(255, 250, 241, 0.68);
+}
+
+.quote-page-metrics strong {
+  display: block;
+  margin-top: 7px;
+  color: var(--paper);
+  font-size: 15px;
+}
+
+.quote-page-total {
+  display: grid;
+  gap: 10px;
+  border-top: 1px solid rgba(255, 250, 241, 0.22);
+  padding-top: 18px;
+}
+
+.quote-page-total div {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.quote-page-total strong {
+  color: var(--paper);
+  font-size: 15px;
+}
+
+.quote-page-total__main {
+  align-items: end;
+  margin-top: 4px;
+}
+
+.quote-page-total__main strong {
+  color: #e8c06d;
+  font-size: 28px;
+  font-weight: 900;
+}
+
+.quote-page-note {
+  border-left: 3px solid #e8c06d;
+  padding-left: 12px;
+}
+
+.quote-page-summary__link {
+  width: 100%;
+}
+
+.quote-page-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 24px;
+  background: rgba(255, 250, 241, 0.94);
+}
+
+.quote-page-form h2 {
+  grid-column: 1 / -1;
+  margin: 0;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 44px;
+  font-weight: 600;
+  line-height: 0.94;
+}
+
+.quote-page-form .field {
+  margin-top: 9px;
+}
+
+.quote-page-form textarea.field {
+  min-height: 118px;
+  resize: vertical;
+}
+
+.quote-page-form__wide {
+  grid-column: 1 / -1;
+}
+
+.quote-page-form__actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.quote-page-form__actions .button {
+  width: 100%;
+}
+
+.quote-page-empty {
+  grid-column: 1 / -1;
+  display: grid;
+  justify-items: center;
+  gap: 18px;
+  min-height: 360px;
+  border: 1px dashed var(--line);
+  border-radius: var(--radius);
+  padding: 46px 24px;
+  text-align: center;
+  background: rgba(255, 250, 241, 0.7);
+}
+
+.quote-page-empty span {
+  color: var(--gold);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.quote-page-empty strong {
+  max-width: 560px;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(38px, 4vw, 58px);
+  font-weight: 600;
+  line-height: 0.95;
+}
+
+@media (max-width: 1180px) {
+  .quote-page__grid,
+  .quote-page-items {
+    grid-template-columns: 1fr;
+  }
+
+  .quote-page-summary {
+    position: static;
+  }
+}
+
+@media (max-width: 760px) {
+  .quote-page__intro,
+  .quote-page-item,
+  .quote-page-form,
+  .quote-page-form__actions,
+  .quote-page-dates,
+  .quote-page-metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .quote-page__content-head {
+    display: grid;
+  }
+
+  .quote-page-item__price {
+    grid-template-columns: 1fr auto;
+    justify-items: start;
+    align-items: center;
+  }
 }

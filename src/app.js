@@ -81,6 +81,23 @@ const els = {
   total: document.querySelector("#total"),
   deposit: document.querySelector("#deposit"),
   reviewQuote: document.querySelector("#reviewQuote"),
+  quotePageItems: document.querySelector("#quotePageItems"),
+  quotePageStartDate: document.querySelector("#quotePageStartDate"),
+  quotePageEndDate: document.querySelector("#quotePageEndDate"),
+  quotePageDays: document.querySelector("#quotePageDays"),
+  quotePageAvailableCount: document.querySelector("#quotePageAvailableCount"),
+  quotePageUnavailableCount: document.querySelector("#quotePageUnavailableCount"),
+  quotePageSubtotal: document.querySelector("#quotePageSubtotal"),
+  quotePageIva: document.querySelector("#quotePageIva"),
+  quotePageDeposit: document.querySelector("#quotePageDeposit"),
+  quotePageTotal: document.querySelector("#quotePageTotal"),
+  quotePageAvailability: document.querySelector("#quotePageAvailability"),
+  quotePageRequestForm: document.querySelector("#quotePageRequestForm"),
+  quotePageClientName: document.querySelector("#quotePageClientName"),
+  quotePageClientWhatsapp: document.querySelector("#quotePageClientWhatsapp"),
+  quotePageClientNotes: document.querySelector("#quotePageClientNotes"),
+  quotePageRequestStatus: document.querySelector("#quotePageRequestStatus"),
+  quotePageShareWhatsApp: document.querySelector("#quotePageShareWhatsApp"),
   mobileSelected: document.querySelector("#mobileSelected"),
   mobileTotal: document.querySelector("#mobileTotal"),
   openCart: document.querySelector("#openCart"),
@@ -179,16 +196,42 @@ function bindEvents() {
     if (state.endDate < state.startDate) {
       state.endDate = state.startDate;
       els.endDate.value = state.endDate;
+      if (els.quotePageEndDate) els.quotePageEndDate.value = state.endDate;
     }
     saveDates();
     renderCart();
+    renderQuotePage();
   });
 
   els.endDate.addEventListener("change", (event) => {
     state.endDate = event.target.value < state.startDate ? state.startDate : event.target.value;
     els.endDate.value = state.endDate;
+    if (els.quotePageEndDate) els.quotePageEndDate.value = state.endDate;
     saveDates();
     renderCart();
+    renderQuotePage();
+  });
+
+  els.quotePageStartDate?.addEventListener("change", (event) => {
+    state.startDate = event.target.value;
+    if (state.endDate < state.startDate) {
+      state.endDate = state.startDate;
+      els.endDate.value = state.endDate;
+      els.quotePageEndDate.value = state.endDate;
+    }
+    els.startDate.value = state.startDate;
+    saveDates();
+    renderCart();
+    renderQuotePage();
+  });
+
+  els.quotePageEndDate?.addEventListener("change", (event) => {
+    state.endDate = event.target.value < state.startDate ? state.startDate : event.target.value;
+    els.endDate.value = state.endDate;
+    els.quotePageEndDate.value = state.endDate;
+    saveDates();
+    renderCart();
+    renderQuotePage();
   });
 
   document.addEventListener("click", (event) => {
@@ -237,18 +280,27 @@ function bindEvents() {
     }
   });
   els.openCart.addEventListener("click", () => toggleQuotePanel());
-  els.headerQuoteButton.addEventListener("click", () => toggleQuotePanel());
+  els.headerQuoteButton.addEventListener("click", () => {
+    if (state.activePage === "catalogo" && !document.body.classList.contains("product-route-active")) {
+      toggleQuotePanel();
+      return;
+    }
+
+    window.location.hash = "cotizacion";
+  });
   els.quoteCloseButton.addEventListener("click", () => setQuotePanelOpen(false));
 
   els.reviewQuote.addEventListener("click", () => {
-    renderReview();
+    renderQuotePage();
     els.quotePanel.classList.remove("quote--mobile-open");
-    els.quoteDialog.showModal();
+    window.location.hash = "cotizacion";
   });
 
   els.requestForm.addEventListener("submit", submitRequest);
+  els.quotePageRequestForm?.addEventListener("submit", submitRequest);
   els.contactLeadForm.addEventListener("submit", submitContactLead);
   els.shareWhatsApp.addEventListener("click", shareWhatsApp);
+  els.quotePageShareWhatsApp?.addEventListener("click", shareWhatsApp);
   els.successWhatsApp.addEventListener("click", shareWhatsApp);
   els.downloadPdf.addEventListener("click", () => window.print());
   els.moodboardToQuote?.addEventListener("click", sendMoodboardToQuote);
@@ -295,6 +347,8 @@ async function loadData() {
 function setDefaultDates() {
   els.startDate.value = state.startDate;
   els.endDate.value = state.endDate;
+  if (els.quotePageStartDate) els.quotePageStartDate.value = state.startDate;
+  if (els.quotePageEndDate) els.quotePageEndDate.value = state.endDate;
 }
 
 function setSource(label, connected) {
@@ -322,6 +376,7 @@ function renderAll() {
   renderCatalog();
   renderCart();
   renderMoodboard();
+  renderQuotePage();
 }
 
 function renderCatalog() {
@@ -414,6 +469,7 @@ function renderCart() {
   els.mobileSelected.textContent = `${quote.selected.length} ${quote.selected.length === 1 ? "prop seleccionado" : "props seleccionados"}`;
   els.mobileTotal.textContent = formatMoney(quote.total);
   els.quoteHeaderCount.textContent = quote.selected.length;
+  renderQuotePage();
 }
 
 function isMobileViewport() {
@@ -456,6 +512,12 @@ function renderRoute() {
 
   if (hash === "#moodboard") {
     setActivePage("moodboard");
+    return;
+  }
+
+  if (hash === "#cotizacion") {
+    setActivePage("cotizacion");
+    renderQuotePage();
     return;
   }
 
@@ -679,6 +741,64 @@ function renderReview() {
   els.requestStatus.textContent = "";
 }
 
+function renderQuotePage() {
+  if (!els.quotePageItems) return;
+
+  const quote = getQuote();
+  const selectedCount = quote.selected.length;
+  els.quotePageStartDate.value = state.startDate;
+  els.quotePageEndDate.value = state.endDate;
+  els.quotePageDays.textContent = `${quote.days} ${quote.days === 1 ? "día" : "días"}`;
+  els.quotePageAvailableCount.textContent = `${quote.available.length} ${quote.available.length === 1 ? "disponible" : "disponibles"}`;
+  els.quotePageUnavailableCount.textContent = `${quote.unavailable.length} ${quote.unavailable.length === 1 ? "excluido" : "excluidos"}`;
+  els.quotePageSubtotal.textContent = formatMoney(quote.subtotal);
+  els.quotePageIva.textContent = formatMoney(quote.iva);
+  els.quotePageDeposit.textContent = formatMoney(quote.deposit);
+  els.quotePageTotal.textContent = formatMoney(quote.total);
+
+  els.quotePageAvailability.textContent = quote.unavailable.length
+    ? getUnavailableMessage()
+    : selectedCount
+    ? "Todos los props seleccionados están disponibles para las fechas elegidas."
+    : "Agrega props desde catálogo o moodboard para armar tu cotización.";
+  els.quotePageAvailability.dataset.type = quote.unavailable.length ? "warning" : "info";
+
+  if (!selectedCount) {
+    els.quotePageItems.innerHTML = `
+      <div class="quote-page-empty">
+        <span>Cotización vacía</span>
+        <strong>Agrega props desde el catálogo para revisar fechas, disponibilidad y total estimado.</strong>
+        <a class="button button--secondary" href="#catalogo">Ir al catálogo</a>
+      </div>
+    `;
+    return;
+  }
+
+  els.quotePageItems.innerHTML = quote.selected.map((prop) => {
+    const unavailable = isPropUnavailable(prop.id, state.rentals, state.startDate, state.endDate);
+    const itemSubtotal = unavailable ? "$0 MXN" : formatMoney(prop.price * quote.days);
+    const status = unavailable ? "Rentado en estas fechas" : `${formatCompactMoney(prop.price)} / día`;
+
+    return `
+      <article class="quote-page-item ${unavailable ? "quote-page-item--unavailable" : ""}">
+        <div class="quote-page-item__photo" style="--photo-a: ${prop.colors?.[0] || "#ead8bd"}; --photo-b: ${prop.colors?.[1] || "#bd8d35"}">
+          ${renderPhoto(prop)}
+        </div>
+        <div class="quote-page-item__copy">
+          <span>${escapeHtml(prop.code)} · ${escapeHtml(prop.category || "Prop")}</span>
+          <strong>${escapeHtml(getCartDisplayName(prop.name))}</strong>
+          <em>${escapeHtml(status)}</em>
+          ${unavailable ? `<small>No se incluye en el total.</small>` : ""}
+        </div>
+        <div class="quote-page-item__price">
+          <b>${itemSubtotal}</b>
+          <button type="button" data-remove="${escapeHtml(prop.id)}" aria-label="Quitar ${escapeHtml(prop.name)} de cotización">×</button>
+        </div>
+      </article>
+    `;
+  }).join("");
+}
+
 function updateTotals(quote, prefix) {
   const map = prefix ? {
     subtotal: els.reviewSubtotal,
@@ -701,39 +821,43 @@ function updateTotals(quote, prefix) {
 async function submitRequest(event) {
   event.preventDefault();
   const quote = { ...getQuote(), startDate: state.startDate, endDate: state.endDate };
+  const isQuotePageForm = event.currentTarget === els.quotePageRequestForm;
   const client = {
-    name: els.clientName.value.trim(),
-    whatsapp: els.clientWhatsapp.value.trim(),
-    notes: els.clientNotes.value.trim()
+    name: (isQuotePageForm ? els.quotePageClientName : els.clientName).value.trim(),
+    whatsapp: (isQuotePageForm ? els.quotePageClientWhatsapp : els.clientWhatsapp).value.trim(),
+    notes: (isQuotePageForm ? els.quotePageClientNotes : els.clientNotes).value.trim()
   };
 
   if (!client.name || !client.whatsapp) {
-    showStatus("Agrega nombre y WhatsApp para enviar la solicitud.", "error");
+    showStatus("Agrega nombre y WhatsApp para enviar la solicitud.", "error", isQuotePageForm ? "quotePage" : "review");
     return;
   }
 
   if (!quote.available.length) {
-    showStatus("No hay props disponibles para enviar en esta cotización.", "error");
+    showStatus("No hay props disponibles para enviar en esta cotización.", "error", isQuotePageForm ? "quotePage" : "review");
     return;
   }
 
   if (state.config.dataMode !== "airtable") {
-    showSuccessScreen();
+    showSuccessScreen(isQuotePageForm);
     return;
   }
 
   try {
     await createQuoteRequest(state.config, quote, client);
-    showSuccessScreen();
+    showSuccessScreen(isQuotePageForm);
   } catch (error) {
-    showStatus(getFriendlyRequestError(error), "error");
+    showStatus(getFriendlyRequestError(error), "error", isQuotePageForm ? "quotePage" : "review");
   }
 }
 
-function showSuccessScreen() {
-  els.quoteDialog.close();
-  els.requestForm.reset();
+function showSuccessScreen(isQuotePageForm = false) {
+  if (els.quoteDialog.open) {
+    els.quoteDialog.close();
+  }
+  (isQuotePageForm ? els.quotePageRequestForm : els.requestForm).reset();
   els.requestStatus.textContent = "";
+  if (els.quotePageRequestStatus) els.quotePageRequestStatus.textContent = "";
   els.successDialog.showModal();
 }
 
@@ -824,9 +948,11 @@ function getFriendlyRequestError(error) {
   return "No pude enviar la solicitud. Revisa la configuración de Airtable e intenta de nuevo.";
 }
 
-function showStatus(message, type) {
-  els.requestStatus.textContent = message;
-  els.requestStatus.dataset.type = type;
+function showStatus(message, type, target = "review") {
+  const status = target === "quotePage" ? els.quotePageRequestStatus : els.requestStatus;
+  if (!status) return;
+  status.textContent = message;
+  status.dataset.type = type;
 }
 
 function getQuote() {
@@ -849,6 +975,7 @@ function setSelectedIds(ids, options = {}) {
 
   if (options.render === false) return;
   renderCart();
+  renderQuotePage();
   updateCatalogSelectionStates();
 }
 
@@ -902,13 +1029,7 @@ function sendMoodboardToQuote() {
 }
 
 function openQuotePanelFromMoodboard() {
-  if (window.location.hash === "#catalogo") {
-    setQuotePanelOpen(true);
-    return;
-  }
-
-  window.location.hash = "catalogo";
-  window.setTimeout(() => setQuotePanelOpen(true), 0);
+  window.location.hash = "cotizacion";
 }
 
 function loadSavedSelectedIds(fallback = []) {
