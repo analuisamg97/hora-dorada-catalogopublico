@@ -5611,7 +5611,7 @@ textarea,
   }
 
   body[data-active-page="contacto"] .contact-landing__copy {
-    bottom: clamp(178px, 24vh, 280px);
+    bottom: clamp(260px, 34vh, 390px);
   }
 
   body[data-active-page="contacto"] .contact-bodega {
