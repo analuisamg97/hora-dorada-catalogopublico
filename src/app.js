@@ -120,6 +120,7 @@ const els = {
   contactWhatsapp: document.querySelector("#contactWhatsapp"),
   contactMessage: document.querySelector("#contactMessage"),
   contactStatus: document.querySelector("#contactStatus"),
+  contactDirectWhatsApp: document.querySelector("#contactDirectWhatsApp"),
   requestStatus: document.querySelector("#requestStatus"),
   shareWhatsApp: document.querySelector("#shareWhatsApp"),
   successDialog: document.querySelector("#successDialog"),
@@ -139,6 +140,12 @@ async function init() {
 
 function bindEvents() {
   els.settingsButton.addEventListener("click", () => els.settingsDialog.showModal());
+  els.contactDirectWhatsApp.addEventListener("click", (event) => {
+    event.preventDefault();
+    openBusinessWhatsApp([
+      "Hola Hora Dorada ✨ me gustaría más información acerca de algunos props para renta. 🌞👍🏼"
+    ]);
+  });
   document.querySelectorAll("[data-close-dialog]").forEach((button) => {
     button.addEventListener("click", () => button.closest("dialog").close());
   });
@@ -931,7 +938,11 @@ function shareWhatsApp() {
 }
 
 function openBusinessWhatsApp(lines) {
-  window.open(`https://wa.me/${businessWhatsAppNumber}?text=${encodeURIComponent(lines.join("\n"))}`, "_blank");
+  const params = new URLSearchParams({
+    phone: businessWhatsAppNumber,
+    text: lines.join("\n")
+  });
+  window.open(`https://api.whatsapp.com/send?${params}`, "_blank");
 }
 
 function getFriendlyRequestError(error) {
