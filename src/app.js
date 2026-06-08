@@ -98,6 +98,8 @@ const els = {
   quotePageClientNotes: document.querySelector("#quotePageClientNotes"),
   quotePageRequestStatus: document.querySelector("#quotePageRequestStatus"),
   quotePageShareWhatsApp: document.querySelector("#quotePageShareWhatsApp"),
+  quotePageIntro: document.querySelector(".quote-page__intro"),
+  quotePageSummary: document.querySelector(".quote-page-summary"),
   mobileSelected: document.querySelector("#mobileSelected"),
   mobileTotal: document.querySelector("#mobileTotal"),
   openCart: document.querySelector("#openCart"),
@@ -132,10 +134,30 @@ init();
 
 async function init() {
   bindEvents();
+  bindQuoteSummaryPosition();
   setQuotePanelOpen(document.body.dataset.activePage === "catalogo");
   fillSettingsForm();
   setDefaultDates();
   await loadData();
+}
+
+function bindQuoteSummaryPosition() {
+  if (!els.quotePageIntro || !els.quotePageSummary) return;
+
+  const updatePosition = () => {
+    if (window.matchMedia("(max-width: 980px)").matches) {
+      els.quotePageSummary.style.removeProperty("--quote-summary-lift");
+      return;
+    }
+
+    const introStyles = window.getComputedStyle(els.quotePageIntro);
+    const introSpace = els.quotePageIntro.offsetHeight + Number.parseFloat(introStyles.marginBottom || "0");
+    els.quotePageSummary.style.setProperty("--quote-summary-lift", `${introSpace}px`);
+  };
+
+  updatePosition();
+  window.addEventListener("resize", updatePosition);
+  new ResizeObserver(updatePosition).observe(els.quotePageIntro);
 }
 
 function bindEvents() {

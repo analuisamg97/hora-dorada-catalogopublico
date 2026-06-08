@@ -6226,6 +6226,7 @@ body[data-active-page="cotizacion"] .quote {
 .quote-page-summary {
   top: 106px;
   gap: 14px;
+  margin-top: calc(-1 * var(--quote-summary-lift, 0px));
   max-height: calc(100dvh - 122px);
   overflow-y: auto;
   overscroll-behavior: contain;
@@ -6276,6 +6277,7 @@ body[data-active-page="cotizacion"] .quote {
 
   .quote-page-summary {
     position: static;
+    margin-top: 0;
     max-height: none;
     overflow: visible;
   }
